@@ -1,14 +1,18 @@
-name: "Set Assignee"
+name: 'issue-comments-validate'
 on:
-  issues_comment:
-    types: [created]]
+  issue_comment:
+    types:
+      - created
+      - edited
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
+  check:
     steps:
-      - uses: Amwam/issue-comment-action@v1.3.1
+      - id: step1
+        uses: fukuiretu/actions-issue-comment-validates@main
         with:
-          keywords: '["test"]'
-          assignees: '["username"]'
           github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - id: step2
+        run: |
+          echo "check1 result: ${{ steps.step1.outputs.check1 }}"
+          echo "check2 result: ${{ steps.step1.outputs.check2 }}"
