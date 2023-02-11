@@ -1,7 +1,7 @@
 name: Assign reviewers based on assignees
 on:
   pull_request:
-    types: [assigned, unassigned]
+    types: [assigned, unassigned, opened]
 
 jobs:
   assignee_to_reviewer:
