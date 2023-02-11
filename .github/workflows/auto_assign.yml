@@ -3,19 +3,20 @@ on:
     types: [opened, edited, labeled, unlabeled]
   pull_request:
     types: [opened, edited, labeled, unlabeled]
+
 jobs:
   run:
     runs-on: ubuntu-latest
     steps:
-      - uses: wow-actions/auto-assign@v3
+      - name: Auto Assign
+        uses: wow-actions/auto-assign@v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          reviewers: |
-            reviewer1
-            reviewer2
-            reviewer3
-            org/teamReviewerA
-            org/teamReviewerB
-            /teamReviewerC
-          assignees: jge162
+          reviewers: jge162
+          assignees: 
           skipKeywords: wip, draft 
+          addReviewers: true
+          addAssignees: false
+          numberOfReviewers: 1
+          numberOfAssignees: 0
+          skipDraft: true
