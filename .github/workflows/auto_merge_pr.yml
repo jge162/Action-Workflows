@@ -1,17 +1,19 @@
-name: PRs auto merge
+name: Auto Merge PRs
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [labeled]
 
 jobs:
-  pr-automerge:
+  merge-prs:
     runs-on: ubuntu-latest
     steps:
-    - uses: davideviolante/pr-automerge-action@v1.3.3
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        merge-method: 'squash' # Default 'squash'
-        min-approvals: 0 # No approvals needed
-        base-ref: 'main' # Default 'main'
+      - name: Check for required label and author
+        if: contains(github.event.pull_request.labels.*.name, 'enhancement') && github.event.pull_request.user.login == 'jge162'
+        run: |
+          echo "PR meets requirements, ready to merge"
+
+      - name: Merge pull request
+        uses: pascalgn/automerge-action@v0.15.5
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
