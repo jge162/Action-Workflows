@@ -4,7 +4,6 @@ on:
   pull_request:
     types: [opened, reopened]
 
-
 jobs:
   set-auto-merge:
     name: Set Pull Request do Automerge
@@ -19,4 +18,4 @@ jobs:
       - name: Setting to Automerge
         uses: heitorpolidoro/automerge-pr@v1
         env:
-          <user>: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
