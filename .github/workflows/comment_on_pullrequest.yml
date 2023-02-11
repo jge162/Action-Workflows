@@ -19,7 +19,7 @@ jobs:
             Uh oh!
 
       - name: Add label to pull request
-        uses: actions/label@v2
+        uses: actions/github-script@v6
         with:
           labels: enhancement
 
