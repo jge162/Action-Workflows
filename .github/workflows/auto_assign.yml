@@ -1,16 +1,16 @@
+name: Issue assignment
+
 on:
-  issues:
-    types: [opened, edited, labeled, unlabeled]
-  pull_request:
-    types: [opened, edited, labeled, unlabeled]
+    issues:
+        types: [opened]
+
 jobs:
-  run:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: wow-actions/auto-assign@v3
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # using the `org/team_slug` or `/team_slug` syntax to add git team as reviewers
-          assignees: jge162
-          skipKeywords: wip, draft # optional
-          types: [opened, edited, labeled, unlabeled, reassigned]
+    auto-assign:
+        runs-on: ubuntu-latest
+        steps:
+            - name: 'Auto-assign issue'
+              uses: pozil/auto-assign-issue@v1
+              with:
+                  assignees: octocat,cat,dog
+                  numOfAssignee: 2
+                  allowSelfAssign: false
