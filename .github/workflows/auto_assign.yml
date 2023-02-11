@@ -12,5 +12,5 @@ jobs:
       - uses: Naturalclar/issue-action@v2.0.2
         with:
           title-or-body: "both"
-          parameters: [ {"keywords": ["bug", "error"], "labels": ["BUG"], "assignees": ["jge162"]}, {"keywords": ["help", "guidance"], "labels": ["documentation"], "assignees": ["jge162"]}]
+          parameters: [ {"keywords": ["bug", "error"], "labels": ["BUG"], "assignees": ["username"]}, {"keywords": ["help", "guidance"], "labels": ["help-wanted"], "assignees": ["jge162"]}]
           github-token: "${{ secrets.GITHUB_TOKEN }}"
