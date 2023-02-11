@@ -2,16 +2,13 @@ name: Comment on new issue
 on:
   issues:
     types: [opened]
-    
+
 jobs:
-  tag-a-user:
+  greet:
     runs-on: ubuntu-latest
-    steps: 
-      - uses: devops-actions/issue-comment-tag@v0.1.0
-        name: Tag a user or team in an issue comment
-        with: 
-          issue: ${{ github.event.issue.number }}
-          team: < jge162 >
-          owner: ${{ github.repository_owner }}
-          repo: ${{ github.repository }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: issue comment
+        uses: kyoncy/issue-comment-actions@v1
+        with:
+          message: "Thank you for opening this issue, I'll take a look and get back to you soon."
+
