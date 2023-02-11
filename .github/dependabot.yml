@@ -14,6 +14,6 @@ updates:
   - package-ecosystem: 'pip'
     directory: '/'
     schedule:
-      interval: 'daily' 
-      at: '12:00 AM'
+      interval: 'weekly' 
+      day: 'saturday'
 
