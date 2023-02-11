@@ -13,10 +13,10 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           reviewers: jge162
-          assignees: 
+          assignees: jge162
           skipKeywords: wip, draft 
           addReviewers: true
-          addAssignees: false
+          addAssignees: true
           numberOfReviewers: 1
-          numberOfAssignees: 0
+          numberOfAssignees: 1
           skipDraft: true
