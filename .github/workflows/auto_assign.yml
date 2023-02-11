@@ -8,4 +8,4 @@ jobs:
     steps:
     - uses: bhermann/issue-volunteer@v0.1.12
       with:
-        GITHUB_TOKEN: "${{ secrets.MY_SECRET }}"
+        GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
