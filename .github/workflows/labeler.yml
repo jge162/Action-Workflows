@@ -1,0 +1,5 @@
+pull_request_rules:
+- name: Add enhancement label
+  condition: contains(title, "enhancement")
+  labels:
+  - enhancement
