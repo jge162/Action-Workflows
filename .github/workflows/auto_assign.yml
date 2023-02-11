@@ -1,20 +1,16 @@
-on:
-  pull_request:
-    types: [opened, edited, labeled, unlabeled]
+name: "Assign Reviewers to PR"
 
+on:  
+  pull_request:
+    types: [opened, ready_for_review, reopened, review_requested, review_request_removed]
+     
 jobs:
-  run:
+  assign-pr-reviewers:
     runs-on: ubuntu-latest
     steps:
-      - name: Auto Assign Reviewer
-        uses: wow-actions/auto-assign@v3
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          reviewers: jge162
-          assignees: jge162
-          skipKeywords: wip, draft 
-          addReviewers: true
-          addAssignees: true
-          numberOfReviewers: 1
-          numberOfAssignees: 1
-          skipDraft: true
+    - name: "Assign Reviewers to PR"
+      uses: itsOliverBott/assign-pr-reviewers@release
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        users: "jge162" # comma-separated (example: "itsOliverBott, SantaClaus, b4tman, sp0derman")
+        ignore-drafts: true # defaults to false if not provided
