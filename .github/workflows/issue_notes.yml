@@ -1,22 +1,17 @@
 name: Comment on new issue
-
 on:
   issues:
     types: [opened]
-
+    
 jobs:
-  comment_on_new_issue:
+  tag-a-user:
     runs-on: ubuntu-latest
-    name: Job for commenting on new issue
-    steps:
-      - name: Comment
-        uses: actions/github-script@v3
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            github.issues.createComment({
-              issue_number: github.event.issue.number,
-              repo: github.repository.name,
-              owner: github.repository.owner.login,
-              body: "Thanks for opening this issue! I'll take a look and get back to you soon."
-            });
+    steps: 
+      - uses: devops-actions/issue-comment-tag@v0.1.0
+        name: Tag a user or team in an issue comment
+        with: 
+          issue: ${{ github.event.issue.number }}
+          team: < jge162 >
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
