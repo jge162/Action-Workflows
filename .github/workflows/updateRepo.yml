@@ -6,6 +6,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Create Repo Directory
+      run: mkdir -p myrepo
     - name: Update Repo
       run: |
         cd myrepo
