@@ -1,16 +1,11 @@
-name: "Set Issue Label and Assignee"
-on:
-  issues:
-    types: [opened]
-  pull_request:
-    typed: [opened]
+name: "Issue volunteer assignment"
+
+on: [issue_comment]
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: Naturalclar/issue-action@v2.0.2
-        with:
-          title-or-body: "both"
-          parameters: [ {"keywords": ["bug", "error"], "labels": ["BUG"], "assignees": ["username"]}, {"keywords": ["help", "guidance"], "labels": ["help-wanted"], "assignees": ["username"]}]
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
+    - uses: bhermann/issue-volunteer@v0.1.12
+      with:
+        GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
