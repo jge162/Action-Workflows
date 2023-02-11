@@ -1,0 +1,16 @@
+on:
+  pull_request:
+
+jobs:
+  pr:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - uses: mshick/add-pr-comment@v2
+        with:
+          if: always()
+          message: |
+            **Howdie!**
+          message-failure: |
+            Uh oh!
