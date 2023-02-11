@@ -1,4 +1,5 @@
 name: Comment on new issue
+
 on:
   issues:
     types: [opened]
@@ -8,11 +9,17 @@ jobs:
     runs-on: ubuntu-latest
     name: Issue comment
     steps:
-      - name: checkout
+      - name: Checkout code
         uses: actions/checkout@v2
-      - name: issue comment
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - name: Issue comment
         uses: kyoncy/issue-comment-actions@v1
         with:
           message: "Thank you for opening this issue, I'll take a look and get back to you soon."
+          token: ${{ secrets.GITHUB_TOKEN }}
+
           # testing
 
