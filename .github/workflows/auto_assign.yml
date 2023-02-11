@@ -7,8 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: "Assign Reviewers to PR"
-      uses: itsOliverBott/assign-pr-reviewers@release
+      uses: actions/request-review@v2
       with:
+        reviewers: "jge162" # comma-separated (example: "itsOliverBott, SantaClaus, b4tman, sp0derman")
         token: ${{ secrets.GITHUB_TOKEN }}
-        users: "jge162" # comma-separated (example: "itsOliverBott, SantaClaus, b4tman, sp0derman")
-        ignore-drafts: true # defaults to false if not provided
