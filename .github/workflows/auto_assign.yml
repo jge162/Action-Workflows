@@ -1,16 +1,15 @@
-name: Auto Assign
+# .github/workflows/auto-author-assign.yml
+name: Auto Author Assign
 
 on:
-  pull_request:
-    types:
-      - opened
-      - reopened
+  pull_request_target:
+    types: [ opened, reopened ]
+
+permissions:
+  pull-requests: write
 
 jobs:
-  add_assignees:
+  assign-author:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions-ecosystem/action-add-assignees@v1
-        with:
-          github_token: ${{ secrets.github_token }}
-          assignees: ${{ github.actor }}
+      - uses: toshimaru/auto-author-assign@v1.6.2
