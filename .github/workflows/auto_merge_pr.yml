@@ -10,10 +10,12 @@ jobs:
     # Specifically check that jge162 (or another trusted party) created this pull-request, and that it has been labelled correctly.
     if: github.event.pull_request.user.login == 'jge162' && contains(github.event.pull_request.labels.*.name, 'enhancement')
     steps:
-    - uses: daneden/enable-automerge-action@v1
+    - name: Enable Auto Merge
+      uses: peter-evans/auto-merge@v2
       with:
         github-token: "${{ secrets.GITHUB_TOKEN }}"
-        allowed-author: jge162
-        merge-method: MERGE
+        label: "enhancement"
+        author: "jge162"
+
 
 
