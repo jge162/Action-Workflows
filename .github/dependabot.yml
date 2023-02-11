@@ -16,7 +16,7 @@ updates:
     schedule:
       interval: 'weekly' 
       day: 'saturday'
-  - package-ecosystem: custom
+  - package-ecosystem: "custom"
     directory: ./
     schedule:
       cron: '0 0 * * 0'
