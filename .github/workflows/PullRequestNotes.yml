@@ -13,6 +13,6 @@ jobs:
         with:
           if: always()
           message: |
-            **Thank you for the request! Let me know what you have found or your suggested changes!**
+            **Thank you for the Pull Request! Please Let me know what changes you have in mind!**
           message-failure: |
             Uh oh!
