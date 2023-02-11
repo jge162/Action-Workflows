@@ -1,4 +1,5 @@
-name: Issue request notes
+name: Comment on new issue
+
 on:
   issues:
     types: [opened]
@@ -11,5 +12,5 @@ jobs:
       - name: Comment
         uses: jd-0001/gh-action-comment-on-new-issue@v2.0.3
         with:
-          message: 'Welcome to the repo :)'
+          message: 'Welcome to the repo! Please provide more details about the issue you are facing.'
           ignore-label: 'internal'
