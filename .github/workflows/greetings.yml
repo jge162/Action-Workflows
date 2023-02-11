@@ -10,10 +10,15 @@ jobs:
       pull-requests: write
     steps:
     - name: Greeting
-      uses: actions/github-script@v3
+      uses: actions/github-script@v6
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ***
+        event: ${{ toJson(github.event) }}
         script: |
           const eventType = github.event.pull_request ? 'pull request' : 'issue';
           const greetingMessage = `Thank you for the ${eventType}, please let me know the details.`;
-  
+        debug: false
+        user-agent: actions/github-script
+        result-encoding: json
+        retries: 0
+        retry-exempt-status-codes: 400,401,403,404,422
