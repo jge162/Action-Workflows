@@ -1,13 +1,20 @@
-name: Assign reviewers based on assignees
 on:
   pull_request:
-    types: [assigned, unassigned, opened]
+    types: [opened, edited, labeled, unlabeled]
 
 jobs:
-  assignee_to_reviewer:
+  run:
     runs-on: ubuntu-latest
     steps:
-      - name: Assignee to Reviewer
-        uses: pullreminders/assignee-to-reviewer-action@v1.0.4
-        env:
+      - name: Auto Assign Reviewer
+        uses: wow-actions/auto-assign@v3
+        with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          reviewers: jge162
+          assignees: jge162
+          skipKeywords: wip, draft 
+          addReviewers: true
+          addAssignees: true
+          numberOfReviewers: 1
+          numberOfAssignees: 1
+          skipDraft: true
