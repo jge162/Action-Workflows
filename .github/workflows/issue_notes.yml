@@ -1,14 +1,15 @@
-name: Issue request notes
+name: issue-checklist
+
 on:
   issues:
     types: [opened]
 
 jobs:
-  comment_on_new_issue:
+  comment:
     runs-on: ubuntu-latest
-    name: Job for commenting on new issue
+
     steps:
-      - name: Comment
-        uses: jd-0001/gh-action-comment-on-new-issue@v2.0.3
-        with:
-          message: 'Welcome to the repo :)'
+    - uses: ben-z/actions-comment-on-issue@1.0.2
+      with:
+        message: "Gentle reminder:\n* Did you go through all of the troubleshooting steps outlined in README.md?"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
