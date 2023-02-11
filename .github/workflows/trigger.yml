@@ -1,21 +1,24 @@
+name: Respond to Pull Request
+
 on:
   pull_request:
-    types:
-      - opened
+    types: [opened, synchronize]
 
 jobs:
-  comment_on_pr:
+  respond:
     runs-on: ubuntu-latest
+    
     steps:
-    - name: Leave a comment on pull request
-      if: ${{ github.event.pull_request }}
-      uses: actions/github-script@v3
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        script: |
-          github.issues.createComment({
-            issue_number: github.event.pull_request.number,
-            owner: github.repository.owner.login,
-            repo: github.repository.name,
-            body: "Thank you for submitting this pull request! I will review it soon."
-          });
+      - name: Respond to Pull Request
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            if (github.event.pull_request) {
+              github.issues.createComment({
+                issue_number: github.event.pull_request.number,
+                repo: github.repository.name,
+                owner: github.repository.owner.login,
+                body: "Thanks for opening this pull request! I'll take a look and get back to you soon."
+              });
+            }
