@@ -4,11 +4,11 @@ on:
       - opened
 
 jobs:
-  comment:
+  comment_on_pr:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Comment
+    - name: Leave a comment on pull request
+      if: ${{ github.event.pull_request }}
       uses: actions/github-script@v3
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
