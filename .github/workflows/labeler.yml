@@ -1,4 +1,4 @@
-automerge:
+enhancement:
 - name: Add enhancement label
   condition: contains(title, "enhancement")
   labels:
