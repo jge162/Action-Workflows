@@ -14,14 +14,19 @@ jobs:
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
-          const issueComment = "Thank you for the issue, please let me know the issue you found!";
-          const prComment = "Thank you for the Pull Request, please let me know the issue you found!";
-  
-          const message = github.event.pull_request ? prComment : issueComment;
-  
-          github.issues.createComment({
-            issue_number: github.event.issue.number,
-            owner: github.repository.owner.login,
-            repo: github.repository.name,
-            body: message
-          });
+         const issueComment = "Thank you for creating issue, please tell us the issue you found 'please be detail' Thank you";
+const prComment = "Thank you for the pull request, we will review changes to see if a merge is warranted. Thank you.";
+
+let message;
+if (github.event.pull_request) {
+  message = prComment;
+} else {
+  message = issueComment;
+}
+
+github.issues.createComment({
+  issue_number: github.event.issue.number,
+  owner: github.repository.owner.login,
+  repo: github.repository.name,
+  body: message
+});
