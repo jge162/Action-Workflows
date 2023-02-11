@@ -1,4 +1,4 @@
-name: Auto-Merge
+name: Auto Merge by User
 on:
   pull_request_target:
     types: [labeled]
