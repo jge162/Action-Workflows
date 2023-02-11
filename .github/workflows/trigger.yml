@@ -1,5 +1,7 @@
+name: Pull Request and Issue notes
 on:
   pull_request:
+  issues:
 
 jobs:
   pr:
@@ -11,6 +13,6 @@ jobs:
         with:
           if: always()
           message: |
-            **Howdie!**
+            **Thank you for the request! Let me know what you have found or your suggested changes!**
           message-failure: |
             Uh oh!
