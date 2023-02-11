@@ -10,7 +10,6 @@ jobs:
       - uses: wow-actions/auto-assign@v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # using the `org/team_slug` or `/team_slug` syntax to add git team as reviewers
           reviewers: |
             reviewer1
             reviewer2
@@ -18,5 +17,5 @@ jobs:
             org/teamReviewerA
             org/teamReviewerB
             /teamReviewerC
-          assignees: jge162, assignee1, assignee2, assignee3
+          assignees: jge162
           skipKeywords: wip, draft 
