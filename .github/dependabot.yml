@@ -5,8 +5,14 @@
 
 version: 2
 updates:
-  - package-ecosystem: "github-actions" # See documentation for possible values
+  - package-ecosystem: "add-pr-comment" # See documentation for possible values
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
       day: "friday"
+ - package-ecosystem: "github-actions" # See documentation for possible values
+    directory: "/" # Location of package manifests
+    schedule:
+      interval: "weekly"
+      day: "friday"
+
