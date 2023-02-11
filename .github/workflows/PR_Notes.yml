@@ -1,4 +1,4 @@
-name: Pull Request and Issue notes
+name: Pull Request notes
 on:
   pull_request:
   issues:
