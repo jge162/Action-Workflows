@@ -1,0 +1,27 @@
+name: Greetings
+
+on: [pull_request_target, issues]
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+    - name: Leave comment
+      uses: actions/github-script@v3
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const issueComment = "Thank you for the issue, please let me know the issue you found!";
+          const prComment = "Thank you for the Pull Request, please let me know the issue you found!";
+  
+          const message = github.event.pull_request ? prComment : issueComment;
+  
+          github.issues.createComment({
+            issue_number: github.event.issue.number,
+            owner: github.repository.owner.login,
+            repo: github.repository.name,
+            body: message
+          });
