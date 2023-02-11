@@ -1,17 +1,25 @@
 name: Pull Request notes
+
 on:
   pull_request:
-  
+
 jobs:
   pr:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
     steps:
-      - uses: mshick/add-pr-comment@v2
+      - name: Add PR notes
+        uses: mshick/add-pr-comment@v2
         with:
           if: always()
           message: |
-            **Thank you for the Pull Request! Please Let me know what changes you have in mind!**
+            **Thank you for the Pull Request! Please let me know what changes you have in mind!**
           message-failure: |
             Uh oh!
+
+      - name: Add label to pull request
+        uses: actions/label@v2
+        with:
+          labels: enhancement
+
