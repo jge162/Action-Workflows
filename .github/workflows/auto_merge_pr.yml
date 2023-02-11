@@ -1,21 +1,17 @@
-name: Auto Merge by User
+name: PRs auto merge
+
 on:
-  pull_request_target:
-    types: [labeled]
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
-  enable-auto-merge:
+  pr-automerge:
     runs-on: ubuntu-latest
-
-    # Specifically check that jge162 (or another trusted party) created this pull-request, and that it has been labelled correctly.
-    if: github.event.pull_request.user.login == 'jge162' && contains(github.event.pull_request.labels.*.name, 'enhancement')
     steps:
-    - name: Enable Auto Merge
-      uses: peter-evans/auto-merge@v2
+    - uses: davideviolante/pr-automerge-action@v1.3.3
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        github-token: "${{ secrets.GITHUB_TOKEN }}"
-        label: "enhancement"
-        author: "jge162"
-
-
-
+        merge-method: 'squash' # Default 'squash'
+        min-approvals: 0 # No approvals needed
+        base-ref: 'main' # Default 'main'
