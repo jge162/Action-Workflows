@@ -10,24 +10,6 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
-    - name: Add Comment
-      uses: actions/github-script@0.7.0
-      with:
-        github-token: "${{ secrets.GITHUB_TOKEN }}"
-        script: |
-          const content = await context.github.repos.getContents({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            path: '.github/PULL_REQUEST_TEMPLATE.md'
-          });
-
-          const comment = Buffer.from(content.data.content, 'base64').toString();
-          await context.github.issues.createComment({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: comment
-          });
     - uses: actions/labeler@v4
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
