@@ -1,15 +1,22 @@
 name: Comment on new issue
-on: [issues]
-jobs:
-  run:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: wow-actions/auto-comment@v1
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          issuesOpened: |
-            👋 @{{ author }}
-            Thank you for raising an issue. We will will investigate into the matter and get back to you as soon as possible.
-            Please make sure you have given us as much context as possible.
 
-       
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  comment_on_new_issue:
+    runs-on: ubuntu-latest
+    name: Job for commenting on new issue
+    steps:
+      - name: Comment
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.issues.createComment({
+              issue_number: github.event.issue.number,
+              repo: github.repository.name,
+              owner: github.repository.owner.login,
+              body: "Thanks for opening this issue! I'll take a look and get back to you soon."
+            });
