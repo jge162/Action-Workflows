@@ -1,0 +1,30 @@
+name: My pull request workflow
+
+on:
+  push:
+    branches: [ development ]
+
+jobs:
+  create_pull_request:
+    name: Run the Action
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run the Action
+        uses: devops-infra/action-pull-request@v0.5.3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          source_branch: development
+          target_branch: main
+          title: My pull request
+          template: .github/PULL_REQUEST_TEMPLATE.md
+          body: "**Automated pull request**"
+          reviewer: octocat
+          assignee: octocat
+          label: enhancement
+          milestone: My milestone
+          draft: true
+          old_string: "<!-- Add your description here -->"
+          new_string: "** Automatic pull request**"
+          get_diff: true
+          ignore_users: "dependabot"
+          allow_no_diff: false
