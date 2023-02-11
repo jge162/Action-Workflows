@@ -1,16 +1,13 @@
-name: Add Reviewers
-
+name: Assign reviewers based on assignees
 on:
   pull_request:
+    types: [assigned, unassigned]
 
 jobs:
-  build:
+  assignee_to_reviewer:
     runs-on: ubuntu-latest
     steps:
-    - name: Add Reviewers
-      uses: madrapps/add-reviewers@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        reviewers: jge162
-        re-request-when-approved: true
-        re-request-when-changes-requested: true
+      - name: Assignee to Reviewer
+        uses: pullreminders/assignee-to-reviewer-action@v1.0.4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
