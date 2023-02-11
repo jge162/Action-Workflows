@@ -1,12 +1,16 @@
-name: "Issue assigner"
+name: Add Reviewers
 
-on: [issues, issue_comment]
+on:
+  pull_request:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: estrada9166/issue-assigner@v1
+    - name: Add Reviewers
+      uses: madrapps/add-reviewers@v1
       with:
-        GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-        WITH_COMMENTS: true
+        token: ${{ secrets.GITHUB_TOKEN }}
+        reviewers: john,kramer,seinfeld
+        re-request-when-approved: true
+        re-request-when-changes-requested: true
