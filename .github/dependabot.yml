@@ -16,4 +16,15 @@ updates:
     schedule:
       interval: 'weekly' 
       day: 'saturday'
+  - package-ecosystem: custom
+    directory: ./
+    schedule:
+      cron: '0 0 * * 0'
+    update_config:
+      run:
+        - command: curl https://trusted/upstream/source
+        - command: ./local-update
+        - command: git add deps*
+        - command: git commit -m "sync with upstream"
+        - command: git push
 
