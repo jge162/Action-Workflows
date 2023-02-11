@@ -17,9 +17,3 @@ jobs:
             **Thank you for the Pull Request! Please let me know what changes you have in mind!**
           message-failure: |
             Uh oh!
-
-      - name: Add label to pull request
-        uses: actions/github-script@v6
-        with:
-          labels: enhancement
-
