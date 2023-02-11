@@ -14,7 +14,7 @@ jobs:
         with:
           # A personal access token that you have generated and saved in the
           # repo or org’s encrypted secrets
-          github-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
           # The name of the PR author to enable automerge for
           # Defaults to dependabot[bot]
