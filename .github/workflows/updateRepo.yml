@@ -1,0 +1,16 @@
+name: Update Repo
+on: [push]
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Update Repo
+      run: |
+        cd myrepo
+        curl https://trusted/upstream/source
+        ./local-update
+        git add deps*
+        git commit -m "sync with upstream"
+        git push
