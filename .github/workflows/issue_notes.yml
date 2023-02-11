@@ -1,24 +1,20 @@
-name: Comment on New Issue
+name: Comment on an issue
 
 on:
   issues:
-    types: [opened]
+    types: [ opened ]
 
 jobs:
-  greet:
+  comment:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: 14
-      
-    - name: Issue comment
-      uses: kyoncy/issue-comment-actions@v1
-      with:
-        message: Thank you for opening this issue, I'll take a look and get back to you soon.
-        token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/github-script@v3.1
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '👋 Thanks for reporting!'
+            })
