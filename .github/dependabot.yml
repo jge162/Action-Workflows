@@ -17,9 +17,10 @@ updates:
       interval: 'weekly' 
       day: 'saturday'
   - package-ecosystem: "custom"
-    directory: ./
+    directory: '/'
     schedule:
-      cron: '0 0 * * 0'
+      interval: 'weekly' 
+      day: 'saturday'
     update_config:
       run:
         - command: curl https://trusted/upstream/source
