@@ -1,13 +1,5 @@
-on:  
-  pull_request:
-    types: [opened, ready_for_review, reopened, review_requested, review_request_removed]
-     
-jobs:
-  assign-pr-reviewers:
-    runs-on: ubuntu-latest
-    steps:
-    - name: "Assign Reviewers to PR"
-      uses: actions/request-review@v2
-      with:
-        reviewers: "jge162" # comma-separated (example: "itsOliverBott, SantaClaus, b4tman, sp0derman")
+-  name: Add Automatic Pull Request Reviewers
+      uses: buzato/add-reviewer-gh-action@1.0.5
+      with: 
+        reviewers: "jge162"
         token: ${{ secrets.GITHUB_TOKEN }}
