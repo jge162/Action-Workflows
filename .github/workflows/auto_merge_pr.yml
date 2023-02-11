@@ -1,21 +1,16 @@
-name: Automerge Pull Request
-
+name: Auto-Merge 
 on:
-  pull_request:
-    types: [opened, reopened]
+  pull_request_target:
+    types: [labeled]
 
 jobs:
-  set-auto-merge:
-    name: Set Pull Request do Automerge
+  enable-auto-merge:
     runs-on: ubuntu-latest
 
+    # Specifically check that jge162 (or another trusted party) created this pull-request, and that it has been labelled correctly.
+    if: github.event.pull_request.user.login == 'jge162' && contains(github.event.pull_request.labels.*.name, 'enhancement')
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
+    - uses: alexwilson/enable-github-automerge-action@main
+      with:
+        github-token: "${{ secrets.GITHUB_TOKEN }}"
 
-      - name: Setting to Automerge
-        uses: heitorpolidoro/automerge-pr@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
