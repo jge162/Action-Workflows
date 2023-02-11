@@ -1,22 +1,12 @@
-on:
-  issues:
-    types: [opened, edited, labeled, unlabeled]
-  pull_request:
-    types: [opened, edited, labeled, unlabeled]
+name: "Issue assigner"
+
+on: [issues, issue_comment]
 
 jobs:
-  run:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Auto Assign
-        uses: wow-actions/auto-assign@v3
-        with:
-          GITHUB_TOKEN: ${{ secrets.MY_SECRET }}
-          reviewers: 
-          assignees: jge162
-          skipKeywords: wip, draft 
-          addReviewers: false
-          addAssignees: true
-          numberOfReviewers: 0
-          numberOfAssignees: 1
-          skipDraft: true
+    - uses: estrada9166/issue-assigner@v1
+      with:
+        GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        WITH_COMMENTS: true
