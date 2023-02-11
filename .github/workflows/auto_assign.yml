@@ -12,11 +12,11 @@ jobs:
         uses: wow-actions/auto-assign@v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          reviewers: jge162
+          reviewers: 
           assignees: jge162
           skipKeywords: wip, draft 
-          addReviewers: true
+          addReviewers: false
           addAssignees: true
-          numberOfReviewers: 1
+          numberOfReviewers: 0
           numberOfAssignees: 1
           skipDraft: true
