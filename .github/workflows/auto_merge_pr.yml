@@ -1,0 +1,22 @@
+name: Automerge Pull Request
+
+on:
+  pull_request:
+    types: [opened, reopened]
+
+
+jobs:
+  set-auto-merge:
+    name: Set Pull Request do Automerge
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Setting to Automerge
+        uses: heitorpolidoro/automerge-pr@v1
+        env:
+          <user>: ${{ secrets.GITHUB_TOKEN }}
