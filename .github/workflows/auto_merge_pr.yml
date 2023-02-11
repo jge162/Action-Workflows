@@ -8,11 +8,10 @@ jobs:
   merge-prs:
     runs-on: ubuntu-latest
     steps:
-      - name: Check for required label and author
-        if: contains(github.event.pull_request.labels.*.name, 'enhancement') && github.event.pull_request.user.login == 'jge162'
+      - name: Check for required label and branch
+        if: contains(github.event.pull_request.labels.*.name, 'automerge') && github.event.pull_request.base.ref == 'main'
         run: |
           echo "PR meets requirements, ready to merge"
-
       - name: Merge pull request
         uses: pascalgn/automerge-action@v0.15.5
         env:
