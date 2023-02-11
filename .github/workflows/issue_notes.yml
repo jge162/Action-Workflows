@@ -1,16 +1,15 @@
 name: Comment on new issue
-
-on:
-  issues:
-    types: [opened]
-
+on: [issues]
 jobs:
-  comment_on_new_issue:
+  run:
     runs-on: ubuntu-latest
-    name: Job for commenting on new issue
     steps:
-      - name: Comment
-        uses: jd-0001/gh-action-comment-on-new-issue@v2.0.3
+      - uses: wow-actions/auto-comment@v1
         with:
-          message: 'Welcome to the repo! Please provide more details about the issue you are facing.'
-          ignore-label: 'internal'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          issuesOpened: |
+            👋 @{{ author }}
+            Thank you for raising an issue. We will will investigate into the matter and get back to you as soon as possible.
+            Please make sure you have given us as much context as possible.
+
+       
