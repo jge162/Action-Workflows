@@ -14,6 +14,6 @@ jobs:
         with:
           if: always()
           message: |
-            **Thank you for the Pull Request! Please let me know what changes you have in mind!**
+            $(cat .github/workflows/PULL_REQUEST_TEMPLATE.md)
           message-failure: |
             Uh oh!
