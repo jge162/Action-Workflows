@@ -1,4 +1,3 @@
-name: Auto Assign
 on:
   issues:
     types: [opened, edited, labeled, unlabeled]
@@ -13,4 +12,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # using the `org/team_slug` or `/team_slug` syntax to add git team as reviewers
           assignees: jge162
-          skipKeywords: wip, draft
+          skipKeywords: wip, draft # optional
+          types: [opened, edited, labeled, unlabeled, reassigned]
