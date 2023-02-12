@@ -13,7 +13,7 @@ jobs:
         id: metadata
         uses: dependabot/fetch-metadata@v1
         with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          github-token: "${{ secrets.WORKFLOW_SECRET }}"
       - name: Approve a PR
         run: gh pr review --approve "$PR_URL"
         env:
