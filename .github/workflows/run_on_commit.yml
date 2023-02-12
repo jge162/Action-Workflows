@@ -18,3 +18,4 @@ jobs:
         COMMIT_MESSAGE="$(git log -1 --pretty=%B)"
         echo "Commit message: $COMMIT_MESSAGE"
         dash ./CommitScript.sh "$COMMIT_MESSAGE"
+        
