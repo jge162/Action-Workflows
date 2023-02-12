@@ -15,4 +15,4 @@ jobs:
     - name: Run script
       uses: actions/run-script@v1
       with:
-        script: ./script.sh
+        script: ./CommitScript.sh
