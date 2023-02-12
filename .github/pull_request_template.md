@@ -4,5 +4,4 @@
 - [ ] Which issues have been fixed!
 - [ ] Any other relevant info too please. 
 
-**Thank you!**
-          
+Pull request comments below here please. Thank you.
