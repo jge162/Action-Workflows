@@ -19,6 +19,8 @@ def main():
     compile_files()
     run_simulation()
 
+print("success running script")
+
 # Run the main function
 if __name__ == "__main__":
     main()
