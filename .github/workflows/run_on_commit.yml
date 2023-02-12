@@ -17,6 +17,11 @@ jobs:
         echo "Install required dependencies"
         sudo apt-get update
         sudo apt-get install dash
-    - run: |
+    - name: Run Script
+      run: |
         echo "Run, Build Application using scripts"
-        dash ./CommitScript.sh "$(cat)"
+        echo "Commit message: $GITHUB_EVENT_PATH"
+        dash ./CommitScript.sh "$GITHUB_EVENT_PATH"
+      env:
+        GITHUB_EVENT_PATH: "${{ toJson(github.event) }}"
+
