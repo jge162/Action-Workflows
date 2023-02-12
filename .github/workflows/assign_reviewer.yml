@@ -1,15 +1,17 @@
-name: 'Request Reviewers'
+name: "Assign Reviewers to PR"
 
-on:
+on:  
   pull_request:
-    types: ['opened', 'labeled', 'labeled']
-
+    types: [opened, ready_for_review, reopened, review_requested, review_request_removed]
+     
 jobs:
-  add-reviews:
+  assign-pr-reviewers:
     runs-on: ubuntu-latest
     steps:
-      - name: Request Reviewers
-        uses: neo-diego-beltran/request-reviewers@f028375d516d93d6a4dd5f93feccfc7f3c768a9b
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          config_path: ".github/workflows/request-reviewers.yml"
+    - name: "Assign Reviewers to PR"
+      if: github.actor == 'jge162'
+      uses: itsOliverBott/assign-pr-reviewers@release
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        users: "geo4u" # comma-separated (example: "itsOliverBott, SantaClaus, b4tman, sp0derman")
+        ignore-drafts: true # defaults to false if not provided
