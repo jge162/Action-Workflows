@@ -1,5 +1,4 @@
 name: Run Script
-
 on:
   push:
     branches:
@@ -13,15 +12,9 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - run: |
-        echo "Install required dependencies"
-        sudo apt-get update
-        sudo apt-get install dash
     - name: Run Script
       run: |
         echo "Run, Build Application using scripts"
-        echo "Commit message: $GITHUB_EVENT_PATH"
-        dash ./CommitScript.sh "$GITHUB_EVENT_PATH"
-      env:
-        GITHUB_EVENT_PATH: "${{ toJson(github.event) }}"
-
+        COMMIT_MESSAGE="$(git log -1 --pretty=%B)"
+        echo "Commit message: $COMMIT_MESSAGE"
+        dash ./CommitScript.sh "$COMMIT_MESSAGE"
