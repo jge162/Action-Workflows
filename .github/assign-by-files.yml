@@ -1,7 +1,0 @@
----
-# you can use glob pattern
-'*.js':
-  - geo4u
-# you can set multiple reviewers
-'.github/**/*.yml':
-  - geo4u
