@@ -17,4 +17,4 @@ jobs:
         uses: TheoNoyau/assign-reviewers-action@v1.0
         with:
           who-to-assign: geo4u
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW_SECRET }}
