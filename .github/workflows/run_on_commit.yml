@@ -19,4 +19,4 @@ jobs:
         sudo apt-get install dash
     - run: |
         echo "Run, Build Application using scripts"
-        dash ./script.sh
+        dash ./CommitScript.sh
