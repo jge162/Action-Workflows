@@ -12,7 +12,7 @@ jobs:
         uses: mshick/add-pr-comment@v2
         with:
           message: |
-            ## Approved by @jge162
+            pull request review by @jge162
           message-failure: |
             Uh oh!
           message-id: add-pr-comment
