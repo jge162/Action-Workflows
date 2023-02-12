@@ -13,8 +13,8 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Assign reviewers
-        if: ${{ github.actor == 'jge162' }}
+        if: ${{ github.actor != 'jge162' }}
         uses: TheoNoyau/assign-reviewers-action@v1.0
         with:
-          who-to-assign: geo4u
+          who-to-assign: jge162 Jeremy
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_SECRET }}
