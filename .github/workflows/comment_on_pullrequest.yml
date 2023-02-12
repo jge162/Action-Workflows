@@ -10,7 +10,7 @@ jobs:
       - name: Comment_on_pullrequest
         uses: mshick/add-pr-comment@v2
         with:
-          repo-token: ${{ secrets.WORKFLOW_TOKEN }}
+          repo-token: ${{ secrets.MY_SECRET }}
           message: |
             ## Description
             Please include a summary of the change and which issue is fixed. 
