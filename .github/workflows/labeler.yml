@@ -1,5 +1,5 @@
-enhancement:
-- name: Add enhancement label
-  condition: contains(title, "enhancement")
+non-owner pull request:
+- name: Add non-owner pull request label
+  condition: contains(title, "non-owner pull request")
   labels:
-  - enhancement
+  - non-owner pull request
