@@ -1,4 +1,4 @@
-name: "label_on_pullrequest"
+name: "Label_on_pullrequest"
 
 on:
   pull_request_target
