@@ -10,7 +10,9 @@
 
 To create, simple to use GitHub actions on any repo for initial setup.
 
-# Example action to run a python.py file to verify no errors in code
+# Example action to run a `python.py` file to verify no errors in code:
+
+If errors in code exist they will be listed in the actions console.
 
 ```yaml
 name: Run Python file
