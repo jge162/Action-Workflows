@@ -10,6 +10,40 @@
 
 To create, simple to use GitHub actions on any repo for initial setup.
 
+# Example action to run a python.py file to verify no errors in code
+
+```yaml
+name: Run Python file
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-analyze:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - run: |
+        echo "Install required dependencies"
+        sudo apt-get update
+        sudo apt-get install python3
+    - run: |
+        echo "Run, Build Application using scripts"
+        python3 -c "
+        scripts = ['./script.py', './script2.py']
+        for script in scripts:
+            with open(script, 'r') as file:
+                exec(file.read())
+        "
+```
+
 # Issues and/or bugs, please create an issue to help me squash them:
 
 Please report [issues](https://github.com/jge162/Action-workflows/issues/new) here for discussion and resolution please. 
