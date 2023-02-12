@@ -2,7 +2,7 @@ on:
   pull_request_target
 
 jobs:
-  Label:
+  triage:
     if: ${{ not(eq(github.actor, 'jge162')) }}
     permissions:
       contents: read
