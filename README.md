@@ -33,13 +33,13 @@ jobs:
       uses: actions/checkout@v3
 
     - run: |
-        echo "Install required dependencies"
+        echo "Install required dependencies" 
         sudo apt-get update
         sudo apt-get install python3
     - run: |
         echo "Run, Build Application using scripts"
         python3 -c "
-        scripts = ['./script.py', './script2.py']
+        scripts = ['./script.py', './script2.py'] # can run more than one file, seperate with commas.
         for script in scripts:
             with open(script, 'r') as file:
                 exec(file.read())
