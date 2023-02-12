@@ -6,7 +6,7 @@ EXIT_STATUS=0
 # A function to validate the commit message
 validate_commit_message() {
   # Get the commit message
-  COMMIT_MESSAGE=$(cat "$1")
+  COMMIT_MESSAGE="$1"
 
   # Check if the commit message starts with a tag
   if ! echo "$COMMIT_MESSAGE" | grep -qE '^(\[.*\])\s' ; then
