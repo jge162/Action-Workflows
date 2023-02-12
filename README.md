@@ -8,7 +8,7 @@
 
 To create, simple to use GitHub actions on any repo for initial setup.
 
-# Issues and/or bugs, please create an issue to help me squash bugs:
+# Issues and/or bugs, please create an issue to help me squash them:
 
 Please report [issues](https://github.com/jge162/Action-workflows/issues/new) here for discussion and resolution please. 
 
