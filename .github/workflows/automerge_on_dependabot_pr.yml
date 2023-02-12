@@ -12,4 +12,4 @@ jobs:
     steps:
     - uses: alexwilson/enable-github-automerge-action@main
       with:
-        github-token: "${{ secrets.GITHUB_TOKEN }}"
+        github-token: "${{ secrets.WORKFLOW_SECRET }}"
