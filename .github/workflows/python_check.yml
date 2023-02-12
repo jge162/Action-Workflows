@@ -24,4 +24,5 @@ jobs:
     - run: |
         echo "Run, Build Application using script"
         python3 ./build/sh.py
+        Python3 ./script.py
 # test
