@@ -1,3 +1,5 @@
+# run file to verify it compiles with no errors 
+name: Run Python file
 on:
   push:
     branches:
