@@ -53,4 +53,4 @@ Please report [issues](https://github.com/jge162/Action-workflows/issues/new) he
 
 # License info:
 
-
+jge162/Action-workflows is licensed under the **GNU General Public License v3.0**
