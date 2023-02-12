@@ -15,7 +15,7 @@ jobs:
           echo "Assigning jge162 as reviewer"
       - name: Assign Reviewer
         if: "github.actor != 'jge162'"
-        uses: ohnogumi/assign-reviewers@v0.0.5
+        uses: actions/checkout@v2
         with:
          # required
          # If you assign team for reviewer, you generate a personal access tokens with workflow scope. 
