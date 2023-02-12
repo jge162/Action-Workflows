@@ -12,6 +12,7 @@ jobs:
       - name: Comment_on_pullrequest
         uses: mshick/add-pr-comment@v2
         with:
+          token: ${{ secrets.WORKFLOW_TOKEN }}
           if: always()
           message: |
             ## Description
