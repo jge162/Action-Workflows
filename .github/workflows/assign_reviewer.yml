@@ -1,17 +1,20 @@
-name: "Assign Reviewers to PR"
+name: 'Assign reviewers'
 
-on:  
+on:
   pull_request:
-    types: [opened, ready_for_review, reopened, review_requested, review_request_removed]
-     
+    types: [review_requested]
+    
 jobs:
-  assign-pr-reviewers:
+  assign-reviewers:
     runs-on: ubuntu-latest
+
     steps:
-    - name: "Assign Reviewers to PR"
-      if: github.actor == 'jge162'
-      uses: itsOliverBott/assign-pr-reviewers@release
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        users: "geo4u" # comma-separated (example: "itsOliverBott, SantaClaus, b4tman, sp0derman")
-        ignore-drafts: true # defaults to false if not provided
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Assign reviewers
+        if: ${{ github.actor == 'jge162' }}
+        uses: TheoNoyau/assign-reviewers-action@v1.0
+        with:
+          who-to-assign: geo4u
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
