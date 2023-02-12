@@ -12,8 +12,7 @@ jobs:
         uses: mshick/add-pr-comment@v2
         with:
           message: |
-            ## Description
-            - [ ] Remember to include a summary of the changes you made and/or which issues have been fixed!
+            ## Approved by @jge162
           message-failure: |
             Uh oh!
           message-id: add-pr-comment

@@ -1,6 +1,6 @@
 # Action-workflows:
 
-<img src="https://user-images.githubusercontent.com/31228460/218295872-1865b4ba-9c3c-4a28-bac8-0fd11c7c37f6.png" width="55%">
+<img src="https://user-images.githubusercontent.com/31228460/218295872-1865b4ba-9c3c-4a28-bac8-0fd11c7c37f6.png" width="60%">
 
 ![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/jge162/Action-workflows/python_check.yml?branch=main&style=for-the-badge)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/jge162/Action-workflows?logo=github&style=for-the-badge)
