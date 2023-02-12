@@ -1,4 +1,4 @@
-name: comment_on_pullrequest
+name: Comment_on_pullrequest
 
 on:
   pull_request:
@@ -9,7 +9,7 @@ jobs:
     permissions:
       pull-requests: write
     steps:
-      - name: comment_on_pullrequest
+      - name: Comment_on_pullrequest
         uses: mshick/add-pr-comment@v2
         with:
           if: always()
