@@ -27,7 +27,7 @@ validate_commit_message() {
   fi
 }
 
-# Validate the commit message
+# Validate the commit message passed as first argument to the script
 validate_commit_message "$1"
 
 # Exit with the proper status
