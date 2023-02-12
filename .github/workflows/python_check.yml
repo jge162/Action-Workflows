@@ -18,12 +18,22 @@ jobs:
         echo "Install required dependencies"
         sudo apt-get update
         sudo apt-get install python3
+
+    - run: |
+        echo "Run, Build Application using scripts"
+        python3 -c "
+        scripts = ['./script.py']
+        for script in scripts:
+            with open(script, 'r') as file:
+                exec(file.read())
+        "
+
 # - run: |
 # echo "Set executable permission on script file"
 # chmod +x ./build/sh.py
-    - run: |
-        echo "Run, Build Application using script"
-        python3 ./script.py
+# - run: |
+# echo "Run, Build Application using script"
+# python3 ./script.py
 
 # - run: |
 # echo "Run, Build Application using script2.py"
