@@ -16,7 +16,7 @@ jobs:
 
       - name: Get the current version
         id: get-version
-        uses: actions/filter@v1
+        uses: actions/checkout@v3
         with:
           args: cat package.json
           stdin: ${{ steps.check-if-merged.outputs.result }}
