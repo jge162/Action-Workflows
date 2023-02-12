@@ -10,7 +10,6 @@ jobs:
       - name: Comment_on_pullrequest
         uses: mshick/add-pr-comment@v2
         with:
-          repo-token: ${{ secrets.MY_SECRET }}
           message: |
             ## Description
             Please include a summary of the change and which issue is fixed. 
@@ -27,3 +26,7 @@ jobs:
             - [ ] I have added tests that prove my fix is effective or that my feature works
           message-failure: |
             Uh oh!
+          message-id: add-pr-comment
+          repo-token: ${{ secrets.MY_SECRET }}
+          allow-repeats: true
+          status: success
