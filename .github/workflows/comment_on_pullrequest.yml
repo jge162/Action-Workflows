@@ -13,7 +13,7 @@ jobs:
         with:
           message: |
             ## Description
-            - [ ] Please include a summary of the change and/or which issues have been fixed. 
+            - [ ] Remember to include a summary of the changes you made and/or which issues have been fixed!
           message-failure: |
             Uh oh!
           message-id: add-pr-comment
