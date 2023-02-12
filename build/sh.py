@@ -4,9 +4,6 @@ PROJECT_NAME = "GitHub-Actions-workflows"
 # Define the list of files to be included in the project
 FILES = ["script.py"]
 
-# Import the scripts.py file
-import ./script.py
-
 # Compile the files
 def compile_files():
     # Write your code here to compile the files
