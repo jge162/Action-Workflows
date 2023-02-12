@@ -7,7 +7,7 @@ jobs:
   pr:
     runs-on: ubuntu-latest
     permissions:
-      pull-requests: write
+      pull-requests: read & write
     steps:
       - name: Comment_on_pullrequest
         uses: mshick/add-pr-comment@v2
