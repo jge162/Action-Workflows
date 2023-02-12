@@ -2,10 +2,10 @@
 PROJECT_NAME = "GitHub-Actions-workflows"
 
 # Define the list of files to be included in the project
-FILES = ["scripts.py"]
+FILES = ["script.py"]
 
 # Import the scripts.py file
-import ./scripts.py
+import ./script.py
 
 # Compile the files
 def compile_files():
