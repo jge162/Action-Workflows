@@ -1,3 +1,18 @@
+name: Commit file
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
     - name: Commit file
       uses: swinton/commit@v2.x
       env:
