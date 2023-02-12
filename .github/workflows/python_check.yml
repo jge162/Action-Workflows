@@ -23,5 +23,5 @@ jobs:
         chmod +x build/run.py
     - run: |
         echo "Run, Build Application using script"
-        python3 ./build/sh
+        python3 ./build/sh.py
 # test
