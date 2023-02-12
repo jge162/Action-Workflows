@@ -3,11 +3,11 @@ on:
 
 jobs:
   triage:
-    if: ${{ not(eq(github.actor, 'jge162')) }}
     permissions:
       contents: read
       pull-requests: write
     runs-on: ubuntu-latest
+    if: github.actor != 'jge162'
     steps:
     - uses: actions/labeler@v4
       with:
