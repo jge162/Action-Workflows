@@ -49,7 +49,7 @@ jobs:
 
 # Issues and/or bugs, please create an issue to help me squash them:
 
-Please report [issues](https://github.com/jge162/Action-workflows/issues/new) here for discussion and resolution please. 
+Please report [issues](https://github.com/jge162/Action-workflows/issues/new) here for discussion and resolution please
 
 # License info:
 
