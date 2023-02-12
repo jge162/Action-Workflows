@@ -5,7 +5,7 @@ PROJECT_NAME = "GitHub-Actions-workflows"
 FILES = ["scripts.py"]
 
 # Import the scripts.py file
-import scripts
+import ./scripts.py
 
 # Compile the files
 def compile_files():
