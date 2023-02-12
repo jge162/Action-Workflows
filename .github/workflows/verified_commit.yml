@@ -1,9 +1,0 @@
-    - name: Commit file
-      uses: swinton/commit@v2.x
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        files: |
-          myfile
-        commit-message: Committing ./script.py
-        ref: refs/heads/main
