@@ -20,7 +20,7 @@ jobs:
         sudo apt-get install python3
     - run: |
         echo "Set executable permission on script file"
-        chmod +x build/run.py
+        chmod +x ./build/sh.py
     - run: |
         echo "Run, Build Application using script"
         python3 ./build/sh.py
