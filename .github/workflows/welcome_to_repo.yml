@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/first-interaction@v1
       with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        repo-token: ${{ secrets.WORKFLOW_SECRET }}
         issue-message: |
             ## Welcome to my REPO, This is your first time here!
             - [ ] Please include a summary of the issue you found and/or bug you have found! I will respond within 24 hours. 
