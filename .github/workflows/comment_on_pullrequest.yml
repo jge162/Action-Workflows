@@ -6,11 +6,12 @@ on:
 jobs:
   pr:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
     steps:
       - name: Comment_on_pullrequest
         uses: mshick/add-pr-comment@v2
         with:
-          token: ${{ secrets.WORKFLOW_SECRET }}
           if: always()
           message: |
             ## Description
@@ -28,4 +29,3 @@ jobs:
             - [ ] I have added tests that prove my fix is effective or that my feature works
           message-failure: |
             Uh oh!
-
