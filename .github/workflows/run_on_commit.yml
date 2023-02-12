@@ -1,4 +1,5 @@
 name: Run Script
+
 on:
   push:
     branches:
@@ -12,10 +13,9 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Run Script
-      run: |
+    - run: |
         echo "Run, Build Application using scripts"
-        COMMIT_MESSAGE="$(git log -1 --pretty=%B)"
-        echo "Commit message: $COMMIT_MESSAGE"
-        dash ./CommitScript.sh "$COMMIT_MESSAGE"
-        
+        echo "Commit message: $GITHUB_EVENT_PATH"
+        dash ./CommitScript.sh "$(jq --raw-output '.message' $GITHUB_EVENT_PATH)"
+      env:
+        GITHUB_EVENT_PATH: "${{ toJson(github.event) }}"
