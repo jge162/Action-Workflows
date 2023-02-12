@@ -1,6 +1,6 @@
 # Actions_automations:
 
-![Screenshot 2023-02-11 at 10 04 29 PM](https://user-images.githubusercontent.com/31228460/218295707-cb8775a4-f7c1-4912-94a9-29015a99b919.jpeg)
+![Screenshot 2023-02-11 at 10 05 29 PM](https://user-images.githubusercontent.com/31228460/218295745-a1ca6eb1-9366-43dc-923f-3763d36ea003.jpeg)
 
 ![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/jge162/Action-workflows/python_check.yml?branch=main&style=for-the-badge)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/jge162/Action-workflows?logo=github&style=for-the-badge)
