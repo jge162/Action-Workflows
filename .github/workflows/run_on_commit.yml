@@ -16,6 +16,7 @@ jobs:
     - run: |
         echo "Run, Build Application using scripts"
         echo "Commit message: $GITHUB_EVENT_PATH"
-        dash ./CommitScript.sh "$(jq --raw-output '.message' $GITHUB_EVENT_PATH)"
+        bash ./CommitScript.sh "$(jq --raw-output '.message' $GITHUB_EVENT_PATH)"
       env:
         GITHUB_EVENT_PATH: "${{ toJson(github.event) }}"
+
