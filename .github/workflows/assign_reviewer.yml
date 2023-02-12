@@ -16,5 +16,5 @@ jobs:
         if: ${{ github.actor != 'jge162' }}
         uses: TheoNoyau/assign-reviewers-action@v1.0
         with:
-          who-to-assign: jge162 Jeremy
+          who-to-assign: jge162 jge162
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_SECRET }}
