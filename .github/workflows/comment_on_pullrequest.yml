@@ -28,5 +28,5 @@ jobs:
             Uh oh!
           message-id: add-pr-comment
           repo-token: ${{ secrets.MY_SECRET }}
-          allow-repeats: true
+          allow-repeats: false
           status: success
