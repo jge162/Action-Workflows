@@ -1,4 +1,4 @@
-name: Run script on new commit
+name: Run Script
 
 on:
   push:
@@ -6,14 +6,17 @@ on:
       - main
 
 jobs:
-  run_script:
+  build-and-analyze:
     runs-on: ubuntu-latest
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
 
-    - name: Run script
-      uses: actions/run-script@v1
-      with:
-        script: ./CommitScript.sh
-        
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - run: |
+        echo "Install required dependencies"
+        sudo apt-get update
+        sudo apt-get install sh
+    - run: |
+        echo "Run, Build Application using scripts"
+        sh ./CommirScript.sh
