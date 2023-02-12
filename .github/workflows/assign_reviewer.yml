@@ -1,23 +1,15 @@
-# .github/workflows/assign-reviewer.yml
-name: 'assign reviewers'
+name: 'Request Reviewers'
 
 on:
-  pull_request
+  pull_request:
+    types: ['opened', 'labeled', 'labeled']
 
 jobs:
-  add-reviewer:
+  add-reviews:
     runs-on: ubuntu-latest
     steps:
-     #  - uses: actions/checkout@v1
-      # - name: Check user
-      #   if: "github.actor != 'jge162'"
-      #   run: |
-     #    echo "Assigning jge162 as reviewer"
-      - name: Assign Reviewer
-        # if: "github.actor != 'jge162'"
-        uses: ohnogumi/assign-reviewers@v0.0.5
+      - name: Request Reviewers
+        uses: neo-diego-beltran/request-reviewers@f028375d516d93d6a4dd5f93feccfc7f3c768a9b
         with:
-         # required
-         # If you assign team for reviewer, you generate a personal access tokens with workflow scope. 
-         token: "${{ secrets.GITHUB_TOKEN }}" # "${{ secrets.PERSONAL_TOKEN }}"
-         reviewers: jge162
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          config_path: ".github/workflows/request-reviewers.yml"
