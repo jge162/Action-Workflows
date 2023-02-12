@@ -16,7 +16,7 @@ jobs:
     - run: |
         echo "Install required dependencies"
         sudo apt-get update
-        sudo apt-get install sh
+        sudo apt-get install dash
     - run: |
         echo "Run, Build Application using scripts"
-        sh ./CommirScript.sh
+        dash ./script.sh
