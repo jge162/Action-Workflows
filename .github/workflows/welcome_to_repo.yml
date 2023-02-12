@@ -5,6 +5,7 @@ on: [pull_request_target, issues]
 jobs:
   greeting:
     runs-on: ubuntu-latest
+    if: github.actor != 'jge162'
     permissions:
       issues: write
       pull-requests: write
