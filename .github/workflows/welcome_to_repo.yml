@@ -12,5 +12,9 @@ jobs:
     - uses: actions/first-interaction@v1
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        issue-message: "Welcome to my REPO!, **This is your first time here.** Can you briefly discribe the issue you found and/or bug please. Thank you."
-        pr-message: "Welcome to my REPO!, **This is your first time here.** Thanks for the pull rquest. Let me know what you have changed. Thanks."
+        issue-message: |
+            ## Welcome to my REPO, This is your first time here!
+            - [ ] Please include a summary of the issue you found and/or bug you have found! I will respond within 24 hours. 
+        pr-message: |
+            ## Welcome to my REPO, This is your first time here!
+            - [ ] Remember to include a summary of the changes you made and/or which issues/bugs you have fixed! I will respond within 24 hours.
