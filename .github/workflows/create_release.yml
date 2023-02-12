@@ -1,0 +1,66 @@
+on:
+  pull_request:
+    types: [closed]
+
+name: release-please
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check if the pull request is merged
+        id: check-if-merged
+        if: github.event.pull_request.merged
+        run: echo "The pull request is merged."
+
+      - name: Get the current version
+        id: get-version
+        uses: actions/bin/filter@v1
+        with:
+          args: cat package.json
+          stdin: ${{ steps.check-if-merged.outputs.result }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Increment the version
+        id: increment-version
+        uses: docker://alpine/sh:latest
+        with:
+          args: |
+            set -euo pipefail
+
+            version=$(cat package.json | jq -r .version)
+            IFS=. read major minor patch <<< "$version"
+            new_version="$major.$minor.$((patch + 1))"
+            echo "::set-output name=new_version::$new_version"
+
+      - name: Update the version in the package.json file
+        uses: docker://node:14
+        with:
+          args: |
+            set -euo pipefail
+
+            version=$(cat package.json | jq --arg version "${{ steps.increment-version.outputs.new_version }}" '.version = $version')
+            echo "$version" > package.json
+
+      - name: Commit the changes
+        uses: docker://node:14
+        with:
+          args: |
+            set -euo pipefail
+
+            git config --global user.email "actions@github.com"
+            git config --global user.name "GitHub Actions"
+            git checkout -b release
+            git add package.json
+            git commit -m "Bump the version to ${{ steps.increment-version.outputs.new_version }}"
+            git push origin release
+
+      - name: Create a release
+        id: create-release
+        uses: google-github-actions/release-please-action@v3
+        with:
+          release-type: node
+          package-name: release-please-action
+          version: ${{ steps.increment-version.outputs.new_version }}
