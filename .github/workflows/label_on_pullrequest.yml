@@ -1,10 +1,9 @@
-name: "Label_on_pullrequest"
-
 on:
   pull_request_target
 
 jobs:
-  triage:
+  Label:
+    if: ${{ not(eq(github.actor, 'jge162')) }}
     permissions:
       contents: read
       pull-requests: write
