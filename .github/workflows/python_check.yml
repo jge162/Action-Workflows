@@ -18,9 +18,9 @@ jobs:
         echo "Install required dependencies"
         sudo apt-get update
         sudo apt-get install python3
-    - run: |
-        echo "Set executable permission on script file"
-        chmod +x ./build/sh.py
+# - run: |
+# echo "Set executable permission on script file"
+# chmod +x ./build/sh.py
     - run: |
         echo "Run, Build Application using script"
         python3 ./script.py
