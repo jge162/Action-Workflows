@@ -4,15 +4,18 @@ PROJECT_NAME = "GitHub-Actions-workflows"
 # Define the list of files to be included in the project
 FILES = ["script.py"]
 
+# Import the script.py file
+import script
+
 # Compile the files
 def compile_files():
-    # Write your code here to compile the files
-    print(f"Compiling {FILES} into {PROJECT_NAME}.out")
+    # Call the compile_files function in script.py
+    script.compile_files()
 
 # Run the simulation
 def run_simulation():
-    # Write your code here to run the simulation
-    print(f"Running simulation for {PROJECT_NAME}.out")
+    # Call the run_simulation function in script.py
+    script.run_simulation()
 
 # Main function to run the program
 def main():
