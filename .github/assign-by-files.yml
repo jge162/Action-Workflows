@@ -1,0 +1,16 @@
+---
+# you can use glob pattern
+"**/*.js":
+  - geo4u
+
+".github/workflows/*.yml":
+  - geo4u
+
+# you can set multiple reviewers
+".github/**/*.yml":
+  - foo
+  - bar
+
+# you can set team reviewers (repo scope token required)
+".github/**/*.md":
+  - team: baz
