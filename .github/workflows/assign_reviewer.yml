@@ -2,7 +2,7 @@ name: 'Assign reviewers'
 
 on:
   pull_request:
-    types: [review_requested]
+    types: [opened]
     
 jobs:
   assign-reviewers:
