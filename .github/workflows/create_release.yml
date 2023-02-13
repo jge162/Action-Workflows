@@ -11,27 +11,31 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Build and test code
+        run: |
+          # Build and test code here
       - name: Get latest tag
-        id: get_latest_tag
         run: |
           git fetch --tags
           echo "::set-output name=latest_tag::$(git describe --tags $(git rev-list --tags --max-count=1))"
-      - name: Bump version
-        id: bump_version
+        id: get_latest_tag
+      - name: Bump patch version
         run: |
-          semver=( ${steps.get_latest_tag.outputs.latest_tag//./ } )
-          major=${semver[0]}
-          minor=${semver[1]}
-          patch=${semver[2]}
+          semver=$({{ steps.get_latest_tag.outputs.latest_tag }})
+          major=$(echo $semver | cut -d'.' -f1)
+          minor=$(echo $semver | cut -d'.' -f2)
+          patch=$(echo $semver | cut -d'.' -f3)
           new_patch=$((patch+1))
           new_tag="$major.$minor.$new_patch"
           echo "::set-output name=new_tag::$new_tag"
+        id: bump_version
       - name: Create release
         uses: softprops/action-gh-release@v1
         with:
-          files: build/*
+          files: |
+            build/*
           tag_name: ${{ steps.bump_version.outputs.new_tag }}
           body: |
-            This is the release notes for ${steps.bump_version.outputs.new_tag}
+            This is the release notes for ${{ steps.bump_version.outputs.new_tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_SECRET }}
