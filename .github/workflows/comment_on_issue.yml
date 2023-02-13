@@ -13,7 +13,7 @@ jobs:
       issues: write
     steps:
       - name: Label Issues
-        uses: actions/github-script@v5
+        uses: actions/github-script@v6
         with:
           script: |
             github.rest.issues.addLabels({
@@ -23,7 +23,7 @@ jobs:
               labels: ["documentation"]
             })
       - name: Comment on Issues
-        uses: actions/github-script@v5
+        uses: actions/github-script@v6
         with:
           script: |
             github.rest.issues.createComment({
