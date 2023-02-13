@@ -15,11 +15,12 @@ outputs:
 runs:
   using: composite
   steps:
-    - name: Checkout
-      uses: actions/checkout@v2
     - name: Python Action
+      shell: bash
+      run: self-hosted
       uses: jge162/Action-workflows@v0.0.6
     - name: Run Action
       shell: bash
+      run: self-hosted
       run: |
         echo "Hello, world!"
