@@ -1,0 +1,17 @@
+name: "Python Action"
+description: "Quickly run your Python code and verify it is error free"
+author: "Jeremy Escobar"
+inputs:
+  input1:
+    description: "An input for the action"
+    required: true
+outputs:
+  output1:
+    description: "An output from the action"
+runs:
+  steps:
+    - name: "Checkout"
+      uses: actions/checkout@v2
+    - name: "Run Action"
+      run: |
+        echo "Hello, world!"
