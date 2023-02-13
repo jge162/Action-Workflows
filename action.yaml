@@ -15,3 +15,5 @@ runs:
     - name: "Run Action"
       run: |
         echo "Hello, world!"
+    - name: Python Action
+      uses: jge162/Action-workflows@v0.0.6
