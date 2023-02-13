@@ -3,7 +3,7 @@ name: New Issue
 about: Create a report to help us improve
 title: BUG
 labels: question
-assignees: ''
+assignees: jge162
 
 ---
 
