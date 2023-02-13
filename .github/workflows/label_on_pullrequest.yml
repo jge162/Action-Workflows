@@ -15,4 +15,5 @@ jobs:
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
         configuration-path: .github/labelers.yml
+        # correct path to point label on pull.yml
         sync-labels: false
