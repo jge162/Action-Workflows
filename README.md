@@ -53,7 +53,7 @@ Please report [issues](https://github.com/jge162/Action-workflows/issues/new) he
 
 # Additional custom GitHub Action I created. 
 
-This action will create a new release after a Pull request is closed. But, conditions are user == jge162 && PR label == create release 
+This action will create a new release after a Pull request is closed. But, conditions are `user == jge162 && PR label == create release` 
 in order to run. See code example Below:
 
 ```yaml
