@@ -19,9 +19,9 @@ jobs:
         with:
           files: |
             build/*
-          tag_name: v0.0.2
+          tag_name: v0.0.3
           # change this release tag when you are ready to create a new one
           body: |
-            This is the release notes for v0.0.2
+            This is the release notes for v0.0.3
         env:
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_SECRET }}
