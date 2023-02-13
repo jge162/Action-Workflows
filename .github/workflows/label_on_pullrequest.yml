@@ -1,5 +1,4 @@
-name: "Label_on_pullrequest"
-
+name: Label on pullrequest
 on:
   pull_request_target
 
@@ -9,9 +8,12 @@ jobs:
       contents: read
       pull-requests: write
     runs-on: ubuntu-latest
+    # if: github.actor != 'jge162'
+    if: ${{ (github.event.pull_request.user.login == 'jge162') && !(github.actor != 'dependabot[bot]') }}
     steps:
     - uses: actions/labeler@v4
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
-        configuration-path: .github/workflows/labeler.yml
+        configuration-path: .github/labelers.yml
+        # correct path to point label on pull.yml
         sync-labels: false

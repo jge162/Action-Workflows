@@ -1,5 +1,5 @@
 # .github/workflows/auto-author-assign.yml
-name: Auto Author Assign
+name: Auto on Pull request/issue
 
 on:
   pull_request_target:
@@ -14,5 +14,7 @@ permissions:
 jobs:
   assign-author:
     runs-on: ubuntu-latest
+    if: ${{ !(github.actor == 'dependabot[bot]') }} 
+    # if user is dependabot skip this action
     steps:
       - uses: toshimaru/auto-author-assign@v1.6.2

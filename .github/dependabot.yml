@@ -16,4 +16,9 @@ updates:
     schedule:
       interval: 'weekly' 
       day: 'saturday'
+  # - package-ecosystem: "npm"
+  #   directory: '/'
+  #   schedule:
+  #   interval: 'weekly' 
+  #   day: 'saturday'
  

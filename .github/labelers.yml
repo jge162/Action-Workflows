@@ -1,0 +1,5 @@
+non-owner pull request:
+- name: Add non-owner pull request label
+  condition: contains(title, "non-owner pull request")
+  labels:
+  - non-owner pull request
