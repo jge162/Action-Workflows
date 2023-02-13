@@ -12,7 +12,7 @@ jobs:
         uses: mshick/add-pr-comment@v2
         with:
           message: |
-            Thank you for the Pull request. The team will review when time permits.
+            Thank you for the Pull request. The team will review when time permits. **Please allow 24 hours**
           message-failure: |
             Uh oh!
           message-id: add-pr-comment
