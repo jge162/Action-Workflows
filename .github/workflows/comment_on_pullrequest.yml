@@ -12,7 +12,7 @@ jobs:
         uses: mshick/add-pr-comment@v2
         with:
           message: |
-            Thank you for the Pull request, please leave notes. Thanks @jge162
+            Thank you for the Pull request, please leave notes. Thanks @{{ github.event.pull_request.user.login }}
           message-failure: |
             Uh oh!
           message-id: add-pr-comment
