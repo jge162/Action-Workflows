@@ -4,23 +4,60 @@ author: Jeremy Escobar
 branding:
   icon: activity
   color: gray-dark
+name: create-release
+description: Create Release upon Close Pull Request
+author: Jeremy Escobar
+branding:
+  icon: activity
+  color: gray-dark
 inputs:
-  input1:
-    description: An input for the action
+  message:
+    description: 'Message to prospective contributor'
+    required: false
+    default: ''
+  issueCurrentlyAssignedMessage:
+    description: 'Message to contributors if issue is already assigned'
+    required: false
+    default: 'The issue you are trying to assign to yourself is already assigned.'
+  trigger:
+    description: 'The string that triggers the action'
+    required: false
+    default: '.take'
+  token:
+    description: 'The GitHub PAT used to authenticate when updating the Issue'
     required: true
-outputs:
-  output1:
-    value: ${{ steps.action.outputs.output1 }}
-    description: An output from the action
+
 runs:
-  using: composite
+  using: "composite"
   steps:
-    - name: Python Action
-      run: self-hosted
+    - run: |
+        BODY="$(jq '.comment.body' $GITHUB_EVENT_PATH)"
+        ISSUE_NUMBER="$(jq '.issue.number' $GITHUB_EVENT_PATH)"
+        LOGIN="$(jq '.comment.user.login' $GITHUB_EVENT_PATH | tr -d \")"
+        REPO="$(jq '.repository.full_name' $GITHUB_EVENT_PATH | tr -d \")"
+        ISSUE_JSON="$(jq '.issue' $GITHUB_EVENT_PATH)"
+        ISSUE_CURRENTLY_ASSIGNED=`echo $ISSUE_JSON | jq '.assignees | length == 0'`
+        if [[ $BODY == *"$INPUT_TRIGGER"* ]]; then
+          if [[ "$ISSUE_CURRENTLY_ASSIGNED" == true ]]; then
+            echo "Is issue currently assigned: $ISSUE_CURRENTLY_ASSIGNED"
+            echo "Assigning issue $ISSUE_NUMBER to $LOGIN"
+            echo "Using the link: https://api.github.com/repos/$REPO/issues/$ISSUE_NUMBER/assignees"
+            curl -H "Authorization: bearer $GITHUB_PAT" -d '{"assignees":["'"$LOGIN"'"]}' https://api.github.com/repos/$REPO/issues/$ISSUE_NUMBER/assignees
+            if [[ ! -z $INPUT_MESSAGE ]]; then
+              jq -n -r --arg body "$INPUT_MESSAGE" '{body: $body}' > payload.json
+              curl -X POST -H "Authorization: bearer $GITHUB_PAT" --data @payload.json https://api.github.com/repos/$REPO/issues/$ISSUE_NUMBER/comments
+            fi
+          else
+            echo "This issue is currently assigned to a different user"
+            if [[ ! -z $ISSUE_CURRENTLY_ASSIGNED_MESSAGE ]]; then
+            jq -n -r --arg body "$ISSUE_CURRENTLY_ASSIGNED_MESSAGE" '{body: $body}' > payload.json
+            curl -X POST -H "Authorization: bearer $GITHUB_PAT" --data @payload.json https://api.github.com/repos/$REPO/issues/$ISSUE_NUMBER/comments
+            fi
+          fi
+        fi
       shell: bash
-      uses: jge162/Action-workflows@v0.0.6
-    - name: Run Action
-      runs-on: self-hosted
-      shell: bash
-      run: |
-        echo "Hello, world!"
+      env:
+        INPUT_MESSAGE: "${{ inputs.message }}"
+        INPUT_TRIGGER: "${{ inputs.trigger }}"
+        ISSUE_CURRENTLY_ASSIGNED_MESSAGE: "${{ inputs.issueCurrentlyAssignedMessage }}"
+        GITHUB_PAT: "${{ secrets.WORKFLOW_SECRET }}"
