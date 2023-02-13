@@ -1,6 +1,9 @@
 name: Python Action
 description: Quickly run your Python code and verify it is error-free
 author: Jeremy Escobar
+branding:
+  icon: activity
+  color: gray-dark
 inputs:
   input1:
     description: An input for the action
