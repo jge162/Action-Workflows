@@ -1,7 +1,7 @@
 ---
 name: New Issue
 about: Create a report to help us improve
-title: BUG
+title: Please describe issue/bug
 labels: question
 assignees: jge162
 
