@@ -22,10 +22,10 @@ jobs:
         id: increment_version
         run: |
           echo "Latest tag: ${{ steps.get_latest_tag.outputs.latest_tag }}"
-          semver=( ${steps.get_latest_tag.outputs.latest_tag//./ } )
-          major=${semver[0]}
-          minor=${semver[1]}
-          patch=${semver[2]}
+          semver=$(echo "${{ steps.get_latest_tag.outputs.latest_tag }}" | awk -F. '{print $1,$2,$3}')
+          major=$(echo $semver | cut -d' ' -f1)
+          minor=$(echo $semver | cut -d' ' -f2)
+          patch=$(echo $semver | cut -d' ' -f3)
           new_patch=$((patch+1))
           new_tag="$major.$minor.$new_patch"
           echo "::set-output name=new_tag::$new_tag"
