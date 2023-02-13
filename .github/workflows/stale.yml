@@ -1,8 +1,9 @@
 name: Mark stale issues and pull requests
 
 on:
-  schedule:
-  - cron: '0 0,12 * * *'
+  push:
+  # schedule:
+  # - cron: '0 0,12 * * *'
 
 jobs:
   stale:
@@ -19,5 +20,6 @@ jobs:
         stale-pr-message: 'This pull request has been marked as stale as there has been no recent activity. If you would like to keep this pull request open, please respond within the next 24 hours.'
         stale-issue-label: 'stale'
         stale-pr-label: 'stale'
-        days-before-stale: 1
-        days-before-close: 2
+        days-before-stale: 0.0833 # equivalent to 5 minutes
+        days-before-close: 0.1667 # equivalent to 10 minutes
+
