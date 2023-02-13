@@ -16,4 +16,3 @@ runs:
     - name: Run Action
       run: |
         echo "Hello, world!"
-
