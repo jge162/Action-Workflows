@@ -14,14 +14,28 @@ jobs:
       - name: Build and test code
         run: |
           # Build and test code here
+      - name: Determine latest release tag
+        id: get_latest_tag
+        run: |
+          echo ::set-output name=latest_tag::$(git describe --tags $(git rev-list --tags --max-count=1))
+      - name: Increment version number
+        id: increment_version
+        run: |
+          echo "Latest tag: ${{ steps.get_latest_tag.outputs.latest_tag }}"
+          semver=( ${steps.get_latest_tag.outputs.latest_tag//./ } )
+          major=${semver[0]}
+          minor=${semver[1]}
+          patch=${semver[2]}
+          new_patch=$((patch+1))
+          new_tag="$major.$minor.$new_patch"
+          echo "::set-output name=new_tag::$new_tag"
       - name: Create release
         uses: softprops/action-gh-release@v1
         with:
           files: |
             build/*
-          tag_name: v0.0.3
-          # change this release tag when you are ready to create a new one
+          tag_name: ${{ steps.increment_version.outputs.new_tag }}
           body: |
-            This is the release notes for v0.0.3
+            This is the release notes for ${{ steps.increment_version.outputs.new_tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_SECRET }}
