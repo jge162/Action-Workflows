@@ -16,11 +16,11 @@ runs:
   using: composite
   steps:
     - name: Python Action
-      shell: bash
       run: self-hosted
+      shell: bash
       uses: jge162/Action-workflows@v0.0.6
     - name: Run Action
+      runs-on: self-hosted
       shell: bash
-      run: self-hosted
       run: |
         echo "Hello, world!"
