@@ -1,3 +1,2 @@
 print("script2 here")
-print("success")
-print("always")
+print("script2 success")
