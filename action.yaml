@@ -1,19 +1,19 @@
-name: "Python Action"
-description: "Quickly run your Python code and verify it is error free"
-author: "Jeremy Escobar"
+name: Python Action
+description: Quickly run your Python code and verify it is error-free
+author: Jeremy Escobar
 inputs:
   input1:
-    description: "An input for the action"
+    description: An input for the action
     required: true
 outputs:
   output1:
-    description: "An output from the action"
+    description: An output from the action
 runs:
+  shell: bash
   steps:
-    - name: "Checkout"
-      uses: actions/checkout@v2
-    - name: "Run Action"
+    - name: Checkout
+      uses: jge162/Action-workflows@v0.0.6
+    - name: Run Action
       run: |
         echo "Hello, world!"
-    - name: Python Action
-      uses: jge162/Action-workflows@v0.0.6
+
