@@ -8,7 +8,7 @@ jobs:
       contents: read
       pull-requests: write
     runs-on: ubuntu-latest
-    if: ${{ (github.event.pull_request.user.login != 'jge162') && (github.actor != 'dependabot[bot]') }}
+    if: ${{ (github.actor == != 'jge162') && (github.actor != 'dependabot[bot]') }}
     steps:
     - uses: actions/labeler@v4
       with:
