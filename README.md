@@ -51,55 +51,6 @@ jobs:
 
 Please report [issues](https://github.com/jge162/Action-workflows/issues/new) here for discussion and resolution please.
 
-# Additional custom GitHub Action I created. 
-
-This action will create a new release after a Pull request is closed. But, conditions are `user == jge162 && PR label == create release` 
-in order to run. See code example Below:
-
-```yaml
-name: Release on Pull Request Close
-
-on:
-  pull_request:
-    types: [closed]
-
-jobs:
-  build-and-release:
-    runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'create release') && github.event.pull_request.user.login == 'jge162'
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Build and test code
-        run: |
-          # Build and test code here
-      - name: Get latest tag
-        run: |
-          git fetch --tags
-          echo "::set-output name=latest_tag::$(git describe --tags $(git rev-list --tags --max-count=1))"
-        id: get_latest_tag
-      - name: Bump patch version
-        run: |
-          semver=$(echo "${{ steps.get_latest_tag.outputs.latest_tag }}")
-          major=$(echo $semver | cut -d'.' -f1)
-          minor=$(echo $semver | cut -d'.' -f2)
-          patch=$(echo $semver | cut -d'.' -f3)
-          new_patch=$((patch+1))
-          new_tag="$major.$minor.$new_patch"
-          echo "::set-output name=new_tag::$new_tag"
-        id: bump_version
-      - name: Create release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: |
-            build/*
-          tag_name: ${{ steps.bump_version.outputs.new_tag }}
-          body: |
-            This is the release notes for ${{ steps.bump_version.outputs.new_tag }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.WORKFLOW_SECRET }}
-```
-
 # License info:
 
 jge162/Action-workflows is licensed under the [GNU General Public License v3.0.](https://github.com/jge162/Action-workflows/blob/main/LICENSE)
