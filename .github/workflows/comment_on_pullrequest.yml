@@ -8,11 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Comment_on_pullrequest
-        if: ${{ (github.event.pull_request.user.login == 'jge162') && !(github.actor == 'dependabot[bot]') }}
+        # if: ${{ (github.event.pull_request.user.login == 'jge162') && !(github.actor == 'dependabot[bot]') }}
         uses: mshick/add-pr-comment@v2
         with:
           message: |
-            This pull request was completed by @jge162
+            Thank you for the Pull request, please leave notes. Thanks @jge162
           message-failure: |
             Uh oh!
           message-id: add-pr-comment
