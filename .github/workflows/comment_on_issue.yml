@@ -13,7 +13,7 @@ jobs:
       issues: write
     steps:
       - name: Label Issues
-        uses: actions/github-script@v6
+        uses: actions/github-script@v5
         with:
           script: |
             github.rest.issues.addLabels({
@@ -23,12 +23,12 @@ jobs:
               labels: ["documentation"]
             })
       - name: Comment on Issues
-        uses: actions/github-script@v6
+        uses: actions/github-script@v5
         with:
           script: |
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: 'Thanks for opening this issue! I have labeled it with "documentation" and will take a look soon.'
+              body: 'Thanks for opening this issue! The team will review as soon as time permits.'
             })
