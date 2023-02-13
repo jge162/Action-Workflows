@@ -1,5 +1,3 @@
-name: Label and Comment on Issues
-
 on:
   issues:
     types:
@@ -8,6 +6,7 @@ on:
 
 jobs:
   label_and_comment_issues:
+    if: "!startsWith(github.event.sender.login, 'jge162')"
     runs-on: ubuntu-latest
     permissions:
       issues: write
