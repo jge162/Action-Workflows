@@ -10,12 +10,14 @@ inputs:
     required: true
 outputs:
   output1:
+    value: ${{ steps.action.outputs.output1 }}
     description: An output from the action
 runs:
-  shell: bash
+  using: composite
   steps:
-    - name: Checkout
+    - name: Python Action
       uses: jge162/Action-workflows@v0.0.6
     - name: Run Action
+      shell: bash
       run: |
         echo "Hello, world!"
