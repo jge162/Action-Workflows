@@ -18,3 +18,4 @@ jobs:
     # if user is dependabot skip this action
     steps:
       - uses: toshimaru/auto-author-assign@v1.6.2
+        author-assignees: jge162
