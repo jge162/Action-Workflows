@@ -21,7 +21,7 @@ jobs:
         id: get_latest_tag
       - name: Bump patch version
         run: |
-          semver=$({{ steps.get_latest_tag.outputs.latest_tag }})
+          semver=$(echo "${{ steps.get_latest_tag.outputs.latest_tag }}")
           major=$(echo $semver | cut -d'.' -f1)
           minor=$(echo $semver | cut -d'.' -f2)
           patch=$(echo $semver | cut -d'.' -f3)
