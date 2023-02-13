@@ -1,0 +1,27 @@
+name: Release on Pull Request Close
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'create release') && github.event.pull_request.user.login == 'jge162'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build and test code
+        run: |
+          # Build and test code here
+      - name: Create release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            build/*
+          tag_name: v0.0.2
+          # change this release tag when you are ready to create a new one
+          body: |
+            This is the release notes for v0.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW_SECRET }}
