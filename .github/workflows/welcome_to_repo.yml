@@ -14,8 +14,6 @@ jobs:
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         issue-message: |
-            ## Welcome to the REPO, This is your first time Opening an Issue!
-            - [ ] Please include a summary of the issue you found and/or bug you have found! I will respond within 24 hours. 
+            Welcome to the REPO, This is your first time Opening an Issue!
         pr-message: |
-            ## Welcome to the REPO, This is your first time Opening an Pull Request!
-            - [ ] Remember to include a summary of the changes you made and/or which issues/bugs you have fixed! I will respond within 24 hours.
+            Welcome to the REPO, This is your first time Opening an Pull Request!
