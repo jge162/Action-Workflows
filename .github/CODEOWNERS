@@ -5,7 +5,7 @@
 # and GitHub Enterprise Server.
 
 # Default reviewers/codeowners for all code changes
-* @geo4u
+* @jge162
 
 # Reviewer by email for html files
 # *.html test@gmail.com
