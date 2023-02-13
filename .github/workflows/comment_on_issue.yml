@@ -20,7 +20,7 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              labels: ["documentation"]
+              labels: ["non owner issue"]
             })
       - name: Comment on Issues
         uses: actions/github-script@v6
