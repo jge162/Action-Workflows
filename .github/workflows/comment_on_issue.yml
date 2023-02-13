@@ -1,3 +1,5 @@
+
+name: comment_on_issue
 on:
   issues:
     types:
