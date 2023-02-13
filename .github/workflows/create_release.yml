@@ -11,31 +11,29 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Build and test code
-        run: |
-          # Build and test code here
-      - name: Determine latest release tag
+      - name: Get latest tag
         id: get_latest_tag
         run: |
-          echo ::set-output name=latest_tag::$(git describe --tags $(git rev-list --tags --max-count=1))
-      - name: Increment version number
-        id: increment_version
+          git tag v0.0.1
+          git push --tags
+          git fetch --tags
+          echo "::set-output name=latest_tag::$(git describe --tags $(git rev-list --tags --max-count=1))"
+      - name: Bump version
+        id: bump_version
         run: |
-          echo "Latest tag: ${{ steps.get_latest_tag.outputs.latest_tag }}"
-          semver=$(echo "${{ steps.get_latest_tag.outputs.latest_tag }}" | awk -F. '{print $1,$2,$3}')
-          major=$(echo $semver | cut -d' ' -f1)
-          minor=$(echo $semver | cut -d' ' -f2)
-          patch=$(echo $semver | cut -d' ' -f3)
+          semver=( ${steps.get_latest_tag.outputs.latest_tag//./ } )
+          major=${semver[0]}
+          minor=${semver[1]}
+          patch=${semver[2]}
           new_patch=$((patch+1))
           new_tag="$major.$minor.$new_patch"
           echo "::set-output name=new_tag::$new_tag"
       - name: Create release
         uses: softprops/action-gh-release@v1
         with:
-          files: |
-            build/*
-          tag_name: ${{ steps.increment_version.outputs.new_tag }}
+          files: build/*
+          tag_name: ${{ steps.bump_version.outputs.new_tag }}
           body: |
-            This is the release notes for ${{ steps.increment_version.outputs.new_tag }}
+            This is the release notes for ${steps.bump_version.outputs.new_tag}
         env:
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_SECRET }}
