@@ -9,6 +9,7 @@ jobs:
   auto-merge:
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'jge162' }}
+    needs: build-and-analyze
     steps:
       - name: Auto_merge
         uses: jge162/Action-workflows@main
