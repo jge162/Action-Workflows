@@ -1,4 +1,4 @@
-name: Label on Pull 
+name: Label owner 
 
 on:
   pull_request_target
@@ -10,6 +10,8 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
+    - name: Debug information
+      run: echo "User login: ${{ github.event.pull_request.user.login }}"
     - name: Label owner
       if: ${{ (github.event.pull_request.user.login == 'jge162') }}
       uses: actions/labelers@v4
