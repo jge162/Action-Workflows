@@ -28,6 +28,7 @@ jobs:
         env:
           RELEASE_VERSION: ${{ steps.changelog.outputs.version }}
         run: ./gradlew assemble
+          chmod +x ./gradlew
       - name: GitHub Release
         if: "github.ref == 'refs/heads/master' && steps.changelog.outputs.version != steps.lasttag.outputs.version"
         uses: actions/create-release@v1
