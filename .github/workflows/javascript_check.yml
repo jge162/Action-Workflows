@@ -1,4 +1,4 @@
-n name: Javascript Action error checker
+name: Javascript Action error checker
 
 on:
   schedule:
