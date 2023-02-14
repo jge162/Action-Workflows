@@ -1,7 +1,8 @@
 name: create-pull-request workflow
 on:
-  schedule:
-    - cron: '0 10 * * *'
+  push:
+  # schedule:
+  #  - cron: '0 10 * * *'
 
 jobs:
   createPullRequest:
@@ -27,7 +28,7 @@ jobs:
     needs: [createPullRequest]
     steps:
       - name: Auto_merge
-        uses: jge162/Action-workflows@main
+        uses: actions/checkout@v2
         with:
           github-token: "${{ secrets.WORKFLOW_SECRET }}"
       - name: Enable auto-merge
