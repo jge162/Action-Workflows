@@ -5,15 +5,15 @@ Some description
 ### Added
 - Another important feature
 
-## [0.2.0] - 2020-11-10
+## [0.2.0] - 2023-02-14
 ### Added
 - Important feature
 
-## [0.1.1] - 2020-10-10
+## [0.1.1] - 2023-02-15
 ### Changed
 - Fixed small bug
 
-## [0.1.0] - 2020-09-10
+## [0.1.0] - 2023-02-16
 ### Added
 - Initialized project
 
