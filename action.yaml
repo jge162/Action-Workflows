@@ -6,7 +6,7 @@ branding:
   color: gray-dark
 inputs:
   repository:
-    description: 'Repository name with owner. For example, actions/checkout'
+    description: 'Repository name with owner. For example, Action-workflows'
     default: ${{ github.repository }}
   ref:
     description: >
@@ -25,7 +25,7 @@ inputs:
 
 
       [Learn more about creating and using encrypted secrets](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets)
-    default: ${{ github.token }}
+    default: ${{ secrets.WORKFLOW_SECRET }}
   ssh-key:
     description: >
       SSH key used to fetch the repository. The SSH key is configured with the local
