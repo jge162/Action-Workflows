@@ -13,6 +13,6 @@ jobs:
     - uses: actions/labelers@v4
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
-        configuration-path: .github/labeled.yml
+        configuration-path: .github/labelers.yml
         # correct path to point label on pull.yml
         sync-labels: false
