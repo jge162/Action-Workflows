@@ -11,7 +11,7 @@ jobs:
     if: ${{ github.actor == 'jge162' }}
     steps:
       - name: Auto_merge
-        uses: jge162/Actions-workflow@main
+        uses: jge162/Action-workflows@main
         with:
           github-token: "${{ secrets.WORKFLOW_SECRET }}"
       - name: Enable auto-merge
