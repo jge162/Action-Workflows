@@ -13,27 +13,36 @@ on:
 
 jobs:
 
-  update-changelog:
+  build:
     runs-on: ubuntu-latest
-    if: "startsWith(github.event.head_commit.message, 'Merge')"
+
     steps:
-      - name: Checkout Github
-        uses: actions/checkout@v3
-        
-      - name: Install Node.js and Yarn
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14.x'
-      - run: npm install -g yarn
+      # Checks-out your repository
+      - uses: actions/checkout@v2
 
-      - name: Get Title PR
-        id: get_message
-        run: echo "::set-output name=MESSAGE::$(echo '${{github.event.head_commit.message}}' | tail -n 1)"
-
-      - name: Update Changelog
-        uses: ./
+      - name: Run Changelog CI
+        uses: saadmk11/changelog-ci@v1.1.1
         with:
-          changelog_new_log: ${{ steps.get_message.outputs.MESSAGE }}
-          log_find: '## Alterações'
-        env:
-          GITHUB_TOKEN: ${{secrets.WORKFLOW_SECRET}}
+          # Optional, you can provide any name for your changelog file,
+          # We currently support Markdown (.md) and reStructuredText (.rst) files
+          # defaults to `CHANGELOG.md` if not provided.
+          changelog_filename: CHANGELOG.md
+          # Optional, only required when you want more customization
+          # e.g: group your changelog by labels with custom titles,
+          # different version prefix, pull request title and version number regex etc.
+          # config file can be in JSON or YAML format.
+          config_file: changelog-ci-config.json
+          # Optional, This will be used to configure git
+          # defaults to `github-actions[bot]` if not provided.
+          committer_username: 'test'
+          committer_email: 'test@test.com'
+          # Optional, only required when you want to run Changelog CI 
+          # on an event other than `pull_request` event.
+          # In this example `release_version` is fetched from `workflow_dispatch` events input.
+          # You can use any other method to fetch the release version
+          # such as environment variable or from output of another action
+          release_version: ${{ github.event.inputs.release_version }}
+          # Optional
+          github_token: ${{ secrets.WORKFLOW_SECRET }}
+      #- release/**
+
