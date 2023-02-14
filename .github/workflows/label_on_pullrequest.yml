@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ (github.event.pull_request.user.login != 'jge162') }}
     steps:
-    - uses: actions/labeler@v4
+    - uses: actions/labelers@v4
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
         configuration-path: .github/labelers.yml
