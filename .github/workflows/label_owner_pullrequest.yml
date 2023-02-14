@@ -10,9 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ (github.event.pull_request.user.login == 'jge162') }}
     steps:
-    - uses: actions/labeled@v4
+    - uses: actions/labelers@v4
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
-        configuration-path: .github/labelers.yml
+        configuration-path: .github/labeled.yml
         # correct path to point label on pull.yml
         sync-labels: false
