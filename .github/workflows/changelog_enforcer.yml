@@ -1,16 +1,33 @@
-name: Changelog enforcer
+name: Changelog Automation
+
 on:
-  pull_request:
-    types:
-    - opened
-    - edited
-    - synchronized
-    - labeled
-    - unlabeled
+  push:
+    branches:
+      - main
+      # - release/**
+
 jobs:
-  check_pr_size:
+  update-changelog:
     runs-on: ubuntu-latest
+    if: "startsWith(github.event.head_commit.message, 'Merge')"
     steps:
-    - uses: guzzler/file-changelog-issue-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.WORKFLOW_SECRET }}
+      - name: Checkout Github
+        uses: actions/checkout@v3
+        
+      - name: Install Node.js and Yarn
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+      - run: npm install -g yarn
+
+      - name: Get Title PR
+        id: get_message
+        run: echo "::set-output name=MESSAGE::$(echo '${{github.event.head_commit.message}}' | tail -n 1)"
+
+      - name: Update Changelog
+        uses: ./
+        with:
+          changelog_new_log: ${{ steps.get_message.outputs.MESSAGE }}
+          log_find: '## Alterações'
+        env:
+          GITHUB_TOKEN: ${{secrets.TOKEN}}
