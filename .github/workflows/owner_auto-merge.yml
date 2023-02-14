@@ -6,7 +6,7 @@ permissions:
   pull-requests: write
 
 jobs:
- build-and-analyze:
+ Python-analyze:
     runs-on: ubuntu-latest
 
     steps:
@@ -57,7 +57,7 @@ jobs:
  auto-merge:
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'jge162' }}
-    needs: [build-and-analyze, Javascript-analyze]
+    needs: [Python-analyze, Javascript-analyze]
     steps:
       - name: Auto_merge
         uses: jge162/Action-workflows@main
