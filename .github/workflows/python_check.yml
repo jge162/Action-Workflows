@@ -1,9 +1,13 @@
 # run file to verify it compiles with no errors 
 name: Python Action
+
 on:
-  push:
-    branches:
-      - main
+  schedule:
+    - cron: "0 0 * * *" 
+# on:
+  # push:
+    # branches:
+     #  - main
   # pull_request:
   #  branches:
   #    - main
