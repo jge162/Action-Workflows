@@ -1,55 +1,23 @@
 # Changelog
+Some description
 
-All notable changes to this project will be documented in this file.
-
-## [1.1.0] - 2023-MM-DD
-
+## [Unreleased]
 ### Added
+- Another important feature
 
-- Add new feature or functionality
-
-### Changed
-
-- Change an existing feature or functionality
-
-### Deprecated
-
-- Deprecate a feature or functionality
-
-### Removed
-
-- Remove an existing feature or functionality
-
-### Fixed
-
-- Fix a bug or issue
-
-### Security
-
-- Address a security issue or vulnerability
-
-## [1.0.0] - 2022-02-14
-
+## [0.2.0] - 2020-11-10
 ### Added
+- Important feature
 
-- Add new feature or functionality
-
+## [0.1.1] - 2020-10-10
 ### Changed
+- Fixed small bug
 
-- Change an existing feature or functionality
+## [0.1.0] - 2020-09-10
+### Added
+- Initialized project
 
-### Deprecated
-
-- Deprecate a feature or functionality
-
-### Removed
-
-- Remove an existing feature or functionality
-
-### Fixed
-
-- Fix a bug or issue
-
-### Security
-
-- Address a security issue or vulnerability
+[Unreleased]: https://github.com/coditory/changelog-parser-action/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/coditory/changelog-parser-action/compare/v0.1.1...v0.2.0
+[0.1.1]: https://github.com/coditory/changelog-parser-action/compare/v0.1.0...v0.1.1
+[0.1.0]: https://github.com/coditory/changelog-parser-action/releases/tag/v0.1.0
