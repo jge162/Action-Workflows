@@ -16,7 +16,7 @@ jobs:
         with:
           github-token: "${{ secrets.WORKFLOW_SECRET }}"
       - name: Enable auto-merge for Dependabot PRs
-        if: ${{contains(steps.metadata.outputs.dependency-names, 'actions/stale') || steps.metadata.outputs.dependency-names,'ts-jest') || contains(steps.metadata.outputs.dependency-names,'uuid') || contains(steps.metadata.outputs.dependency-names, 'jest-circus') || contains(steps.metadata.outputs.dependency-names, 'actions/github-script') && steps.metadata.outputs.update-type == 'version-update:semver-major'}}
+        if: ${{contains(steps.metadata.outputs.dependency-names, 'actions/stale') || steps.metadata.outputs.dependency-names, '@zeit/ncc') || steps.metadata.outputs.dependency-names,'ts-jest') || contains(steps.metadata.outputs.dependency-names,'uuid') || contains(steps.metadata.outputs.dependency-names, 'jest-circus') || contains(steps.metadata.outputs.dependency-names, 'actions/github-script') && steps.metadata.outputs.update-type == 'version-update:semver-major'}}
         run: gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
