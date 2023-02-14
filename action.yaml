@@ -21,7 +21,7 @@ inputs:
       We recommend using a service account with the least permissions necessary.
       Also when generating a new PAT, select the least scopes necessary.
       [Learn more about creating and using encrypted secrets](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets)
-    default: ${{ secrets.WORKFLOW_SECRET }}
+    default: ${{ github.token }}
   ssh-key:
     description: >
       SSH key used to fetch the repository. The SSH key is configured with the local
