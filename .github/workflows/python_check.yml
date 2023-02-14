@@ -28,7 +28,7 @@ jobs:
         echo "Run, Build Application using scripts"
         python3 -c "
         scripts = [ './script2.py']
-        # only use if I want to check './script.py'
+        # only use if I want to check './python_action_tester.py'
         
         for script in scripts:
             with open(script, 'r') as file:
