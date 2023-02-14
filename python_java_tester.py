@@ -1,7 +1,7 @@
 import subprocess
 
 # run jshint on build/index.js
-output = subprocess.run(['jshint', 'build/index.js'], capture_output=True)
+output = subprocess.run(['jshint', 'dist/index.js'], capture_output=True)
 
 # check the exit code to see if there were errors
 if output.returncode == 0:
