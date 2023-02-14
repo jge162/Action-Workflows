@@ -4,12 +4,6 @@ author: Jeremy Escobar
 branding:
   icon: activity
   color: gray-dark
-name: create-release
-description: Create Release upon Close Pull Request
-author: Jeremy Escobar
-branding:
-  icon: activity
-  color: gray-dark
 inputs:
   message:
     description: 'Message to prospective contributor'
