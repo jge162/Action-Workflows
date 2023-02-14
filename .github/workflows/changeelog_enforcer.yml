@@ -1,17 +1,39 @@
+name: Build
 
-name: Changelog Enforcer
-
-on:  # yamllint disable-line rule:truthy
-  pull_request:
-    types: [opened, synchronize, reopened, ready_for_review, labeled, unlabeled]
+on: [ push ]
 
 jobs:
-
-  changelog:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Enforce changelog entry
-        uses: dangoslen/changelog-enforcer@v3
+      - name: Checkout
+        uses: actions/checkout@v2
         with:
-          skipLabels: 'skip-changelog'
+          fetch-depth: 0
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Build with Gradle
+        run: ./gradlew build
+      - name: Get last version from tag
+        id: lasttag
+        shell: bash
+        run: echo ::set-output name=version::$(git describe --abbrev=0 --tags --match 'v[0-9]*\.[0-9]*\.[0-9]*' | cut -c2-)
+      - name: Parse Changelog Entry
+        id: changelog
+        uses: coditory/changelog-parser@v1
+      - name: Release
+        if: "github.ref == 'refs/heads/master' && steps.changelog.outputs.version != steps.lasttag.outputs.version"
+        env:
+          RELEASE_VERSION: ${{ steps.changelog.outputs.version }}
+        run: ./gradlew release
+      - name: GitHub Release
+        if: "github.ref == 'refs/heads/master' && steps.changelog.outputs.version != steps.lasttag.outputs.version"
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          body: ${{ steps.changelog.outputs.description }}
+          tag_name: ${{ steps.changelog.outputs.version }}
+          release_name: Release ${{ steps.changelog.outputs.version }}
