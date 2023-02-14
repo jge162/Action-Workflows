@@ -19,9 +19,4 @@ jobs:
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
           GITHUB_TOKEN: ${{secrets.WORKFLOW_SECRET}}
-      - name: Add label
-        uses: actions/labeler@v3
-        with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
-          configuration-path: .github/labeler_automerge.yml
-          sync-labels: false
+ 
