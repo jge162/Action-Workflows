@@ -2,9 +2,9 @@ name: Changelog Automation
 
 on:
   push:
-    #branches:
-     # - main
-      # - release/**
+    branches:
+      - main
+      - release/**
 
 jobs:
   update-changelog:
