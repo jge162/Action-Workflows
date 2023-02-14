@@ -1,1 +1,10 @@
-
+name: PR Changelog Add
+on:
+  push:
+jobs:
+  check_pr_size:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: guzzler/file-changelog-issue-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
