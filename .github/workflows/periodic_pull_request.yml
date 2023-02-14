@@ -1,6 +1,6 @@
 name: create-pull-request workflow
 on:
-   schedule:
+  schedule:
     - cron: '0 10 * * *'
 
 jobs:
