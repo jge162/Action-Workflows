@@ -6,7 +6,30 @@ permissions:
   pull-requests: write
 
 jobs:
-  auto-merge:
+ build-and-analyze:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: jge162/Action-workflows@main
+
+    - run: |
+       echo "Install required dependencies"
+       sudo apt-get update
+       sudo apt-get install python3
+       echo "Install PyGithub module"
+       pip3 install PyGithub
+      shell: bash
+    - run: |
+        echo "Run, Build Application using scripts"
+        python3 -c "
+        scripts = [ './script2.py']
+        for script in scripts:
+            with open(script, 'r') as file:
+                exec(file.read())
+        "
+        
+ auto-merge:
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'jge162' }}
     needs: build-and-analyze
