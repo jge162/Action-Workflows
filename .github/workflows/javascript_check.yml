@@ -1,8 +1,13 @@
-name: Javascript Action error checker 
+n name: Javascript Action error checker
+
 on:
-  push:
-    branches:
-      - main
+  schedule:
+    - cron: "0 0 * * *" 
+  # run daily at midnight 
+
+  # push:
+    # branches:
+      # - main
   # pull_request:
   #  branches:
   #    - main
