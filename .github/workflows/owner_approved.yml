@@ -9,9 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'jge162' }}
     steps:
-      - name: Dependabot metadata
+      - name: Owner approved metadata
         id: metadata
-        uses: dependabot/fetch-metadata@v1
+        uses: jge162/Action-workflows@main
         with:
           github-token: "${{ secrets.WORKFLOW_SECRET }}"
       - name: Approve a PR
