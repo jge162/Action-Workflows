@@ -5,7 +5,7 @@ branding:
   icon: activity
   color: gray-dark
 inputs:
-repo-token:
+  repo-token:
     description: Token used to access the repository.
     required: true
   configuration-path:
