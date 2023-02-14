@@ -1,5 +1,5 @@
 version: 2
-pull_request_limit: 10
+
 updates:
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -19,7 +19,6 @@ updates:
         update-types: ["version-update:semver-major"]
     labels:
       - "dependencies"
-
 
   - package-ecosystem: "pip"
     directory: "/"
