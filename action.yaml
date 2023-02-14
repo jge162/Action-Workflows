@@ -13,7 +13,7 @@ inputs:
     required: true
   sync-labels:
     description: Whether to sync the labels.
-    default: false
+    default: true
   repository:
     description: 'Repository name with owner. For example, actions/checkout'
     default: ${{ github.repository }}
