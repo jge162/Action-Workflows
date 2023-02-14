@@ -1,0 +1,18 @@
+name: Label on pullrequest
+on:
+  pull_request_target
+
+jobs:
+  triage:
+    permissions:
+      contents: read
+      pull-requests: write
+    runs-on: ubuntu-latest
+    if: ${{ (github.event.pull_request.user.login == 'jge162') }}
+    steps:
+    - uses: actions/labelers@v4
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        configuration-path: .github/labelers.yml
+        # correct path to point label on pull.yml
+        sync-labels: false
