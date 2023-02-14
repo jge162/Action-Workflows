@@ -27,12 +27,12 @@ jobs:
         if: "github.ref == 'refs/heads/master' && steps.changelog.outputs.version != steps.lasttag.outputs.version"
         env:
           RELEASE_VERSION: ${{ steps.changelog.outputs.version }}
-        run: ./gradlew release
+        run: ./gradlew assemble
       - name: GitHub Release
         if: "github.ref == 'refs/heads/master' && steps.changelog.outputs.version != steps.lasttag.outputs.version"
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW_SECRET }}
         with:
           body: ${{ steps.changelog.outputs.description }}
           tag_name: ${{ steps.changelog.outputs.version }}
