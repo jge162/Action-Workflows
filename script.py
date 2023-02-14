@@ -1,5 +1,5 @@
 dog = "brown"
 cat = "gold"
 mouse = "black"
-car = "red color"
+print("scrtip1 here")
 print(dog, cat, mouse)
