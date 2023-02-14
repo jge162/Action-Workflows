@@ -5,6 +5,11 @@ branding:
   icon: activity
   color: gray-dark
 inputs:
+  token:
+    description: >
+      Personal access token (PAT) used to fetch the repository. The PAT is configured
+      with the local git config, which enables your scripts to run authenticated git
+      commands. The post-job step removes the PAT.
   persist-credentials:
     description: 'Whether to configure the token or SSH key with the local git config'
     default: true
