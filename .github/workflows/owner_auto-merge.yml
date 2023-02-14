@@ -10,6 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'jge162' }}
     steps:
+      - name: Check PR status
+        run: |
+          CHECKS_URL=$(jq -r '.pull_request.statuses_url' "$GITHUB_EVENT_PATH")
+          STATUS=$(curl -s -H "Authorization: token $GITHUB_TOKEN" $CHECKS_URL | jq -r '.[].state')
+
+          if [[ $STATUS != "success" ]]; then
+            echo "Checks have not passed, exiting."
+            exit 1
+          fi
+
       - name: Auto_merge
         uses: jge162/Action-workflows@main
         with:
@@ -18,4 +28,4 @@ jobs:
         run: gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.WORKFLOW_SECRET}}
+          GITHUB_TOKEN: ${{secrets.WORKFLOW_SECRET
