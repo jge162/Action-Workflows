@@ -4,6 +4,9 @@ name: Python Action
 on:
   schedule:
     - cron: "0 0 * * *" 
+    - cron: "0 12 * * *"
+    # run daily at midnight 
+
 # on:
   # push:
     # branches:
