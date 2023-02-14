@@ -3,3 +3,4 @@ cat = "gold"
 mouse = "black"
 car = "red color"
 print(dog, cat, mouse)
+
