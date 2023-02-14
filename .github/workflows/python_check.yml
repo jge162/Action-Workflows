@@ -27,7 +27,9 @@ jobs:
     - run: |
         echo "Run, Build Application using scripts"
         python3 -c "
-        scripts = ['./script.py', './script2.py']
+        scripts = [ './script2.py']
+        # only use if I want to check './script.py'
+        
         for script in scripts:
             with open(script, 'r') as file:
                 exec(file.read())
