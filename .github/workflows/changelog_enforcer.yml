@@ -1,4 +1,4 @@
-name: PR Changelog Add
+name: Changelog enforcer
 on:
   pull_request:
     types:
@@ -13,4 +13,4 @@ jobs:
     steps:
     - uses: guzzler/file-changelog-issue-action@master
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.WORKFLOW_SECRET }}
