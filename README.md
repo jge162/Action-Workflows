@@ -31,7 +31,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: jge162/Action-workflows@main
 
     - run: |
         echo "Install required dependencies" 
