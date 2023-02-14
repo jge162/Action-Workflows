@@ -5,6 +5,15 @@ branding:
   icon: activity
   color: gray-dark
 inputs:
+repo-token:
+    description: Token used to access the repository.
+    required: true
+  configuration-path:
+    description: Path to the configuration file.
+    required: true
+  sync-labels:
+    description: Whether to sync the labels.
+    default: false
   repository:
     description: 'Repository name with owner. For example, actions/checkout'
     default: ${{ github.repository }}
