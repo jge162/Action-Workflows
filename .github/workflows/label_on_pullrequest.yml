@@ -10,19 +10,16 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
-    - name: Debug information
-      run: |
-        echo "User login: ${{ github.event.pull_request.user.login }}"
     - name: Label owner
       if: ${{ (github.event.pull_request.user.login == 'jge162') }}
-      uses: actions/labelers@v4
+      uses: jge162/Action-workflows@main
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
         configuration-path: .github/labeled.yml
         sync-labels: false
     - name: Label not owner
       if: ${{ (github.event.pull_request.user.login != 'jge162') }}
-      uses: actions/labelers@v4
+      uses: jge162/Action-workflows@main
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
         configuration-path: .github/labelers.yml
