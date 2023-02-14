@@ -1,6 +1,12 @@
 name: PR Changelog Add
 on:
-  push:
+  pull_request:
+    types:
+    - opened
+    - edited
+    - synchronized
+    - labeled
+    - unlabeled
 jobs:
   check_pr_size:
     runs-on: ubuntu-latest
