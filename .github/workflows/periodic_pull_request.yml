@@ -1,9 +1,9 @@
+name: create-pull-request workflow
 on:
   push:
   #schedule:
     # - cron: '0 10 * * *'
 
-name: create-pull-request workflow
 jobs:
   createPullRequest:
     runs-on: ubuntu-latest
@@ -22,7 +22,7 @@ jobs:
             [create-pull-request](https://github.com/peter-evans/create-pull-request).
           labels: report, automated pr
 
-auto-merge:
+  auto-merge:
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'jge162' }}
     needs: [createPullRequest]
