@@ -1,11 +1,6 @@
 name: Changelog Automation
 
 on:
-  push:
-    branches:
-      - mainname: Changelog CI
-
-on:
   pull_request:
     types: [ opened ]
 
