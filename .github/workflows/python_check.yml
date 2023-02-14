@@ -16,7 +16,7 @@ on:
   #    - main
 
 jobs:
-  build-and-analyze:
+  Python-analyze:
     runs-on: ubuntu-latest
 
     steps:
