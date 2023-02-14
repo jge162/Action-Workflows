@@ -10,3 +10,5 @@
 - Fixed issue B
 - Added feature A
 - Fixed issue B
+- Added feature A
+- Fixed issue B
