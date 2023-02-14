@@ -12,14 +12,14 @@ jobs:
     steps:
     - name: Label owner
       if: ${{ (github.event.pull_request.user.login == 'jge162') }}
-      uses: jge162/Action-workflows@main
+      uses: actions/labeler@v4
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
         configuration-path: .github/labeled.yml
         sync-labels: false
     - name: Label not owner
       if: ${{ (github.event.pull_request.user.login != 'jge162') }}
-      uses: jge162/Action-workflows@main
+      uses: actions/labeler@v4
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
         configuration-path: .github/labelers.yml
