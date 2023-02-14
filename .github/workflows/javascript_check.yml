@@ -1,0 +1,34 @@
+name: Javascript Action error checker 
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  Javascript-analyze:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
+    - name: Install jshint
+      run: npm install -g jshint
+
+    - name: Script Error Results Here!
+      run: |
+        echo "Build application script outputs Here!"
+        python3 -c "
+        scripts = ['python_java_tester.py']
+        for script in scripts:
+            with open(script, 'r') as file:
+                exec(file.read())
+        "
