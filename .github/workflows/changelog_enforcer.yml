@@ -13,10 +13,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      
+        
       - run: |
-        git fetch --prune --unshallow --tags
-
+         git fetch --prune --unshallow --tags
       - name: Create changelogs
         id: changelogs
         uses: heineiuo/create-changelogs@master # 👀
