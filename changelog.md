@@ -1,0 +1,2 @@
+- Added feature A
+- Fixed issue B
