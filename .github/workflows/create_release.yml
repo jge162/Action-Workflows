@@ -38,6 +38,6 @@ jobs:
             build/*
           tag_name: ${{ steps.bump_version.outputs.new_tag }}
           body: |
-            This is the release notes for ${{ steps.bump_version.outputs.new_tag }}
+            This is a new release ${{ steps.bump_version.outputs.new_tag }} which will include feature updates. 
         env:
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_SECRET }}
