@@ -1,0 +1,21 @@
+name: auto-merge
+on: pull_request
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  dependabot:
+    runs-on: ubuntu-latest
+    if: ${{ github.actor == 'jge162' }}
+    steps:
+      - name: Auto_merge
+        uses: jge162/Action-workflows@main
+        with:
+          github-token: "${{ secrets.WORKFLOW_SECRET }}"
+      - name: Enable auto-merge
+        run: gh pr merge --auto --merge "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GITHUB_TOKEN: ${{secrets.WORKFLOW_SECRET}}
