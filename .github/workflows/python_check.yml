@@ -32,5 +32,5 @@ jobs:
             with open(script, 'r') as file:
                 exec(file.read())
         "
-    # only this script if I want to check Action './python_action_tester.py'
+    # only run script if I want to check Action './python_action_tester.py'
     
