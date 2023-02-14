@@ -42,9 +42,9 @@ jobs:
           # such as environment variable or from output of another action
           release_version: ${{ github.event.inputs.release_version }}
           # Optional
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.WORKFLOW_SECRET }}
       #- release/**
-jobs:
+      
   update-changelog:
     runs-on: ubuntu-latest
     if: "startsWith(github.event.head_commit.message, 'Merge')"
