@@ -9,16 +9,17 @@ updates:
     open-pull-requests-limit: 10
     directory: "/"
     schedule:
-      interval: "weekly"
-      day: 'saturday'
+      interval: "daily"
+      time: "00:00"
   - package-ecosystem: 'pip'
     directory: '/'
     schedule:
-      interval: 'weekly' 
-      day: 'saturday'
+      interval: "daily"
+      time: "00:00"
   - package-ecosystem: "npm"
     directory: '/'
     schedule:
-      interval: 'weekly' 
-      day: 'saturday'
+      interval: "daily"
+      time: "00:00"
+
  
