@@ -9,7 +9,7 @@
 
 # Purpose of this repo:
 
-To create, simple to use GitHub actions on any repo for initial setup.
+To create, simple to use GitHub actions on any repo for initial setup...
 
 # Example action to run a `python.py` file to verify no errors in code:
 
