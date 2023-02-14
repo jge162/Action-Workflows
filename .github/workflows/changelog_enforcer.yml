@@ -1,48 +1,28 @@
-name: Changelog Automation
+name: 'Update Changelog'
 
 on:
-  pull_request:
-    types: [ opened ]
-
-  # Optionally you can use `workflow_dispatch` to run Changelog CI Manually
-  workflow_dispatch:
-    inputs:
-      release_version:
-        description: 'Set Release Version'
-        required: true
+    release:
+        types: [released]
 
 jobs:
+    update:
+        runs-on: ubuntu-latest
 
-  build:
-    runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+              with:
+                  ref: main
 
-    steps:
-      # Checks-out your repository
-      - uses: actions/checkout@v2
+            - name: Update Changelog
+              uses: stefanzweifel/changelog-updater-action@v1
+              with:
+                  release-notes: ${{ github.event.release.body }}
+                  latest-version: ${{ github.event.release.name }}
 
-      - name: Run Changelog CI
-        uses: saadmk11/changelog-ci@v1.1.1
-        with:
-          # Optional, you can provide any name for your changelog file,
-          # We currently support Markdown (.md) and reStructuredText (.rst) files
-          # defaults to `CHANGELOG.md` if not provided.
-          changelog_filename: CHANGELOG.md
-          # Optional, only required when you want more customization
-          # e.g: group your changelog by labels with custom titles,
-          # different version prefix, pull request title and version number regex etc.
-          # config file can be in JSON or YAML format.
-          config_file: changelog-ci-config.json
-          # Optional, This will be used to configure git
-          # defaults to `github-actions[bot]` if not provided.
-          committer_username: 'test'
-          committer_email: 'test@test.com'
-          # Optional, only required when you want to run Changelog CI 
-          # on an event other than `pull_request` event.
-          # In this example `release_version` is fetched from `workflow_dispatch` events input.
-          # You can use any other method to fetch the release version
-          # such as environment variable or from output of another action
-          release_version: ${{ github.event.inputs.release_version }}
-          # Optional
-          github_token: ${{ secrets.WORKFLOW_SECRET }}
-      #- release/**
-
+            - name: Commit updated CHANGELOG
+              uses: stefanzweifel/git-auto-commit-action@v4
+              with:
+                  branch: main
+                  commit_message: Update CHANGELOG
+                  file_pattern: CHANGELOG.md
