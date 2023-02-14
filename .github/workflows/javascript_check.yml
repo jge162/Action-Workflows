@@ -3,7 +3,8 @@ name: Javascript Action error checker
 on:
   schedule:
     - cron: "0 0 * * *" 
-  # run daily at midnight 
+    - cron: "0 12 * * *"
+    # run daily at midnight 
 
   # push:
     # branches:
