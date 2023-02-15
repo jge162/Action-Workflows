@@ -15,6 +15,7 @@ To create, simple to use GitHub actions on any repo for initial setup
 If errors in code exist they will be listed in the actions console. Also
 you can run more than one file, seperated with commas...
    
+# Up to you to decide on your triggers, I used `push` and `pull_request`
 ```yaml
 name: Run Python file
 on:
@@ -24,7 +25,11 @@ on:
   pull_request:
     branches:
       - main
-  
+```      
+
+# Install required `dependencies.`
+
+``yaml  
 jobs:
   build-and-analyze:
     runs-on: ubuntu-latest
@@ -37,7 +42,12 @@ jobs:
         echo "Install required dependencies" 
         sudo apt-get update
         sudo apt-get install python3
-    - run: |
+```        
+
+# Lastly use a for loop to run multipe instances.
+
+```yaml
+     - run: |
         echo "Run, Build Application using scripts"
         python3 -c "
         scripts = ['./script.py', './script2.py'] 
