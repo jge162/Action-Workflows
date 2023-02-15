@@ -25,7 +25,7 @@ on:
   pull_request:
     branches:
       - main
-```     
+```       
   
 # Install required `dependencies.`
 
