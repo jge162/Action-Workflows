@@ -16,6 +16,6 @@ Pull request number for the release is: [#367](https://github.com/jge162/Action-
 
 This was a dependabot, automated update
 
-# 3.2.0 (2023-02-15)
+## 3.2.0 (2023-02-15)
 
 This was a dependabot, automated update
