@@ -5,7 +5,7 @@ on:
     types: [closed]
 
 jobs:
-  build-and-release:
+  create_release_minor:
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'create release minor') && github.event.pull_request.user.login == 'jge162'
     steps:
