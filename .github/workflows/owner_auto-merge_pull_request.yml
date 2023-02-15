@@ -54,7 +54,7 @@ jobs:
           npx conventional-changelog-cli -p angular -i CHANGELOG.md -s -r 0 --tag-prefix ""
           echo "" >> CHANGELOG.md
           echo "This was a dependabot, automated update" >> CHANGELOG.md
-          sed -i "s|^\(## \[\).*\(\]\)$|\1$(date +%Y-%m-%d) \2\n\n[Pull Request: #${{ steps.get_pull_request_number.outputs.pull_request_number }}](${{ env.PR_URL }})|" CHANGELOG.md
+          sed -i "s|^## \[Unreleased\]$|&\n\n## [$(date +%Y-%m-%d)] - [Pull Request: #${{ steps.get_pull_request_number.outputs.pull_request_number }}](${{ env.PR_URL }})|" CHANGELOG.md
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
 
@@ -62,7 +62,6 @@ jobs:
         run: |
           git config --global user.email "john.doe@example.com"
           git config --global user.name "John Doe"
-          git add CHANGELOG.md
           git commit -m "chore: update changelog" --no-verify
           git push origin main
         env:
