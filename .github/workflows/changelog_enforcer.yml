@@ -1,15 +1,34 @@
-name: Pull Request Workflow
 on:
-  pull_request:
-    types: [opened, synchronize, reopened, ready_for_review, labeled, unlabeled]
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+name: Create Release
 
 jobs:
-  changelog:
+  build:
+    name: Create Release
     runs-on: ubuntu-latest
     steps:
-      - name: Enforce changelog entry
-        uses: dangoslen/changelog-enforcer@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - run: git fetch --prune --unshallow --tags
+
+      - name: Create changelogs
+        id: changelogs
+        uses: heineiuo/create-changelogs@master # 👀
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          skipLabels: 'Skip-Changelog'
-          changeLogPath: CHANGELOG.md
-          versionPattern: '^## \[((v|V)?\d*\.\d*\.\d*-?\w*|unreleased|Unreleased|UNRELEASED)\]'
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          body: ${{ steps.changelogs.outputs.changelogs }}
+          draft: false
+          prerelease: ${{ steps.changelogs.outputs.release_type == 'prerelease' }}
+
