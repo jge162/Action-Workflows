@@ -16,7 +16,7 @@ If errors in code exist they will be listed in the actions console. Also
 you can run more than one file, seperated with commas...
    
 # Up to you to decide on your triggers, I used `push` and `pull_request`
-
+ 
 ```yaml
 name: Run Python file
 on:
