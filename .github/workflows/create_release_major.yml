@@ -12,7 +12,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build and test code
+      - name: Build major release
         run: |
           # Build and test code here
 
