@@ -62,7 +62,7 @@ jobs:
         run: |
           git config --global user.email "daubers_heights.0h@icloud.com"
           git config --global user.name "Jeremy escobar"
-          git restore CHANGELOG.md
+          git add CHANGELOG.md
           git commit -m "chore: update changelog" --no-verify
           git push origin main
         env:
