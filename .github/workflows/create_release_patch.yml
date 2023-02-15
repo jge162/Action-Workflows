@@ -1,4 +1,4 @@
-name: Release on Pull Request Close
+name: create_release_patch_
 
 on:
   pull_request:
