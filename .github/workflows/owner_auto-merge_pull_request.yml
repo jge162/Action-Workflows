@@ -1,63 +1,15 @@
 name: auto-merge
+
 on: pull_request
 
 permissions:
   contents: write
   pull-requests: write
 
-jobs:
- Python-analyze:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout repository
-      uses: jge162/Action-workflows@main
-
-    - run: |
-       echo "Install required dependencies"
-       sudo apt-get update
-       sudo apt-get install python3
-       echo "Install PyGithub module"
-       pip3 install PyGithub
-      shell: bash
-    - run: |
-        echo "Run, Build Application using scripts"
-        python3 -c "
-        scripts = [ './script2.py']
-        for script in scripts:
-            with open(script, 'r') as file:
-                exec(file.read())
-        "
- 
- Javascript-analyze:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
-    - name: Install Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'
-
-    - name: Install jshint
-      run: npm install -g jshint
-
-    - name: Script Error Results Here!
-      run: |
-        echo "Build application script outputs Here!"
-        python3 -c "
-        scripts = ['python_java_tester.py']
-        for script in scripts:
-            with open(script, 'r') as file:
-                exec(file.read())
-        "
-               
+jobs:               
  auto-merge:
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'jge162' }}
-    needs: [Python-analyze, Javascript-analyze]
     steps:
       - name: Auto_merge
         uses: jge162/Action-workflows@main
@@ -69,42 +21,49 @@ jobs:
           PR_URL: ${{github.event.pull_request.html_url}}
           GITHUB_TOKEN: ${{secrets.WORKFLOW_SECRET}}
           
- changelog:
-  runs-on: ubuntu-latest
-  needs: [auto-merge]
-  steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-      with:
-        ref: main
+ update-changelog:
+    runs-on: ubuntu-latest
+    needs: [auto-merge]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: main
 
-    - name: Update changelog
-      run: |
-        npm install -g conventional-changelog-cli
-        conventional-changelog -p angular -i CHANGELOG.md -s
-        echo "" >> CHANGELOG.md
-        echo "This was a dependabot, automated update" >> CHANGELOG.md
-      working-directory: ./
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
 
-    - name: Get pull request number
-      id: get_pull_request_number
-      run: echo "::set-output name=pull_request_number::${{ github.event.number }}"
+      - name: Install conventional-changelog-cli
+        run: npm install -g conventional-changelog-cli
 
-    - name: Generate changelog
-      run: |
-        npx conventional-changelog -p angular -i CHANGELOG.md -s -r 0 --tag-prefix ""
-        echo "" >> CHANGELOG.md
-        echo "This was a dependabot, automated update" >> CHANGELOG.md
-        sed -i "s|^\(## \[\).*\(\]\)$|\1$(date +%Y-%m-%d) \2\n\n[Pull Request: #${{ steps.get_pull_request_number.outputs.pull_request_number }}](${{ github.event.pull_request.html_url }})|" CHANGELOG.md
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
- 
-    - name: Commit updated changelog
-      run: |
-        git config --global user.email "john.doe@example.com"
-        git config --global user.name "John Doe"
-        git add CHANGELOG.md
-        git commit -m "chore: update changelog" --no-verify
-        git push origin main
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Update changelog
+        run: |
+          conventional-changelog -p angular -i CHANGELOG.md -s
+          echo "" >> CHANGELOG.md
+          echo "This was a dependabot, automated update" >> CHANGELOG.md
+        working-directory: ./
+
+      - name: Get pull request number
+        id: get_pull_request_number
+        run: echo "::set-output name=pull_request_number::${{ github.event.pull_request.number }}"
+
+      - name: Generate changelog
+        run: |
+          npx conventional-changelog -p angular -i CHANGELOG.md -s -r 0 --tag-prefix ""
+          echo "" >> CHANGELOG.md
+          echo "This was a dependabot, automated update" >> CHANGELOG.md
+          sed -i "s|^\(## \[\).*\(\]\)$|\1$(date +%Y-%m-%d) \2\n\n[Pull Request: #${{ steps.get_pull_request_number.outputs.pull_request_number }}](${{ env.PR_URL }})|" CHANGELOG.md
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+
+      - name: Commit updated changelog
+        run: |
+          git config --global user.email "john.doe@example.com"
+          git config --global user.name "John Doe"
+          git add CHANGELOG.md
+          git commit -m "chore: update changelog" --no-verify
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW_SECRET }}
