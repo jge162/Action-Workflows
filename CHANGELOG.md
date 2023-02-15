@@ -64,5 +64,3 @@ This was a dependabot, automated update [Pull Request: #395](https://github.com/
 * [#419](https://github.com/jge162/Action-workflows/pull/419): Update README.md
 * [#420](https://github.com/jge162/Action-workflows/pull/420): Update CHANGELOG.md
 * [#421](https://github.com/jge162/Action-workflows/pull/421): Update CHANGELOG.md
-
-
