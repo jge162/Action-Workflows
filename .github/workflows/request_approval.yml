@@ -36,3 +36,7 @@ jobs:
               console.log('PR not ready to deploy');
             }
           result-encoding: string
+          debug: false
+          user-agent: actions/github-script
+          retries: 0
+          retry-exempt-status-codes: 400,401,403,404,422
