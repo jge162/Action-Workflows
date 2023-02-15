@@ -24,7 +24,7 @@ jobs:
         uses: stefanzweifel/changelog-updater-action@v1
         with:
           path-to-changelog: CHANGELOG.md
-          latest-version: v1.0.1 # Replace with the latest version of your software
+          latest-version: v1.0.2 # Replace with the latest version of your software
           release-notes: |
             ### PR #${{ steps.get_pr.outputs.pr_number }}: ${{ steps.get_pr.outputs.pr_title }} [${{ steps.get_pr.outputs.pr_author }}]
 
