@@ -1,0 +1,35 @@
+
+name: comment_on_issue
+on:
+  issues:
+    types:
+      - reopened
+      - opened
+
+jobs:
+  label_and_comment_issues:
+    if: "!startsWith(github.event.sender.login, 'jge162')"
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Label Issues
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ["non owner issue"]
+            })
+      - name: Comment on Issues
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Thanks for opening this issue! The team will review as soon as time permits.'
+            })

@@ -1,0 +1,68 @@
+name: auto-merge
+
+on: pull_request
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:               
+ auto-merge:
+    runs-on: ubuntu-latest
+    if: ${{ github.actor == 'jge162' }}
+    steps:
+      - name: Auto_merge
+        uses: jge162/Action-workflows@main
+        with:
+          github-token: "${{ secrets.WORKFLOW_SECRET }}"
+      - name: Enable auto-merge
+        run: gh pr merge --auto --merge "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GITHUB_TOKEN: ${{secrets.WORKFLOW_SECRET}}
+          
+ update-changelog:
+    runs-on: ubuntu-latest
+    needs: [auto-merge]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: main
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install conventional-changelog-cli
+        run: npm install -g conventional-changelog-cli
+
+      - name: Update changelog
+        run: |
+          conventional-changelog -p angular -i CHANGELOG.md -s
+          echo "" >> CHANGELOG.md
+          echo "This was a dependabot, automated update" >> CHANGELOG.md
+        working-directory: ./
+
+      - name: Get pull request number
+        id: get_pull_request_number
+        run: echo "::set-output name=pull_request_number::${{ github.event.pull_request.number }}"
+
+      - name: Generate changelog
+        run: |
+          npx conventional-changelog-cli -p angular -i CHANGELOG.md -s -r 0 --tag-prefix ""
+          echo "" >> CHANGELOG.md
+          echo "This was a dependabot, automated update" >> CHANGELOG.md
+          sed -i "s|^## \[Unreleased\]$|&\n\n## [$(date +%Y-%m-%d)] - [Pull Request: #${{ steps.get_pull_request_number.outputs.pull_request_number }}](${{ env.PR_URL }})|" CHANGELOG.md
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+
+      - name: Commit updated changelog
+        run: |
+          git config --global user.email "daubers_heights.0h@icloud.com"
+          git config --global user.name "Jeremy escobar"
+          git commit -a --amend --no-edit
+          git push -f origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW_SECRET }}

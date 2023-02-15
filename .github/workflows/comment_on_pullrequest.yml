@@ -1,0 +1,21 @@
+name: Comment_on_pullrequest
+
+on:
+  pull_request:
+
+jobs:
+  pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Comment_on_pullrequest
+        if: ${{ (github.event.pull_request.user.login != 'jge162') && !(github.actor != 'dependabot[bot]') }}
+        uses: mshick/add-pr-comment@v2
+        with:
+          message: |
+            Thank you for the Pull request. The team will review when time permits. **Please allow 24 hours**
+          message-failure: |
+            Uh oh!
+          message-id: add-pr-comment
+          repo-token: ${{ secrets.WORKFLOW_SECRET }}
+          allow-repeats: true
+          status: success

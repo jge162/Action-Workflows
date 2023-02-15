@@ -1,0 +1,26 @@
+name: Label owner 
+
+on:
+  pull_request_target
+
+jobs:
+  triage:
+    permissions:
+      contents: read
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+    - name: Label owner
+      if: ${{ (github.event.pull_request.user.login == 'jge162') }}
+      uses: actions/labeler@v4
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        configuration-path: .github/labeled.yml
+        sync-labels: false
+    - name: Label not owner
+      if: ${{ (github.event.pull_request.user.login != 'jge162') }}
+      uses: actions/labeler@v4
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        configuration-path: .github/labelers.yml
+        sync-labels: false
