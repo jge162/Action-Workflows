@@ -80,8 +80,10 @@ jobs:
 
     - name: Update changelog
       run: |
+        echo "Install required dependencies"
+        sudo apt-get update
+        sudo apt-get install -y npm
         npm install -g conventional-changelog-cli
-        conventional-changelog -p angular -i CHANGELOG.md -s
         echo "" >> CHANGELOG.md
         echo "This was a dependabot, automated update" >> CHANGELOG.md
       working-directory: ./
@@ -92,7 +94,7 @@ jobs:
 
     - name: Generate changelog
       run: |
-        npx conventional-changelog -p angular -i CHANGELOG.md -s -r 0 --tag-prefix ""
+        conventional-changelog -p angular -i CHANGELOG.md -s -r 0 --tag-prefix ""
         echo "" >> CHANGELOG.md
         echo "This was a dependabot, automated update" >> CHANGELOG.md
         sed -i "s|^\(## \[\).*\(\]\)$|\1$(date +%Y-%m-%d) \2\n\n[Pull Request: #${{ steps.get_pull_request_number.outputs.pull_request_number }}](${{ env.PR_URL }})|" CHANGELOG.md
@@ -108,6 +110,7 @@ jobs:
         git push origin main
       env:
         GITHUB_TOKEN: ${{ secrets.WORKFLOW_SECRET }}
+
 
 
  
