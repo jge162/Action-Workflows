@@ -3,10 +3,6 @@ name: Auto-merge and Update Changelog
 on:
   pull_request:
 
-  push:
-    branches:
-      - main
-
 permissions:
   contents: write
   pull-requests: write
