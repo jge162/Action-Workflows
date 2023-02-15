@@ -46,8 +46,6 @@
 * [#424](https://github.com/jge162/Action-workflows/pull/424): Update README.md
 * [#425](https://github.com/jge162/Action-workflows/pull/425): Update CHANGELOG.md
 
-
-
 ## Changelog To keep all Pull requests and releases
 
 ## This is for keeping track of releases
