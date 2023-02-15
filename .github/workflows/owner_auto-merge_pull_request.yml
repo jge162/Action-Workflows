@@ -2,7 +2,7 @@ name: Auto-merge and Update Changelog
 
 on:
   pull_request:
-    types: [closed]
+
   push:
     branches:
       - main
