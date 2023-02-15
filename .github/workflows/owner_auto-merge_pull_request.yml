@@ -9,7 +9,7 @@ permissions:
 jobs:             
  auto-merge:
     runs-on: ubuntu-latest
-    if: ${{ github.actor == 'geo4u' }}
+    if: ${{ github.actor == 'jge162' }}
     steps:
       - name: Auto_merge
         uses: jge162/Action-workflows@main
