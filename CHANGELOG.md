@@ -4,6 +4,10 @@ This is for keeping track of releases
 
 # releases
 
+## v1.0.2 - 2023-02-15
+
+### PR #:  []
+
 ## v1.0.1 - 2023-02-15
 
 ### PR #:  []
