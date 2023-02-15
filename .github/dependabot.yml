@@ -5,7 +5,7 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-      time: "00:00"
+      time: "30:00"
     labels:
       - "dependencies"
       - "github-actions"
