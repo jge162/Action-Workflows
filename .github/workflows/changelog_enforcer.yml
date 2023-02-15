@@ -1,0 +1,33 @@
+name: Create Release
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  build:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - run: git fetch --prune --unshallow --tags
+
+      - name: Create changelogs
+        id: changelogs
+        uses: heineiuo/create-changelogs@master # 👀
+        with:
+          pull_request_number: ${{ github.event.pull_request.number }}
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.event.pull_request.number }}
+          release_name: ${{ github.event.pull_request.title }}
+          body: ${{ steps.changelogs.outputs.changelogs }}
+          draft: false
+          prerelease: ${{ steps.changelogs.outputs.release_type == 'prerelease' }}
