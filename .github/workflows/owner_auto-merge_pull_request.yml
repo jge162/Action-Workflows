@@ -47,13 +47,3 @@ jobs:
           committer_username: "Jeremy Escobar"
           committer_email: ${{ secrets.Email }}
           github_token: ${{ secrets.WORKFLOW_SECRET }}
-          
-      - name: Commit updated CHANGELOG
-        run: |
-          git config --global user.email "${{ secrets.Email }}"
-          git config --global user.name "Jeremy Escobar"
-          git add CHANGELOG.md
-          git commit -m "chore: update CHANGELOG" --no-verify
-          git push origin HEAD:main
-        env:
-          GITHUB_TOKEN: ${{ secrets.WORKFLOW_SECRET }}
