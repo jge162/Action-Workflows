@@ -2,7 +2,9 @@
 name: Python Action
 
 on:
-  push:
+  schedule:
+  - cron: '0 0,12 * * *' 
+  # runs 2x a day at 12am, and 12 pm
 
   # pull_request:
   #  branches:
