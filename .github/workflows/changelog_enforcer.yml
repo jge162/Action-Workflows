@@ -20,13 +20,49 @@ jobs:
         with:
           ref: main
 
+      - name: Get latest version
+        id: get_latest_version
+        run: |
+          git fetch --tags
+          latest_tag=$(git describe --tags $(git rev-list --tags --max-count=1))
+          latest_version=${latest_tag#v}
+          echo "::set-input name=latest_version::$latest_version"
+        shell: bash
+
+      - name: Update Changelog
+        uses: stefanzweifel/changelog-updater-action@v1
+        with:
+          path-to-changelog: CHANGELOG.md
+          latest-version: ${{ steps.get_latest_version.outputs.latest_version }} # Use the latest version obtained from the previous step
+          release-notes: |
+
+      - name: Commit updated CHANGELOG
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          branch: main
+          commit_message: Update CHANGELOG
+          file_pattern: CHANGELOG.md
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the
+      # updaetd CHANGELOG back to the repository.
+      # https://github.blog/changelog/2023-02-02-github-actions-updating-the-default-github_token-permissions-to-read-only/
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: main
+
       - name: Update Changelog
         uses: stefanzweifel/changelog-updater-action@v1
         with:
           path-to-changelog: CHANGELOG.md
           latest-version: v1.0.2 # Replace with the latest version of your software
           release-notes: |
-            ### PR #${{ steps.get_pr.outputs.pr_number }}: ${{ steps.get_pr.outputs.pr_title }} [${{ steps.get_pr.outputs.pr_author }}]
 
       - name: Commit updated CHANGELOG
         uses: stefanzweifel/git-auto-commit-action@v4
