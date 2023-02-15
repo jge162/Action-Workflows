@@ -35,7 +35,8 @@ jobs:
           path-to-changelog: CHANGELOG.md
           latest-version: ${{ steps.get_latest_version.outputs.latest_version }}
           release-notes: |
-
+           This update is being logged by Change log enforcer.
+           
       - name: Commit updated CHANGELOG
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
