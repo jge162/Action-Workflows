@@ -11,7 +11,7 @@ jobs:
       - name: Check PR for label and approval
         uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.WORKFLOW_SECRET }}
           script: |
             const { data: pullRequest } = await github.pulls.get({
               owner: context.repo.owner,
