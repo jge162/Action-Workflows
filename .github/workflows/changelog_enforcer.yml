@@ -1,33 +1,16 @@
-name: Create Release
+name: Changelog Enforcer
 
-on:
+on:  # yamllint disable-line rule:truthy
   pull_request:
-    types: [closed]
+    types: [opened, synchronize, reopened, ready_for_review, labeled, unlabeled]
 
 jobs:
-  build:
-    name: Create Release
+
+  changelog:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      
-      - run: git fetch --prune --unshallow --tags
-
-      - name: Create changelogs
-        id: changelogs
-        uses: heineiuo/create-changelogs@master # 👀
+      - name: Enforce changelog entry
+        uses: dangoslen/changelog-enforcer@v3
         with:
-          pull_request_number: ${{ github.event.pull_request.number }}
-
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@latest
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.event.pull_request.number }}
-          release_name: ${{ github.event.pull_request.title }}
-          body: ${{ steps.changelogs.outputs.changelogs }}
-          draft: false
-          prerelease: ${{ steps.changelogs.outputs.release_type == 'prerelease' }}
+          skipLabels: 'skip-changelog'
