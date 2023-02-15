@@ -1,5 +1,4 @@
 # Version: jge162-patch-1
-
 * [#380](https://github.com/jge162/Action-workflows/pull/380): Bump actions/github-script from 4 to 6
 * [#381](https://github.com/jge162/Action-workflows/pull/381): Bump actions/github-script from 4 to 6
 * [#382](https://github.com/jge162/Action-workflows/pull/382): Update script2.py
