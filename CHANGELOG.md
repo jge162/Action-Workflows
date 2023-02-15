@@ -1,5 +1,4 @@
 ## Changelog
-# 3.2.0 (2023-02-15)
 
 ## This is for keeping track of releases
 
