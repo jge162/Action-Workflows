@@ -70,42 +70,43 @@ jobs:
           GITHUB_TOKEN: ${{secrets.WORKFLOW_SECRET}}
           
  changelog:
-   runs-on: ubuntu-latest
-   needs: [auto-merge]
-   steps:
-     - name: Checkout code
-       uses: actions/checkout@v2
-       with:
-         ref: main
+  runs-on: ubuntu-latest
+  needs: [auto-merge]
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        ref: main
 
-     - name: Update changelog
-       run: |
-         npm install -g conventional-changelog-cli
-         conventional-changelog -p angular -i CHANGELOG.md -s
-         echo "" >> CHANGELOG.md
-         echo "This was a dependabot, automated update" >> CHANGELOG.md
-       working-directory: ./
+    - name: Update changelog
+      run: |
+        npm install -g conventional-changelog-cli
+        conventional-changelog -p angular -i CHANGELOG.md -s
+        echo "" >> CHANGELOG.md
+        echo "This was a dependabot, automated update" >> CHANGELOG.md
+      working-directory: ./
 
-     - name: Get pull request number
-       id: get_pull_request_number
-       run: echo "::set-output name=pull_request_number::${{ github.event.number }}"
+    - name: Get pull request number
+      id: get_pull_request_number
+      run: echo "::set-output name=pull_request_number::${{ github.event.number }}"
 
-     - name: Generate changelog
-       run: |
-         npx conventional-changelog -p angular -i CHANGELOG.md -s -r 0 --tag-prefix ""
-         echo "" >> CHANGELOG.md
-         echo "This was a dependabot, automated update" >> CHANGELOG.md
-         sed -i "s|^\(## \[\).*\(\]\)$|\1$(date +%Y-%m-%d) \2\n\n[Pull Request: #${{ steps.get_pull_request_number.outputs.pull_request_number }}](<${{ env.PR_URL }}>)|" CHANGELOG.md
-       env:
-         PR_URL: ${{github.event.pull_request.html_url}}
+    - name: Generate changelog
+      run: |
+        npx conventional-changelog -p angular -i CHANGELOG.md -s -r 0 --tag-prefix ""
+        echo "" >> CHANGELOG.md
+        echo "This was a dependabot, automated update" >> CHANGELOG.md
+        sed -i "s|^\(## \[\).*\(\]\)$|\1$(date +%Y-%m-%d) \2\n\n[Pull Request: #${{ steps.get_pull_request_number.outputs.pull_request_number }}](${{ env.PR_URL }})|" CHANGELOG.md
+      env:
+        PR_URL: ${{github.event.pull_request.html_url}}
 
-     - name: Commit updated changelog
-       run: |
-         git config --global user.email "john.doe@example.com"
-         git config --global user.name "John Doe"
-         git add CHANGELOG.md
-         git commit -m "chore: update changelog" --no-verify
-         git push origin main
-       env:
-         GITHUB_TOKEN: ${{ secrets.WORKFLOW_SECRET }}
+    - name: Commit updated changelog
+      run: |
+        git config --global user.email "john.doe@example.com"
+        git config --global user.name "John Doe"
+        git add CHANGELOG.md
+        git commit -m "chore: update changelog" --no-verify
+        git push origin main
+      env:
+        GITHUB_TOKEN: ${{ secrets.WORKFLOW_SECRET }}
+
  
