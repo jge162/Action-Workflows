@@ -40,9 +40,9 @@ jobs:
           release_name: Release ${{ steps.bump_version.outputs.new_tag }}
           body: This is a new release ${{ steps.bump_version.outputs.new_tag }} which will include feature updates.
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW_SECRET }}
           
-  update:
+  ChangeLog_Enforcer:
     runs-on: ubuntu-latest
     needs: [create_release_major]
 
@@ -67,14 +67,17 @@ jobs:
           echo "::set-output name=latest_version::$latest_version"
         shell: bash
 
+      - name: Get pull request number
+        id: get_pull_request_number
+        run: echo "::set-output name=pull_request_number::${{ github.event.number }}"
+
       - name: Update Changelog
         uses: stefanzweifel/changelog-updater-action@v1
         with:
           path-to-changelog: CHANGELOG.md
           latest-version: ${{ steps.get_latest_version.outputs.latest_version }}
           release-notes: |
-           This update is being logged by Change log enforcer.
-           
+            Pull request number for the release is: [#${{ steps.get_pull_request_number.outputs.pull_request_number }}](${{ github.event.pull_request.html_url }})
       - name: Commit updated CHANGELOG
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
