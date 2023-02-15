@@ -65,4 +65,3 @@ This was a dependabot, automated update [Pull Request: #394](https://github.com/
 ## 3.2.0 (2023-02-15)
 
 This was a dependabot, automated update [Pull Request: #395](https://github.com/jge162/Action-workflows/pull/395)
-
