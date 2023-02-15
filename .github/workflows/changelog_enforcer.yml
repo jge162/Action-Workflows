@@ -1,21 +1,101 @@
-name: Changelog Enforcer
-
+name: "Pull Request Workflow"
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, synchronize, reopened, ready_for_review, labeled, unlabeled]
 
 jobs:
-  changelog:
+
+  # validates that the pull request is trusted
+  verify: 
     runs-on: ubuntu-latest
     steps:
-      - name: Enforce changelog entry
-        uses: dangoslen/changelog-enforcer@v3
-        with:
-          skipLabels: 'skip-changelog'
-          changeLogPath: CHANGELOG.md
-          versionPattern: '^## \[((v|V)?\d*\.\d*\.\d*-?\w*|unreleased|Unreleased|UNRELEASED)\]'
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          VERIFIED_LABEL=${{ contains(github.event.pull_request.labels.*.name, 'verified') }}
+          if [[ ( $VERIFIED_LABEL == 'false' ) ]]; then
+            echo "Pull request is not from a trusted source!"
+            exit 1
+          fi
 
-          # Optional inputs:
-          # missingUpdateErrorMessage: 'No update to CHANGELOG.md found!'
-          # expectedLatestVersion: ''
+  # unit tests
+  unit-tests:
+    needs: [ verify ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.2.0
+        with: 
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+
+      - run: npm install
+      - run: npm run all
+
+      - uses: stefanzweifel/git-auto-commit-action@v4.16.0
+        with:
+          commit_message: "Auto-package action"
+
+  # test action works running from the graph
+  enforce-changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.2.0
+        with: 
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+
+      - id: read_version
+        run: |
+          echo "version=$(jq -r ".version" package.json)" >> $GITHUB_OUTPUT
+          echo "tag=v$(jq -r ".version" package.json)" >> $GITHUB_OUTPUT
+
+      - uses: dangoslen/dependabot-changelog-helper@v2
+        with:
+          activationLabel: 'dependabot'
+
+      - uses: stefanzweifel/git-auto-commit-action@v4.16.0
+        with:
+          commit_message: "Update changelog"
+
+      - id: changelog-enforcer
+        uses: ./
+        with:
+          skipLabels: "skip-changelog"
+          expectedLatestVersion: ${{ steps.read_version.outputs.tag }}
+          
+      - if: failure()
+        uses: unsplash/comment-on-pr@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          check_for_duplicate_msg: true
+          msg: |
+            Hey @${{ github.event.pull_request.user.login }}, the Changelog Enforcer failed. Can you take a look at the error below and correct it? Thanks!
+
+            ```
+            ${{ steps.changelog-enforcer.outputs.errorMessage }}
+            ```
+
+      - id: changelog_reader
+        uses: mindsers/changelog-reader-action@v2
+        with:
+          version: "${{ steps.read_version.outputs.tag }}"
+          path: ./CHANGELOG.md
+
+      - id: check_release
+        run: |
+          TAG=$(git ls-remote --tags origin | grep ${{ steps.read_version.outputs.tag }} | cat )
+          MISSING=$([[ -z "$TAG" ]] && echo 'true' || echo 'false')
+          echo "missing=$MISSING" >> $GITHUB_OUTPUT
+
+      - if: ${{ steps.check_release.outputs.missing == 'true' }}
+        uses: unsplash/comment-on-pr@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          check_for_duplicate_msg: true
+          msg: |
+            <details>
+              <summary>Preview of Release Notes to be Created</summary>
+
+              ${{ steps.changelog_reader.outputs.changes }}
+
+            </details>
