@@ -1,7 +1,7 @@
 name: create-pull-request workflow
 on:
   schedule:
-    - cron: '10 16 * * *' 
+    - cron: '15 16 * * *' 
     # run every day at 4:10 pm
 jobs:
   createPullRequest:
