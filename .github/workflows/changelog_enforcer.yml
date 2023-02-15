@@ -1,1 +1,36 @@
 
+name: Changelog enforcer
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, labeled, unlabeled]
+
+jobs:
+  add-changelog-entry:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Get pull request details
+        id: get_pr
+        run: |
+          echo ::set-output name=pr_number::${{ github.event.pull_request.number }}
+          echo ::set-output name=pr_title::${{ github.event.pull_request.title }}
+          echo ::set-output name=pr_author::${{ github.event.pull_request.user.login }}
+
+      - name: Append to changelog file
+        run: |
+          echo "## PR #${{ steps.get_pr.outputs.pr_number }}: ${{ steps.get_pr.outputs.pr_title }} [${{ steps.get_pr.outputs.pr_author }}]" >> changelog.md
+          echo "" >> changelog.md
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4.2.2
+        with:
+          commit_message: "Update changelog with PR details"
+          commit_options: "--no-gpg-sign"
+          commit_user_name: "GitHub Action"
+          commit_user_email: "action@github.com"
+          file_pattern: changelog.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
