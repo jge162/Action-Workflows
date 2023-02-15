@@ -8,6 +8,9 @@ updates:
       time: "00:00"
     labels:
       - "dependencies"
+      - "github-actions"
+      - "automated pr"
+      - "non-owner pull request"
 
   - package-ecosystem: "npm"
     directory: "/"
@@ -19,6 +22,9 @@ updates:
         update-types: ["version-update:semver-major"]
     labels:
       - "dependencies"
+      - "automated pr"
+      - "javascript"
+      - "non-owner pull request"
 
   - package-ecosystem: "pip"
     directory: "/"
@@ -30,3 +36,5 @@ updates:
         update-types: ["version-update:semver-major"]
     labels:
       - "dependencies"
+      - "automated pr"
+      - "non-owner pull request"
