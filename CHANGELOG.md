@@ -1,4 +1,4 @@
-## Version: jge162-patch-1
+## Version: main
 
 * [#382](https://github.com/jge162/Action-workflows/pull/382): Update script2.py
 * [#383](https://github.com/jge162/Action-workflows/pull/383): Update README.md
