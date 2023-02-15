@@ -17,12 +17,12 @@ jobs:
         with:
           github-token: ${{ secrets.WORKFLOW_SECRET }}
           script: |
-            const { data: pullRequest } = await octokit.rest.pulls.get({
+            const { data: pullRequest } = await github.pulls.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: context.payload.pull_request.number
             });
-            const { data: reviews } = await octokit.rest.pulls.listReviews({
+            const { data: reviews } = await github.pulls.listReviews({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: context.payload.pull_request.number
@@ -35,4 +35,9 @@ jobs:
             } else {
               console.log('PR not ready to deploy');
             }
+          },
           result-encoding: string
+          debug: false
+          user-agent: actions/github-script
+          retries: 0
+          retry-exempt-status-codes: 400, 401, 403, 404, 422
