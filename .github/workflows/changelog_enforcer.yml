@@ -1,8 +1,9 @@
 name: "Update Changelog"
 
 on:
-  push:
-
+  pull_request:
+    types: [opened, reopened, synchronize, labeled, unlabeled]
+    
 jobs:
   update:
     runs-on: ubuntu-latest
