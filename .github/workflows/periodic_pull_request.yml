@@ -4,6 +4,8 @@ on:
   #- cron: '0 0,12 * * *' 
   - cron: '0 */8 * * *'
     # action will run everyday at 12 am and 12 pm
+  workflow_dispatch:
+
 jobs:
   createPullRequest:
     runs-on: ubuntu-latest
