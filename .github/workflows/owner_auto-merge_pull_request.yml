@@ -80,8 +80,8 @@ jobs:
 
      - name: Update changelog
        run: |
-         npm install npm-changelog@^9.4.2 --force
-         npx npm-changelog --stdout --tag-format="{{version}} Pull Request: #382" >> CHANGELOG.md
+         npm install -g conventional-changelog-cli
+         conventional-changelog -p angular -i CHANGELOG.md -s
          echo "" >> CHANGELOG.md
          echo "This was a dependabot, automated update" >> CHANGELOG.md
        working-directory: ./
