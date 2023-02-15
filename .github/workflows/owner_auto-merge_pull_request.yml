@@ -1,70 +1,30 @@
-name: auto-merge
-on: pull_request
+name: Auto-merge and Update Changelog
+
+on:
+  pull_request:
+    types: [closed]
+  push:
+    branches:
+      - main
 
 permissions:
   contents: write
   pull-requests: write
 
 jobs:
- Python-analyze:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout repository
-      uses: jge162/Action-workflows@main
-
-    - run: |
-       echo "Install required dependencies"
-       sudo apt-get update
-       sudo apt-get install python3
-       echo "Install PyGithub module"
-       pip3 install PyGithub
-      shell: bash
-    - run: |
-        echo "Run, Build Application using scripts"
-        python3 -c "
-        scripts = [ './script2.py']
-        for script in scripts:
-            with open(script, 'r') as file:
-                exec(file.read())
-        "
- 
- Javascript-analyze:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
-    - name: Install Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'
-
-    - name: Install jshint
-      run: npm install -g jshint
-
-    - name: Script Error Results Here!
-      run: |
-        echo "Build application script outputs Here!"
-        python3 -c "
-        scripts = ['python_java_tester.py']
-        for script in scripts:
-            with open(script, 'r') as file:
-                exec(file.read())
-        "
-               
- auto-merge:
+  auto-merge:
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'jge162' }}
-    needs: [Javascript-analyze]
     steps:
-      - name: Auto_merge
-        uses: jge162/Action-workflows@main
+      - name: Checkout code
+        uses: actions/checkout@v2
         with:
-          github-token: "${{ secrets.WORKFLOW_SECRET }}"
+          ref: main
+
       - name: Enable auto-merge
         run: gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
           GITHUB_TOKEN: ${{secrets.WORKFLOW_SECRET}}
+
+
