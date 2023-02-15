@@ -1,4 +1,4 @@
-import subprocess. #
+import subprocess
 
 # run jshint on build/index.js
 output = subprocess.run(['jshint', 'dist/problem-matcher.json'], capture_output=True)
