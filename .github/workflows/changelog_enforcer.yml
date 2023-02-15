@@ -1,7 +1,7 @@
 name: "Update Changelog"
 
 on:
-  pull_request:
+  push:
 
 jobs:
   update:
@@ -22,8 +22,10 @@ jobs:
       - name: Update Changelog
         uses: stefanzweifel/changelog-updater-action@v1
         with:
-          release-notes: ${{ github.event.release.body }}
-          latest-version: ${{ github.event.release.name }}
+          path-to-changelog: CHANGELOG.md
+          latest-version: v1.0.0  # Replace with the latest version of your software
+          release-notes: |
+            ### PR #${{ steps.get_pr.outputs.pr_number }}: ${{ steps.get_pr.outputs.pr_title }} [${{ steps.get_pr.outputs.pr_author }}]
 
       - name: Commit updated CHANGELOG
         uses: stefanzweifel/git-auto-commit-action@v4
