@@ -29,7 +29,9 @@ on:
 
 # Install required `dependencies.`
 
-``yaml  
+This way your can run, Python file.
+
+```yaml  
 jobs:
   build-and-analyze:
     runs-on: ubuntu-latest
@@ -45,6 +47,8 @@ jobs:
 ```        
 
 # Lastly use a for loop to run multipe instances.
+
+This way you can run one or multple python scripts.
 
 ```yaml
      - run: |
