@@ -22,28 +22,3 @@ jobs:
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
           GITHUB_TOKEN: ${{secrets.WORKFLOW_SECRET}}
-
-  
-  update-changelog:
-    runs-on: ubuntu-latest
-    needs: [auto-merge]
-    permissions:
-      contents: write
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          ref: main
-
-      - name: Get pull request number
-        id: get_pull_request_number
-        run: echo "::set-output name=pull_request_number::${{ github.event.number }}"
-
-      - name: Run Changelog CI
-        uses: saadmk11/changelog-ci@v1.1.1
-        with:
-          changelog_filename: CHANGELOG.md
-          release_version: ${{ github.event.pull_request.head.ref }}
-          committer_username: "Jeremy Escobar"
-          committer_email: ${{ secrets.Email }}
-          github_token: ${{ secrets.WORKFLOW_SECRET }}
