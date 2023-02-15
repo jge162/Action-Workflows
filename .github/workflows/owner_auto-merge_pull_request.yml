@@ -1,24 +1,16 @@
-name: auto-merge
+name: PRs auto merge
 
-on: pull_request
+on:
+  pull_request:
 
-permissions:
-  contents: write
-  pull-requests: write
-
-jobs:               
- auto-merge:
+jobs:
+  pr-automerge:
     runs-on: ubuntu-latest
-    if: ${{ github.actor == 'jge162' }}
     steps:
-      - name: Auto_merge
-        uses: jge162/Action-workflows@main
-        with:
-          repo-token: "${{ secrets.WORKFLOW_SECRET }}"
-      - name: Enable auto-merge
-        run: gh pr merge --auto --merge "$PR_URL"
-        env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.WORKFLOW_SECRET}}
-          
- 
+    - uses: davideviolante/pr-automerge-action@v1.3.3
+      env:
+        GITHUB_TOKEN: ${{ secrets.WORKFLOW_SECRET }}
+      with:
+        merge-method: 'merge' # Pull request merge method: "merge", "squash", "rebase". Default is "squash".
+        min-approvals: 0 # Default 2
+        base-ref: 'main' # Default 'dev'
