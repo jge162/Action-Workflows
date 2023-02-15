@@ -1,3 +1,3 @@
-Automated Release with GitHub Actions
+Automated Release with GitHub Actions.
 
 This release was automatically created using GitHub Actions and the GitHub Actions REST API. When a pull request was closed and merged into the main branch, the workflow automatically fetched the latest tag, bumped the patch version, and created a new release with the updated tag. The action included a file named `car.txt` in the release. This process helped to streamline the release process and ensure that all releases were consistent and easily repeatable.
