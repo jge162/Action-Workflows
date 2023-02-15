@@ -62,8 +62,7 @@ jobs:
         run: |
           git config --global user.email "daubers_heights.0h@icloud.com"
           git config --global user.name "Jeremy escobar"
-          git add CHANGELOG.md
-          git commit -m "chore: update changelog" --no-verify
-          git push origin main
+          git commit -a --amend --no-edit
+          git push -f origin main
         env:
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_SECRET }}
