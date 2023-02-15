@@ -92,7 +92,7 @@ jobs:
 
      - name: Generate changelog
        run: |
-         npx npm-changelog --stdout --tag-format="{{version}} Pull Request: #${{ steps.get_pull_request_number.outputs.pull_request_number }}" >> CHANGELOG.md
+         npx action-changelog --stdout --tag-format="{{version}} Pull Request: #${{ steps.get_pull_request_number.outputs.pull_request_number }}" >> CHANGELOG.md
          echo "" >> CHANGELOG.md
          echo "This was a dependabot, automated update" >> CHANGELOG.md
 
