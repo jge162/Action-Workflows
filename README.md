@@ -25,7 +25,7 @@ on:
   pull_request:
     branches:
       - main
-
+  
 jobs:
   build-and-analyze:
     runs-on: ubuntu-latest
