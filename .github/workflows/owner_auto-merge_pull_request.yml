@@ -18,7 +18,7 @@ jobs:
           ref: main
 
       - name: Enable auto-merge
-        run: gh pr merge --auto --merge "$PR_URL" --merge-branch main
+        run: gh pr merge --auto --merge "$PR_URL" 
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
           GITHUB_TOKEN: ${{secrets.WORKFLOW_SECRET}}
