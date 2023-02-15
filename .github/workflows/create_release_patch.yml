@@ -13,7 +13,7 @@ jobs:
         uses: jge162/Action-workflows@main
 
 
-      - name: Build and test code
+      - name: Build patch release 
         run: |
           # Build and test code here
 
