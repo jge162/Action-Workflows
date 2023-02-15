@@ -25,7 +25,7 @@ jobs:
           echo "" >> changelog.md
 
       - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v4.2.2
+        uses: stefanzweifel/changelog-updater-action@v1
         with:
           commit_message: "Update changelog with PR details"
           commit_options: "--no-gpg-sign"
@@ -33,4 +33,4 @@ jobs:
           commit_user_email: "action@github.com"
           file_pattern: changelog.md
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW_SECRET }}
