@@ -9,7 +9,6 @@ jobs:
  auto-merge:
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'geo4u' }}
-    needs: [Python-analyze, Javascript-analyze]
     steps:
       - name: Auto_merge
         uses: jge162/Action-workflows@main
