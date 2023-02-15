@@ -28,14 +28,14 @@ jobs:
       - name: Request approval
         uses: peter-evans/create-issue-from-file@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.WORKFLOW_SECRET }}
           assignees: geo4u
           title: "Please review and approve deployment"
           body: "Please review and approve this deployment by adding the label 'approved'"
       - name: Wait for approval
         uses: wei/pull-request-await@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.WORKFLOW_SECRET }}
           label: approved
 
   store-artifact:
