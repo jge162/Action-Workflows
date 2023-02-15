@@ -43,9 +43,20 @@ jobs:
         uses: saadmk11/changelog-ci@v1.1.1
         with:
           changelog_filename: CHANGELOG.md
-          release_version: ${{ github.event.pull_request.head.ref }}
+          release_version: main
           committer_username: "Jeremy Escobar"
           committer_email: "${{ secrets.Email }}"
           github_token: ${{ secrets.WORKFLOW_SECRET }}
           release-notes: |
             Pull request number for the release is: [#${{ steps.get_pull_request_number.outputs.pull_request_number }}](${{ github.event.pull_request.html_url }})
+
+      - name: Commit updated CHANGELOG
+        run: |
+          git config --global user.email "${{ secrets.Email }}"
+          git config --global user.name "Jeremy Escobar"
+          git add CHANGELOG.md
+          git commit -m "chore: update CHANGELOG" --no-verify
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW_SECRET }}
+
