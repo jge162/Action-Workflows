@@ -1,33 +1,47 @@
-name: Deploy on PR Approval
+name: Deploy on Approval
 
 on:
   pull_request:
-    types: [opened, reopened]
+    types: [opened, reopened, synchronize, labeled, unlabeled]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Check PR for label and approval
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: main
+
+      - name: Check if PR is approved and labeled
         uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.WORKFLOW_SECRET }}
           script: |
-            const { data: pullRequest } = await github.pulls.get({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: context.payload.pull_request.number
-            });
-            const { data: reviews } = await github.pulls.listReviews({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: context.payload.pull_request.number
-            });
-            const approvedReview = reviews.find(review => review.user.login === 'geo4u' && review.state === 'APPROVED');
-            const hasLabel = pullRequest.labels.some(label => label.name === 'ready-to-deploy');
-            if (approvedReview && hasLabel) {
-              console.log('PR approved and labeled, deploying');
-              // Add deployment steps here
-            } else {
-              console.log('PR not ready to deploy');
+            try {
+              const { data: pullRequest } = await github.pulls.get({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: context.payload.pull_request.number
+              });
+              const { data: reviews } = await github.pulls.listReviews({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: context.payload.pull_request.number
+              });
+              const approvedReview = reviews.find(review => review.user.login === 'geo4u' && review.state === 'APPROVED');
+              const hasLabel = pullRequest.labels.some(label => label.name === 'ready-to-deploy');
+              if (approvedReview && hasLabel) {
+                console.log('PR approved and labeled, deploying');
+                // Add deployment steps here
+              } else {
+                console.log('PR not ready to deploy');
+              }
+            } catch (error) {
+              console.log(error.message);
             }
+          debug: false
+          user-agent: actions/github-script
+          result-encoding: json
+          retries: 3
+          retry-exempt-status-codes: 400, 401, 403, 404, 422
