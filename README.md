@@ -25,8 +25,8 @@ on:
   pull_request:
     branches:
       - main
-```      
-
+```     
+  
 # Install required `dependencies.`
 
 This way your can run, Python file.
