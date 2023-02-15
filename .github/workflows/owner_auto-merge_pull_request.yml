@@ -14,7 +14,7 @@ jobs:
       - name: Auto_merge
         uses: jge162/Action-workflows@main
         with:
-          github-token: "${{ secrets.WORKFLOW_SECRET }}"
+          repo-token: "${{ secrets.WORKFLOW_SECRET }}"
       - name: Enable auto-merge
         run: gh pr merge --auto --merge "$PR_URL"
         env:
