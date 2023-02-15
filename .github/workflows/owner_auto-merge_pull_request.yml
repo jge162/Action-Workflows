@@ -1,16 +1,70 @@
-name: PRs auto merge
+name: auto-merge
+on: pull_request
 
-on:
-  pull_request:
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
-  pr-automerge:
+ Python-analyze:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: davideviolante/pr-automerge-action@v1.3.3
-      env:
-        GITHUB_TOKEN: ${{ secrets.WORKFLOW_SECRET }}
+    - name: Checkout repository
+      uses: jge162/Action-workflows@main
+
+    - run: |
+       echo "Install required dependencies"
+       sudo apt-get update
+       sudo apt-get install python3
+       echo "Install PyGithub module"
+       pip3 install PyGithub
+      shell: bash
+    - run: |
+        echo "Run, Build Application using scripts"
+        python3 -c "
+        scripts = [ './script2.py']
+        for script in scripts:
+            with open(script, 'r') as file:
+                exec(file.read())
+        "
+ 
+ Javascript-analyze:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install Node.js
+      uses: actions/setup-node@v3
       with:
-        merge-method: 'merge' # Pull request merge method: "merge", "squash", "rebase". Default is "squash".
-        min-approvals: 0 # Default 2
-        base-ref: 'main' # Default 'dev'
+        node-version: '16'
+
+    - name: Install jshint
+      run: npm install -g jshint
+
+    - name: Script Error Results Here!
+      run: |
+        echo "Build application script outputs Here!"
+        python3 -c "
+        scripts = ['python_java_tester.py']
+        for script in scripts:
+            with open(script, 'r') as file:
+                exec(file.read())
+        "
+               
+ auto-merge:
+    runs-on: ubuntu-latest
+    if: ${{ github.actor == 'geo4u' }}
+    needs: [Python-analyze, Javascript-analyze]
+    steps:
+      - name: Auto_merge
+        uses: jge162/Action-workflows@main
+        with:
+          github-token: "${{ secrets.WORKFLOW_SECRET }}"
+      - name: Enable auto-merge
+        run: gh pr merge --auto --merge "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GITHUB_TOKEN: ${{secrets.WORKFLOW_SECRET}}
