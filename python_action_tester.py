@@ -2,7 +2,7 @@ from github import Github
 import os
 
 # Replace with your GitHub personal access token
-TOKEN = os.getenv('WORKFLOW_SECRET')
+TOKEN = os.getenv('WORKFLOW_SECRET')  # using secret for token 
 
 # Replace with the repository owner and name
 REPO_OWNER = 'jge162'
