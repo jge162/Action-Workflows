@@ -1,9 +1,7 @@
 name: Update Changelog
 
 on:
-  push:
-    tags:
-      - 'v*'
+  pull_request:
 
 jobs:
   changelog:
