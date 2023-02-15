@@ -1,16 +1,21 @@
 name: Changelog Enforcer
 
-on:  # yamllint disable-line rule:truthy
+on:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review, labeled, unlabeled]
 
 jobs:
-
   changelog:
     runs-on: ubuntu-latest
-
     steps:
       - name: Enforce changelog entry
         uses: dangoslen/changelog-enforcer@v3
         with:
           skipLabels: 'skip-changelog'
+          changeLogPath: CHANGELOG.md
+          versionPattern: '^## \[((v|V)?\d*\.\d*\.\d*-?\w*|unreleased|Unreleased|UNRELEASED)\]'
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+          # Optional inputs:
+          # missingUpdateErrorMessage: 'No update to CHANGELOG.md found!'
+          # expectedLatestVersion: ''
