@@ -4,7 +4,7 @@ This is for keeping track of releases
 
 # releases
 
-[#332](https://github.com/jge162/Action-workflows/pull/332)
+ Update report [(#332)](https://github.com/jge162/Action-workflows/pull/332)
 
 ## v0.0.2 - 2023-02-14
 
