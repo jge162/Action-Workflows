@@ -4,6 +4,10 @@ This is for keeping track of releases
 
 # releases tracker here.
 
+## 1.1.4 - 2023-02-15
+
+This update is being logged by Change log enforcer.
+
 ## 1.1.2 - 2023-02-15
 
 This update is being logged by Change log enforcer.
