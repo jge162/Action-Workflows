@@ -11,16 +11,18 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        # uses: jge162/Action-workflows@v0.0.6
+
       - name: Build and test code
         run: |
           # Build and test code here
+
       - name: Get latest tag
         run: |
           git fetch --tags
           echo "::set-output name=latest_tag::$(git describe --tags $(git rev-list --tags --max-count=1))"
         id: get_latest_tag
-      - name: Bump patch version #v1.1.0 will increase to v2.2.1
+
+      - name: Bump patch version
         run: |
           semver=$(echo "${{ steps.get_latest_tag.outputs.latest_tag }}")
           major=$(echo $semver | cut -d'.' -f1)
@@ -30,14 +32,12 @@ jobs:
           new_tag="$major.$minor.$new_patch"
           echo "::set-output name=new_tag::$new_tag"
         id: bump_version
+
       - name: Create release
-        # uses: softprops/action-gh-release@v1
-        uses: jge162/create-release@main
+        uses: actions/create-release@v1
         with:
-          files: |
-            build/*
           tag_name: ${{ steps.bump_version.outputs.new_tag }}
-          body: |
-            This is a new release ${{ steps.bump_version.outputs.new_tag }} which will include feature updates. 
+          release_name: Release ${{ steps.bump_version.outputs.new_tag }}
+          body: This is a new release ${{ steps.bump_version.outputs.new_tag }} which will include bug fixes.
         env:
-          GITHUB_TOKEN: ${{ secrets.WORKFLOW_SECRET }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
