@@ -4,6 +4,8 @@ This is for keeping track of releases
 
 # releases
 
+[Example] Update report (#332)
+
 ## v0.0.2 - 2023-02-14
 
 This is a new release v0.0.2 which will include feature updates.
