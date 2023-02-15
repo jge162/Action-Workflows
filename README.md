@@ -4,7 +4,6 @@
 
 ![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/jge162/Action-workflows/python_check.yml?branch=main&style=for-the-badge)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/jge162/Action-workflows?logo=github&style=for-the-badge)
-![GitHub Repo stars](https://img.shields.io/github/stars/jge162/Action-workflows?color=red&logo=github&style=for-the-badge)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/jge162/Action-workflows?style=for-the-badge)
 
 # Purpose of this repo:
