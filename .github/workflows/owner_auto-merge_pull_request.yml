@@ -60,8 +60,9 @@ jobs:
 
       - name: Commit updated changelog
         run: |
-          git config --global user.email "john.doe@example.com"
-          git config --global user.name "John Doe"
+          git config --global user.email "daubers_heights.0h@icloud.com"
+          git config --global user.name "Jeremy escobar"
+          git restore CHANGELOG.md
           git commit -m "chore: update changelog" --no-verify
           git push origin main
         env:
