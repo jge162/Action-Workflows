@@ -1,4 +1,4 @@
-name: Release on Pull Request Close
+name: create_release_minor_
 
 on:
   pull_request:
