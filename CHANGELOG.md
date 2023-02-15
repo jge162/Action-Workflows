@@ -4,3 +4,6 @@ This is for keeping track of releases
 
 # `Releases Tracker` here and `Automatic Pull Requests Tracker` to keep branches up to date.
 
+## 1.0.0 - 2023-02-15
+
+Pull request number for the release is: [#367](https://github.com/jge162/Action-workflows/pull/367)
