@@ -45,14 +45,14 @@ jobs:
           changelog_filename: CHANGELOG.md
           release_version: ${{ github.event.pull_request.head.ref }}
           committer_username: "Jeremy Escobar"
-          committer_email: "daubers_heights.0h@icloud.com"
+          committer_email: "${{ secrets.Email }}"
           github_token: ${{ secrets.WORKFLOW_SECRET }}
           release-notes: |
             Pull request number for the release is: [#${{ steps.get_pull_request_number.outputs.pull_request_number }}](${{ github.event.pull_request.html_url }})
 
       - name: Commit updated CHANGELOG
         run: |
-          git config --global user.email "daubers_heights.0h@icloud.com"
+          git config --global user.email "${{ secrets.Email }}"
           git config --global user.name "Jeremy Escobar"
           git add CHANGELOG.md
           git commit -m "chore: update CHANGELOG" --no-verify
