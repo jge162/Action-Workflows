@@ -15,7 +15,7 @@ jobs:
       - name: Request approval
         uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.WORKFLOW_SECRET }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const { data: pullRequest } = await github.pulls.get({
               owner: context.repo.owner,
@@ -35,8 +35,3 @@ jobs:
             } else {
               console.log('PR not ready to deploy');
             }
-          result-encoding: string
-          debug: false
-          user-agent: actions/github-script
-          retries: 0
-          retry-exempt-status-codes: 400,401,403,404,422
