@@ -1,3 +1,11 @@
+# 3.2.0 (2023-02-15)
+
+
+
+# 3.2.0 (2023-02-15)
+
+
+
 # Changelog
 
 This is for keeping track of releases
@@ -11,3 +19,7 @@ Pull request number for the release is: [#379](https://github.com/jge162/Action-
 ## 1.0.0 - 2023-02-15
 
 Pull request number for the release is: [#367](https://github.com/jge162/Action-workflows/pull/367)
+
+This was a dependabot, automated update
+
+This was a dependabot, automated update
