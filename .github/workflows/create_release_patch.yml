@@ -10,7 +10,8 @@ jobs:
     if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'create release patch') && github.event.pull_request.user.login == 'jge162'
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: jge162/Action-workflows@main
+
 
       - name: Build and test code
         run: |
@@ -34,7 +35,8 @@ jobs:
         id: bump_version
 
       - name: Create release
-        uses: actions/create-release@v1
+        # uses: actions/create-release@v1
+        uses: jge162/create-release@main
         with:
           tag_name: ${{ steps.bump_version.outputs.new_tag }}
           release_name: Release ${{ steps.bump_version.outputs.new_tag }}
