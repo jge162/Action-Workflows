@@ -30,7 +30,7 @@ jobs:
     - run: |
         echo "Run, Build Application using scripts"
         python3 -c "
-        scripts = [ './ActionTester.py']
+        scripts = [ './resources/GitHub_action_tester.py']
         for script in scripts:
             with open(script, 'r') as file:
                 exec(file.read())
