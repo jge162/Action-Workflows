@@ -1,6 +1,7 @@
 ## Changelog To keep all Pull requests that coincided with releases.
 
-![1587202520098](https://user-images.githubusercontent.com/31228460/219276932-52712f36-9d9a-4496-88df-678475f646e4.png)
+<img width="468" alt="core_versions" src="https://user-images.githubusercontent.com/31228460/219280520-f89cd825-55fa-4483-b219-7c0cf3130091.png">
+
 
 ## `Releases Tracker` here and `Automatic Pull Requests Tracker` to keep branches up to date.
 
