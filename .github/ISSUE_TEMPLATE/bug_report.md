@@ -1,7 +1,7 @@
 ---
 name: New Issue
-about: Create a report to help us improve
-title: Please describe issue/bug
+about: Create a report to help us improve softwware.
+title: Please describe issue/bug you found.
 labels: question
 assignees: jge162
 
