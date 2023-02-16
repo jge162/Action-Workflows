@@ -12,6 +12,7 @@ jobs:
     steps:
     - name: Label owner
       if: ${{ (github.event.pull_request.user.login == 'jge162') }}
+      # if owner label, owner puled
       uses: actions/labeler@v4
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
@@ -19,6 +20,7 @@ jobs:
         sync-labels: false
     - name: Label not owner
       if: ${{ (github.event.pull_request.user.login != 'jge162') }}
+      # if anyone else besides owner, non-owner label
       uses: actions/labeler@v4
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
