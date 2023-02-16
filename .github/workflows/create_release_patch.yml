@@ -1,5 +1,5 @@
 name: create_release_patch_
-
+# release verison is patch v0.0.1
 on:
   pull_request:
     types: [closed]
