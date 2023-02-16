@@ -9,6 +9,7 @@ jobs:
     steps:
       - name: Comment_on_pullrequest
         if: ${{ (github.event.pull_request.user.login != 'jge162') && !(github.actor != 'dependabot[bot]') }}
+        # will not run for owner or dependabot
         uses: mshick/add-pr-comment@v2
         with:
           message: |
