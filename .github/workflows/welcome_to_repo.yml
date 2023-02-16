@@ -6,6 +6,7 @@ jobs:
   greeting:
     runs-on: ubuntu-latest
     if: ${{ (github.event.pull_request.user.login != 'jge162') && (github.actor != 'dependabot[bot]') }}
+    # Will not run for owner or dependabot
     permissions:
       issues: write
       pull-requests: write
