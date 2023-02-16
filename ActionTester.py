@@ -12,7 +12,7 @@ REPO_NAME = 'Action-workflows'
 WORKFLOW_ID = 'python_check.yml'
 
 # Replace with the name of the action you want to check
-ACTION_NAME = 'jge162/Action-workflows@main'
+ACTION_NAME = 'jge162/Action-workflows@1.0.1'
 
 g = Github(TOKEN)
 repo = g.get_repo(f'{REPO_OWNER}/{REPO_NAME}')
