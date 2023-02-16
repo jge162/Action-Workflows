@@ -2,7 +2,7 @@
 * @jge162 @geo4u
 
 # Reviewer by email for html files
-*.html  reviewer_email=${{ secrets.EMAIL }}
+*.html  reviewer_email=@my-organization/${{ secrets.EMAIL }}
 
 # Reviewer by organization
 # *.txt @organizationName/
