@@ -22,3 +22,4 @@ update-changelog:
           committer_username: "Jeremy Escobar"
           committer_email: ${{ secrets.Email }}
           github_token: ${{ secrets.WORKFLOW_SECRET }}
+# Quickly log pull requests and/or releases here
