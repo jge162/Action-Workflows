@@ -1,8 +1,2 @@
 # Default reviewers/codeowners for all code changes
 * @jge162 @geo4u
-
-# Reviewer by email for html files
-*.html  reviewer_email=@my-organization/${{ secrets.EMAIL }}
-
-# Reviewer by organization
-# *.txt @organizationName/
