@@ -24,5 +24,5 @@ jobs:
           body: >
             This PR is auto-generated to keep main branch up to date! 
             [create-pull-request](https://github.com/peter-evans/create-pull-request).
-          labels: Update_main_branch, Full_Automated_pr
+          labels: Update_main_branch, Full_Automated_pr, github-actions
           
