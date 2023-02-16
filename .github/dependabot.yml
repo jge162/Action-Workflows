@@ -4,8 +4,8 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "daily"
-      time: "30:00"
+      interval: "weekly"
+      day: "saturday"
     labels:
       - "dependencies"
       - "github-actions"
@@ -15,8 +15,8 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "daily"
-      time: "00:00"
+      interval: "weekly"
+      day: "saturday"
     ignore:
       - dependency-name: "*"
         update-types: ["version-update:semver-major"]
@@ -26,15 +26,15 @@ updates:
       - "javascript"
       - "non-owner pull request"
 
-  - package-ecosystem: "pip"
-    directory: "/"
-    schedule:
-      interval: "daily"
-      time: "00:00"
-    ignore:
-      - dependency-name: "*"
-        update-types: ["version-update:semver-major"]
-    labels:
-      - "dependencies"
-      - "automated pr"
-      - "non-owner pull request"
+ # - package-ecosystem: "pip"
+ #   directory: "/"
+ #   schedule:
+ #     interval: "daily"
+ #     time: "00:00"
+ #   ignore:
+ #     - dependency-name: "*"
+ #       update-types: ["version-update:semver-major"]
+ #   labels:
+ #     - "dependencies"
+ #     - "automated pr"
+ #     - "non-owner pull request"
