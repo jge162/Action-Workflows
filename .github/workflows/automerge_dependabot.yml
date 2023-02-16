@@ -42,16 +42,16 @@ jobs:
         id: get_pull_request_number
         run: echo "::set-output name=pull_request_number::${{ github.event.number }}"
 
-      - name: Update DEPENDABOTLOG
+      - name: Update PULLREQUESTLOG
         uses: stefanzweifel/changelog-updater-action@v1
         with:
-          path-to-changelog: DEPENDABOTLOG.md
+          path-to-changelog: PULLREQUESTLOG.md
           latest-version: ${{ github.ref }}
           release-notes: |
-            Pull request number for DEPENDABOTLOG is: [#${{ steps.get_pull_request_number.outputs.pull_request_number }}](${{ github.event.pull_request.html_url }})
-      - name: Commit updated DEPENDABOTLOG
+            Pull request number for DEPENDABOT is: [#${{ steps.get_pull_request_number.outputs.pull_request_number }}](${{ github.event.pull_request.html_url }})
+      - name: Commit updated PULLREQUESTLOG
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           branch: main
-          commit_message: Update DEPENDABOTLOG
-          file_pattern: DEPENDABOTLOG.md
+          commit_message: Update PULLREQUESTLOG
+          file_pattern: PULLREQUESTLOG.md
