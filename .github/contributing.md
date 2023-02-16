@@ -1,6 +1,6 @@
-# Contributing to Example Project
+# Contributing to Action-workflows
 
-Thank you for your interest in contributing to Example Project! We welcome contributions from the community, and we want to make the process as smooth and transparent as possible.
+Thank you for your interest in contributing to Action-workflows Project! We welcome contributions from the community, and we want to make the process as smooth and transparent as possible.
 
 ## How to Contribute
 
@@ -18,4 +18,4 @@ Please make sure that your code follows our coding standards, and include tests 
 - Use descriptive variable names and function names.
 - Write unit tests for any new functionality.
 
-Thank you for your contributions to Example Project!
+Thank you for your contributions to Action-workflows Project!
