@@ -1,4 +1,6 @@
-# run file to verify it compiles with no errors 
+# Run file to verify GitHub action so
+# you can see latest run, and if it
+# ran successfully.
 name: Python Action
 
 on:
@@ -6,23 +8,15 @@ on:
   - cron: '0 0 * * 6' 
     # action will run once a week on Saturday at 12:00 am 
   workflow_dispatch:
-
-  # pull_request:
-  #  branches:
-  #    - main
-
+    # manual runs here
 jobs:
   Python-analyze:
     runs-on: ubuntu-latest
 
     steps:
-   # - name: Checkout repository
-     # uses: actions/checkout@v2
-
     - name: Python Action
       uses: jge162/Action-workflows@1.0.1
-
-
+      
     - run: |
        echo "Install required dependencies"
        sudo apt-get update
@@ -34,10 +28,10 @@ jobs:
     - run: |
         echo "Run, Build Application using scripts"
         python3 -c "
-        scripts = [ './script2.py']
+        scripts = [ './ActionTester.py']
         for script in scripts:
             with open(script, 'r') as file:
                 exec(file.read())
         "
-    # only run script if I want to check Action './python_action_tester.py'
+    # only run script if I want to check Action './ActionTester.py'
     
