@@ -16,6 +16,11 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: main
+          intervalSeconds: 15
+          timeoutSeconds: 60
+          labels: owner pull pull request
+          labelsStrategy: atLeastOne
+          ignoreLabels: ignore
 
       - name: Enable auto-merge
         run: gh pr merge --auto --merge "$PR_URL" 
