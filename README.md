@@ -7,16 +7,18 @@
 [![Python Action](https://github.com/jge162/Action-workflows/actions/workflows/python_check.yml/badge.svg)](https://github.com/jge162/Action-workflows/actions/workflows/python_check.yml)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/jge162/Action-workflows)
 
-# Purpose of this repo:
+# Purpose of this repository:
   
-To create, simple to use GitHub actions on any repo for initial setup
+A template to create simple to use GitHub actions on any repo for initial setup.
 
 # Example action to run a `python.py` file to verify no errors in code:
 
 If errors in code exist they will be listed in the actions console. Also
-you can run more than one file, seperated with commas...
+you can run more than one file, seperated with commas.
    
 # Up to you to decide on your triggers, I used `push` and `pull_request`
+
+a good one to use also is `workflow_dispacth` to manually run the action.
  
 ```yaml
 name: Run Python file
