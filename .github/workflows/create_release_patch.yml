@@ -9,9 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'create release patch') && github.event.pull_request.user.login == 'jge162'
     steps:
-      - name: Checkout code
+      - name: Python Action
         uses: jge162/Action-workflows@1.0.1
-
 
       - name: Build patch release 
         run: |
@@ -34,11 +33,14 @@ jobs:
           echo "::set-output name=new_tag::$new_tag"
         id: bump_version
 
-      - name: Create release
-        uses: actions/create-release@v1
+      - name: create-release-on-close
+        uses: jge162/create-release@2.1.1
         with:
+          files: |
+            build/*
+            
           tag_name: ${{ steps.bump_version.outputs.new_tag }}
-          release_name: Release ${{ steps.bump_version.outputs.new_tag }}
+          prerelease: Release ${{ steps.bump_version.outputs.new_tag }}
           body: This is a new release ${{ steps.bump_version.outputs.new_tag }} which will include bug fixes.
         env:
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_SECRET }}
