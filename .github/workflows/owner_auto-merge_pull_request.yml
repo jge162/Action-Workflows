@@ -32,21 +32,15 @@ jobs:
       - name: Python Action
         uses: jge162/Action-workflows@1.0.1
 
-      - name: Get pull request number
-        id: get_pull_request_number
-        run: echo "::set-output name=pull_request_number::${{ github.event.number }}"
+      - name: Update Pull Request Log
+        run: |
+         echo "## Release [#${{ steps.get_pull_request_number.outputs.pull_request_number }}](${{ github.event.pull_request.html_url }})" >> PULLREQUESTLOG.md
+         echo "" >> PULLREQUESTLOG.md
+        shell: bash
 
-      - name: Update Changelog
-        uses: stefanzweifel/changelog-updater-action@v1
-        with:
-          path-to-changelog: CHANGELOG.md
-          latest-version: ${{ github.ref }}
-          release-notes: |
-            Pull request number for the release is: [#${{ steps.get_pull_request_number.outputs.pull_request_number }}](${{ github.event.pull_request.html_url }})
-
-      - name: Commit updated CHANGELOG
+      - name: Commit updated PULLREQUESTLOG
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           branch: main
-          commit_message: Update CHANGELOG
-          file_pattern: CHANGELOG.md
+          commit_message: Update PULLREQUESTLOG
+          file_pattern: PULLREQUESTLOG.md
