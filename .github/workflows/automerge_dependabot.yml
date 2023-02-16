@@ -28,3 +28,30 @@ jobs:
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
           GITHUB_TOKEN: ${{secrets.WORKFLOW_SECRET}}
+  
+  ChangeLog_Enforcer:
+    runs-on: ubuntu-latest
+    needs: [dependabot]
+    permissions:
+      contents: write
+    steps:
+      - name: Python Action
+        uses: jge162/Action-workflows@1.0.1
+
+      - name: Get pull request number
+        id: get_pull_request_number
+        run: echo "::set-output name=pull_request_number::${{ github.event.number }}"
+
+      - name: Update DEPENDABOTLOG
+        uses: stefanzweifel/changelog-updater-action@v1
+        with:
+          path-to-changelog: DEPENDABOTLOG.md
+          latest-version: ${{ github.ref }}
+          release-notes: |
+            Pull request number for DEPENDABOTLOG is: [#${{ steps.get_pull_request_number.outputs.pull_request_number }}](${{ github.event.pull_request.html_url }})
+      - name: Commit updated DEPENDABOTLOG
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          branch: main
+          commit_message: Update DEPENDABOTLOG
+          file_pattern: DEPENDABOTLOG.md
