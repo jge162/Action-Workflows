@@ -2,4 +2,4 @@ owner pull request:
 - name: Add owner pull request label
   condition: contains(title, "owner pull request")
   labels:
-  - owner pull request
+  - owner pull 
