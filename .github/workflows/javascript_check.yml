@@ -2,8 +2,11 @@ name: Javascript Action error checker
 
 on:
   schedule:
-  - cron: '0 0 * * 6' 
-    # action will run once a week on Saturday at 12:00 am 
+  - cron: '0 0 1 * *'
+  # action will run once a month on 1st day at 12:00 am 
+  
+  #- cron: '0 0 * * 6' 
+  # action will run once a week on Saturday at 12:00 am 
   workflow_dispatch:
 
   # push:
