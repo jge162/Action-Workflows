@@ -8,3 +8,4 @@ if output.returncode == 0:
     print("Great news! No errors found in index.js")
 else:
     print("Ops, errors exist and code is not running correct")
+# check if java file is good and error free
