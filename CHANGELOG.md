@@ -1,6 +1,4 @@
-## Changelog To keep all Pull requests and releases
-
-## This is for keeping track of releases
+## Changelog To keep all Pull requests that coincidednjk9 with releases.
 
 ## `Releases Tracker` here and `Automatic Pull Requests Tracker` to keep branches up to date.
 
