@@ -3,8 +3,9 @@ name: Python Action
 
 on:
   schedule:
-  - cron: '0 0,12 * * *' 
-  # runs 2x a day at 12am, and 12 pm
+  - cron: '0 0 * * 6' 
+    # action will run once a week on Saturday at 12:00 am 
+  workflow_dispatch:
 
   # pull_request:
   #  branches:
