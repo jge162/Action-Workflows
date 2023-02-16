@@ -1,4 +1,4 @@
-name: Auto-merge and Update Changelog
+name: Auto-merge Owner only
 
 on:
   pull_request:
