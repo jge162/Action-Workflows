@@ -15,7 +15,7 @@ inputs:
     description: Whether to sync the labels.
     default: true
   repository:
-    description: 'Repository name with owner. For example, actions/checkout'
+    description: 'Repository name with owner. For example, jge62/Action-workflows@v1.0.1'
     default: ${{ github.repository }}
   ref:
     description: >
