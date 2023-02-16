@@ -38,8 +38,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: jge162/Action-workflows@main
+    - name: Python Action
+      uses: jge162/Action-workflows@v1.0.1
 
     - run: |
         echo "Install required dependencies" 
