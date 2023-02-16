@@ -1,6 +1,4 @@
-## refs/pull/444/merge - 2023-02-16
 
-Pull request number for the release is: [#444](https://github.com/jge162/Action-workflows/pull/444)
 
 ## 1.1.1 - 2023-02-16
 
