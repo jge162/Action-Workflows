@@ -32,11 +32,17 @@ jobs:
       - name: Python Action
         uses: jge162/Action-workflows@1.0.1
 
-      - name: Update Pull Request Log
-        run: |
-         echo "## Release [#${{ steps.get_pull_request_number.outputs.pull_request_number }}](${{ github.event.pull_request.html_url }})" >> PULLREQUESTLOG.md
-         echo "" >> PULLREQUESTLOG.md
-        shell: bash
+      - name: Get pull request number
+        id: get_pull_request_number
+        run: echo "::set-output name=pull_request_number::${{ github.event.number }}"
+
+      - name: Update PULLREQUESTLOG
+        uses: stefanzweifel/changelog-updater-action@v1
+        with:
+          path-to-changelog: PULLREQUESTLOG.md
+          latest-version: ${{ github.ref }}
+          release-notes: |
+            Pull request number for auto-merge is: [#${{ steps.get_pull_request_number.outputs.pull_request_number }}](${{ github.event.pull_request.html_url }})
 
       - name: Commit updated PULLREQUESTLOG
         uses: stefanzweifel/git-auto-commit-action@v4
