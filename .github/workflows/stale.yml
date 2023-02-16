@@ -19,6 +19,6 @@ jobs:
         stale-pr-message: 'This pull request has been marked as stale as there has been no recent activity. If you would like to keep this pull request open, please respond within the next 24 hours.'
         stale-issue-label: 'stale'
         stale-pr-label: 'stale'
-        days-before-stale: 10 # days
-        days-before-close: 11 # days
+        days-before-stale: 30 
+        days-before-close: 60 
 
