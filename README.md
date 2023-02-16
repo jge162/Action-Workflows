@@ -1,4 +1,4 @@
-# GitHub Action-workflows:
+## GitHub Action-workflows:
 
 <img src="https://user-images.githubusercontent.com/31228460/218295872-1865b4ba-9c3c-4a28-bac8-0fd11c7c37f6.png" width="79%">
 
@@ -7,16 +7,16 @@
 [![Python Action](https://github.com/jge162/Action-workflows/actions/workflows/python_check.yml/badge.svg)](https://github.com/jge162/Action-workflows/actions/workflows/python_check.yml)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/jge162/Action-workflows)
 
-# Purpose of this repository:
+## Purpose of this repository:
   
 A template to create simple to use GitHub actions on any repo for initial setup.
 
-# Example action to run a `python.py` file to verify no errors in code:
+## Example action to run a `python.py` file to verify no errors in code:
 
 If errors in code exist they will be listed in the actions console. Also
 you can run more than one file, seperated with commas.
    
-# Up to you to decide on your triggers, I used `push` and `pull_request`
+## Up to you to decide on your triggers, I used `push` and `pull_request`
 
 a good one to use also is `workflow_dispacth` to manually run the action.
  
@@ -31,7 +31,7 @@ on:
       - main
 ```         
   
-# Install required `dependencies.`
+## Install required `dependencies.`
 
 This way your can run, Python file.
 
@@ -50,7 +50,7 @@ jobs:
         sudo apt-get install python3
 ```         
     
-# Lastly use a for loop to run multipe instances.
+## Lastly use a for loop to run multipe instances.
 
 This way you can run one or multple python scripts.
 
@@ -65,10 +65,10 @@ This way you can run one or multple python scripts.
         "
 ```  
        
-# Issues and/or bugs, please create an issue to help me squash them!:
+## Issues and/or bugs, please create an issue to help me squash them!:
 
 Please report [issues](https://github.com/jge162/Action-workflows/issues/new) here for discussion and resolution please.
 
-# License info:
+## License info:
   
 jge162/Action-workflows is licensed under the [GNU General Public License v3.0](https://github.com/jge162/Action-workflows/blob/main/LICENSE)
