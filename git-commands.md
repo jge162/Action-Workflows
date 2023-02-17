@@ -1,6 +1,6 @@
 ## Common Git commands:
 
-- `git init` (**Initialize a new Git repository**)
+- `git init` Initialize a new Git repository
 - `git clone` **Clone a repository into a new directory**
 - `git add` **Add files to the staging area**
 - `git commit` **Create a new commit with the changes in the staging area**
