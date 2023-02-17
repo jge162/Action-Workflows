@@ -1,30 +1,25 @@
-name: Daily Commit
+name: Check API Status
 
 on:
   schedule:
-    - cron: '0 17 * * *'
+    - cron: '0 12 * * *' # Runs at 12 PM UTC every day
   workflow_dispatch:
 
 jobs:
-  daily-commit:
+  check-api-status:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
-          
-      - name: Create commit message
-        run: echo "All GitHub Actions are running fine\n" > commit_message.txt
-        
-      - name: Append message to commit log
+
+      - name: Install jq
+        run: sudo apt-get install jq
+
+      - name: Check API Status
         run: |
-          echo "$(date): $(cat commit_message.txt)" >> COMMITLOG.md
-          git config --global user.email "${{ secrets.EMAIL }}"
-          git config --global user.name "<Jeremy Escobar>"
-          git add COMMITLOG.md
-          git commit -m "Automated commit: $(cat commit_message.txt)"
-          git push
+          cd ./resources/API
+          response=$(curl -s -H "Authorization: token $TOKEN" https://api.github.com/actions)
+          status=$(echo $response | jq '.status')
+          echo "$(date): GitHub Actions API status: $status" >> ../COMMITLOG.md
+        env:
+          TOKEN: ${{ secrets.WORKFLOW_SECRET }}
