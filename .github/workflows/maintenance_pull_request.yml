@@ -20,6 +20,5 @@ jobs:
           title: '[Updating] Main branch to keep up to date!'
           body: >
             This PR is auto-generated to keep main branch up to date! 
-            [create-pull-request](https://github.com/peter-evans/create-pull-request).
           labels: Update_main_branch, maintenance_pull, github-actions
           
