@@ -19,30 +19,20 @@ jobs:
 
       - name: Install jq
         run: sudo apt-get install jq
-
-      #- name: Check API Status
-      #  run: |
-      #    cd ./resources/API
-      #    response=$(curl -s -H "Authorization: token $TOKEN" https://api.github.com/repos/$GITHUB_REPOSITORY/actions)
-      #    status=$(echo $response | jq '.status')
-      #    echo "$(date): GitHub Actions API status: $status" >> ../../commitlog.md
-      #  env:
-      #    TOKEN: ${{ secrets.WORKFLOW_SECRET }}
           
       - name: Check API Status
         run: |
           cd ./resources/API
           response=$(curl -s https://kctbh9vrtdwd.statuspage.io/api/v2/status.json)
           status=$(echo $response | jq -r '.status.indicator')
-          echo -e "\n$(date): GitHub Actions API status: $status" >> ../../commitlog.md
+          echo -e "\n$(date): GitHub Actions API status: $status" >> ../../COMMITLOG.md
         env:
           TOKEN: ${{ secrets.WORKFLOW_SECRET }}
-
 
       - name: Commit changes
         run: |
           git config --global user.email "${{ secrets.EMAIL }}"
           git config --global user.name "<Jeremy Escobar>"
-          git add commitlog.md
+          git add COMMITLOG.md
           git commit -m "Automated commit: Update API status in commitlog"
           git push
