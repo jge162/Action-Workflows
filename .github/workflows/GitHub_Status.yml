@@ -1,0 +1,47 @@
+on:
+  schedule:
+    - cron: '0 1,13 * * *' # Runs at 1 AM and 1 PM UTC every day
+  workflow_dispatch:
+  
+jobs:
+  check-api-status:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Create API directory
+        run: mkdir -p ./resources/API
+
+      - name: Create check_api_status.sh script
+        run: touch ./resources/API/check_api_status.sh
+
+      - name: Install jq
+        run: sudo apt-get install jq
+
+      #- name: Check API Status
+      #  run: |
+      #    cd ./resources/API
+      #    response=$(curl -s -H "Authorization: token $TOKEN" https://api.github.com/repos/$GITHUB_REPOSITORY/actions)
+      #    status=$(echo $response | jq '.status')
+      #    echo "$(date): GitHub Actions API status: $status" >> ../../commitlog.md
+      #  env:
+      #    TOKEN: ${{ secrets.WORKFLOW_SECRET }}
+          
+      - name: Check API Status
+        run: |
+          cd ./resources/API
+          response=$(curl -s https://kctbh9vrtdwd.statuspage.io/api/v2/status.json)
+          status=$(echo $response | jq -r '.status.indicator')
+          echo -e "\n$(date): GitHub Actions API status: $status" >> ../../commitlog.md
+        env:
+          TOKEN: ${{ secrets.WORKFLOW_SECRET }}
+
+
+      - name: Commit changes
+        run: |
+          git config --global user.email "${{ secrets.EMAIL }}"
+          git config --global user.name "<Jeremy Escobar>"
+          git add commitlog.md
+          git commit -m "Automated commit: Update API status in commitlog"
+          git push
