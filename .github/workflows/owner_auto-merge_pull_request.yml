@@ -43,6 +43,7 @@ jobs:
           latest-version: ${{ github.ref }}
           release-notes: |
             Pull request number for auto-merge is: [#${{ steps.get_pull_request_number.outputs.pull_request_number }}](${{ github.event.pull_request.html_url }})
+            Time of pull request: $(date "+%Y-%m-%d %H:%M:%S")
 
       - name: Commit updated PULLREQUESTLOG
         uses: stefanzweifel/git-auto-commit-action@v4
