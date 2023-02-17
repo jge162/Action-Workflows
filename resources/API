@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set your personal access token and API endpoint
-TOKEN=<your-personal-access-token>
+TOKEN=<WORKFLOW_SECRET>
 ENDPOINT=https://api.github.com
 
 # Make a request to the GitHub Actions API endpoint
