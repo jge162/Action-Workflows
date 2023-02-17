@@ -18,7 +18,8 @@ jobs:
           python-version: '3.x'
           
       - name: Create commit message
-        run: echo -e "\nAll GitHub Actions are running fine" > commit_message.txt
+        run: |
+          echo -e "\n$(date): All GitHub Actions are running fine. Check the [GitHub status page](https://www.githubstatus.com/) for more information." > commit_message.txt
         
       - name: Append message to commit log
         run: |
