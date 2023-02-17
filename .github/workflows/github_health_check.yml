@@ -3,7 +3,6 @@ name: Check API Status
 on:
   schedule:
     - cron: '0 12 * * *' # Runs at 12 PM UTC every day
-  workflow_dispatch:
 
 jobs:
   check-api-status:
@@ -12,12 +11,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Create API directory
+        run: mkdir -p ./resource/API
+
+      - name: Create check_api_status.sh script
+        run: touch ./resource/API/check_api_status.sh
+
       - name: Install jq
         run: sudo apt-get install jq
 
       - name: Check API Status
         run: |
-          cd ./resources/API
+          cd ./resource/API
           response=$(curl -s -H "Authorization: token $TOKEN" https://api.github.com/actions)
           status=$(echo $response | jq '.status')
           echo "$(date): GitHub Actions API status: $status" >> ../COMMITLOG.md
