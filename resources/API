@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Set your personal access token and API endpoint
+TOKEN=<your-personal-access-token>
+ENDPOINT=https://api.github.com
+
+# Make a request to the GitHub Actions API endpoint
+response=$(curl -H "Authorization: token $TOKEN" $ENDPOINT/actions)
+
+# Parse the response to check the status of the API
+status=$(echo $response | jq '.status')
+
+# Print the status of the API
+echo "GitHub Actions API status: $status"
