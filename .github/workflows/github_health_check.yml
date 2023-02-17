@@ -18,13 +18,13 @@ jobs:
           python-version: '3.x'
           
       - name: Create commit message
-        run: echo "$(date): All GitHub Actions are running fine" > commit_message.txt
+        run: echo "All GitHub Actions are running fine" > commit_message.txt
         
       - name: Append message to commit log
         run: |
-          echo "$(cat commit_message.txt)" >> commitlog.md
-          git config --global user.email "<your-email-address>"
-          git config --global user.name "<your-name>"
-          git add commitlog.md
+          echo "$(date): $(cat commit_message.txt)" >> COMMITLOG.md
+          git config --global user.email "${{ secrets.EMAIL }}"
+          git config --global user.name "<Jeremy Escobar>"
+          git add COMMITLOG.md
           git commit -m "Automated commit: $(cat commit_message.txt)"
           git push
