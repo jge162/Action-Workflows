@@ -3,7 +3,8 @@ name: Check API Status
 on:
   schedule:
     - cron: '0 12 * * *' # Runs at 12 PM UTC every day
-
+  workflow_dispatch:
+  
 jobs:
   check-api-status:
     runs-on: ubuntu-latest
