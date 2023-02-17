@@ -43,7 +43,7 @@ jobs:
 
     steps:
     - name: Python Action
-      uses: jge162/Action-workflows@v1.0.1
+      uses: jge162/Action-workflows@v1.1.1
 
     - run: |
         echo "Install required dependencies" 
