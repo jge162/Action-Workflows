@@ -1,3 +1,4 @@
 
-## Getting periodic updates reporting status of GitHub API (none == no issues)
+## Getting periodic updates reporting status of 
+## GitHub API (none == no issues)
 
