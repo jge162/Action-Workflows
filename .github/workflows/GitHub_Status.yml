@@ -1,3 +1,4 @@
+name: GitHub Status
 on:
   schedule:
     - cron: '0 1,13 * * *' # Runs at 1 AM and 1 PM UTC every day
