@@ -1,0 +1,20 @@
+ls: List the files and directories in the current directory
+cd: Change the current directory
+mkdir: Create a new directory
+touch: Create a new empty file
+rm: Remove a file or directory (use with caution)
+cp: Copy a file or directory
+mv: Move or rename a file or directory
+cat: Display the contents of a file
+echo: Print a message to the screen
+pwd: Print the current working directory
+grep: Search for a specific pattern in a file or output
+ps: Display information about running processes
+top: Display real-time information about system resources and processes
+chmod: Change the permissions of a file or directory
+chown: Change the ownership of a file or directory
+ssh: Connect to a remote server over SSH
+scp: Copy files to and from a remote server over SSH
+wget: Download files from the internet
+curl: Transfer data to or from a server
+tar: Create or extract tar archives
