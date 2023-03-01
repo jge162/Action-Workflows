@@ -1,0 +1,14 @@
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "common/**"
+      - "myservice/**"
+    tags:
+      - "*"
+    if: |
+      (startsWith(github.ref, 'refs/tags/')) || 
+      (!startsWith(github.ref, 'refs/tags/') && 
+      contains(github.event.head_commit.modified, 'common/') || 
+      contains(github.event.head_commit.modified, 'myservice/'))
