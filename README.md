@@ -19,7 +19,7 @@ you can run more than one file, seperated with commas.
    
 ## Up to you to decide on your triggers, I used `push` and `pull_request`
 
-a good one to use also is `workflow_dispacth` to manually run the action.
+A good one to use is also `workflow_dispacth` to manually run the action.
  
 ```yaml
 name: Run Python file
@@ -53,7 +53,7 @@ jobs:
     
 ## Lastly use a for loop to run multipe instances.
 
-This way you can run one or multple python scripts.
+This way you can run one or multiple python scripts.
 
 ```yaml
      - run: |
