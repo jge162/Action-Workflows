@@ -3,7 +3,7 @@ name: My GitHub Action
 on:
   workflow_dispatch:
 
-    push:
+  push:
     branches:
       - main
     paths:
