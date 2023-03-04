@@ -11,7 +11,7 @@ jobs:
     if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'create release minor') && github.event.pull_request.user.login == 'jge162'
     steps:
       - name: Python Action
-        uses: jge162/Action-workflows@1.1.1
+        uses: jge162/Action-workflows@2.1.1
 
       - name: Get latest tag
         run: |
