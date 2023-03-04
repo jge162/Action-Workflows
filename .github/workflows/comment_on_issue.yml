@@ -31,5 +31,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: 'Thank you for opening this issue! Our team will review it as as possible.'
+              body: 'Thank you for opening this issue! Our team will review it within 24-48 hours.'
             })
