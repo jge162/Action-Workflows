@@ -15,6 +15,6 @@ jobs:
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         issue-message: |
-            Hey! Welcome to actions-workflows, this is your first time opening an issue! :)
+            Hey! Welcome to Actions-workflows, this is your first time opening an issue!
         pr-message: |
-            Hello! Welcome to actions-workflows, this is your first time opening a Pull Request! :D
+            Hello! Welcome to Actions-workflows, this is your first time opening a Pull Request!
