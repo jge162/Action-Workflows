@@ -13,9 +13,9 @@ jobs:
         uses: mshick/add-pr-comment@v2
         with:
           message: |
-            Thank you for the Pull request. The team will review when time permits. **Please allow 24 hours**
+            Thank you for opening this Pull Request. The team will review it when time allows. **Please allow 24 hours**
           message-failure: |
-            Uh oh!
+            Uh oh! An error ocurred.
           message-id: add-pr-comment
           repo-token: ${{ secrets.WORKFLOW_SECRET }}
           allow-repeats: true
