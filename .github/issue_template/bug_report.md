@@ -1,14 +1,11 @@
 ---
-name: New Issue
-about: Create a report to help us improve software.
-title: Please describe issue/bug you found.
-labels: question
-assignees: jge162
-
+Name: New Issue
+About: Create a report to help us improve our software
+Title: Please describe issue/bug you found
+Labels: question
+Assignees: jge162
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**Describe the bug**: a clear and concise description of what the bug is.
 
-**Additional context**
-Add any other context about the problem here.
+**Additional context**: add any other context about the problem here.
