@@ -32,7 +32,7 @@ jobs:
       - name: Commit changes
         run: |
           git config --global user.email "${{ secrets.EMAIL }}"
-          git config --global user.name "<Jeremy Escobar>"
+          git config --global user.name "<jge162>"
           git add COMMITLOG.md
           git commit -m "Automated commit: Update API status in commitlog"
           git push
