@@ -24,23 +24,23 @@ jobs:
           major=$(echo $semver | cut -d'.' -f1)
           minor=$(echo $semver | cut -d'.' -f2)
           patch=$(echo $semver | cut -d'.' -f3)
-          if [[ ${{ github.event.pull_request.title }} =~ Major ]]; then
+
+          if [[ "$github.event.pull_request.title" == *"Major"* ]]; then
             new_major=$((major+1))
-            new_minor=0
-            new_patch=0
-          elif [[ ${{ github.event.pull_request.title }} =~ Minor ]]; then
+            new_minor=$minor
+            new_patch=$patch
+          elif [[ "$github.event.pull_request.title" == *"Minor"* ]]; then
             new_major=$major
             new_minor=$((minor+1))
-            new_patch=0
-          elif [[ ${{ github.event.pull_request.title }} =~ Patch ]]; then
+            new_patch=$patch
+          else
             new_major=$major
             new_minor=$minor
             new_patch=$((patch+1))
-          else
-            echo "No keyword found in the pull request title"
-            exit 1
           fi
+
           new_tag="$new_major.$new_minor.$new_patch"
+
           echo "::set-output name=new_tag::$new_tag"
         id: bump_version
 
