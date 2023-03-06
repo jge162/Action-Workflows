@@ -30,10 +30,10 @@ jobs:
     - run: |
         echo "Run, Build Application using scripts"
         python3 -c "
-        scripts = [ './resources/test.py', './resources/GitHub_action_tester.py']
+        scripts = [ './resources/test.py' ]
         for script in scripts:
             with open(script, 'r') as file:
                 exec(file.read())
         "
-    # only run script if I want to check Action './ActionTester.py'
+    # only run script if I want to check Action './resources/GitHub_action_tester.py'
     
