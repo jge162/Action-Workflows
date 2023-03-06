@@ -78,17 +78,17 @@ jobs:
       actions: read
     runs-on: ubuntu-latest
     if: ${{
-      github.event_name == 'issue_comment' &&
-      github.event.issue.pull_request &&
-      contains(github.event.comment.body, '@check-spelling-bot apply')
-    }}
+        github.event_name == 'issue_comment' &&
+        github.event.issue.pull_request &&
+        contains(github.event.comment.body, '@check-spelling-bot apply')
+      }}
     concurrency:
       group: spelling-update-${{ github.event.issue.number }}
       cancel-in-progress: false
     steps:
-      - name: apply spelling updates
-        uses: check-spelling/check-spelling@main
-        with:
-          experimental_apply_changes_via_bot: 1
-          checkout: true
-          ssh_key: "${{ secrets.CHECK_SPELLING }}"
+    - name: apply spelling updates
+      uses: check-spelling/check-spelling@main
+      with:
+        experimental_apply_changes_via_bot: 1
+        checkout: true
+        ssh_key: "${{ secrets.CHECK_SPELLING }}"
