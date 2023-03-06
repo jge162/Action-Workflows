@@ -52,7 +52,7 @@ Pull request number for auto-merge is: [#452](https://github.com/jge162/Action-w
 
 ## refs/pull/451/merge - 2023-02-17
 
-[$(date "+%Y-%m-%d %H:%M:%S")] Pull request number for auto-merge is: [#451](https://github.com/jge162/Action-workflows/pull/451)
+Pull request number for auto-merge is: [#451](https://github.com/jge162/Action-workflows/pull/451)
 
 ## refs/pull/450/merge - 2023-02-17
 
