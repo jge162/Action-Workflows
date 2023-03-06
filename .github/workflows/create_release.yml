@@ -1,4 +1,6 @@
-name: Testin_Major
+# The release version will be bumped based on the Pull request title 
+# for example in title Major will result in (bumps 0.0.0 to 1.0.0)
+name: Create_Release
 
 on:
   pull_request:
