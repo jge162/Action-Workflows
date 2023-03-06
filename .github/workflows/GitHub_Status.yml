@@ -25,7 +25,7 @@ jobs:
           cd ./resources/API
           response=$(curl -s https://kctbh9vrtdwd.statuspage.io/api/v2/status.json)
           status=$(echo $response | jq -r '.status.indicator')
-          echo -e "\n$(date): GitHub Actions API status: $status" >> ../../COMMITLOG.md
+          echo -e "\n$(date): GitHub Actions API status: $status" >> ../../resources/COMMITLOG.md
         env:
           TOKEN: ${{ secrets.WORKFLOW_SECRET }}
 
