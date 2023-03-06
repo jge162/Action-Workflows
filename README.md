@@ -5,7 +5,6 @@
 [![Python Action](https://github.com/jge162/Action-workflows/actions/workflows/python_check.yml/badge.svg)](https://github.com/jge162/Action-workflows/actions/workflows/python_check.yml)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/jge162/Action-workflows)
 ![GitHub](https://img.shields.io/github/license/jge162/Action-workflows?color=purple)
-
 [![Contributors](https://img.shields.io/github/contributors/jge162/Action-workflows.svg)](https://github.com/jge162/Action-workflows/graphs/contributors) [![Forks](https://img.shields.io/github/forks/jge162/Action-workflows.svg)](https://github.com/jge162/Action-workflows/network/members) [![Issues](https://img.shields.io/github/issues/jge162/Action-workflows.svg)](https://github.com/jge162/Action-workflows/issues) [![Pull Request](https://img.shields.io/github/issues-pr-closed-raw/jge162/Action-workflows)](https://github.com/jge162/Action-workflows/pulls)
 
 <img src="https://user-images.githubusercontent.com/31228460/218295872-1865b4ba-9c3c-4a28-bac8-0fd11c7c37f6.png" width="79%">
