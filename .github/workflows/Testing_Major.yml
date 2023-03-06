@@ -7,7 +7,7 @@ on:
 jobs:
   create_release:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true && (contains(steps.get_pr_title.outputs.title, 'Major') || contains(steps.get_pr_title.outputs.title, 'Minor') || contains(steps.get_pr_title.outputs.title, 'Patch')) && github.event.pull_request.user.login == 'jge162'
+    if: github.event.pull_request.merged == true && (contains(github.event.pull_request.title, 'Major') || contains(github.event.pull_request.title, 'Minor') || contains(github.event.pull_request.title, 'Patch')) && github.event.pull_request.user.login == 'jge162'
     steps:
       - name: Get PR title
         id: get_pr_title
@@ -28,7 +28,6 @@ jobs:
           major=$(echo $semver | cut -d'.' -f1)
           minor=$(echo $semver | cut -d'.' -f2)
           patch=$(echo $semver | cut -d'.' -f3)
-
           if [[ "${{ steps.get_pr_title.outputs.title }}" == *"Major"* ]]; then
             new_major=$((major+1))
             new_tag="$new_major.$minor.$patch"
@@ -39,7 +38,6 @@ jobs:
             new_patch=$((patch+1))
             new_tag="$major.$minor.$new_patch"
           fi
-
           echo "::set-output name=new_tag::$new_tag"
         id: bump_version
 
