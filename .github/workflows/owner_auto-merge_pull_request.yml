@@ -39,7 +39,7 @@ jobs:
       - name: Update PULLREQUESTLOG
         uses: stefanzweifel/changelog-updater-action@v1
         with:
-          path-to-changelog: PULLREQUESTLOG.md
+          path-to-changelog: ./resources/PULLREQUESTLOG.md
           latest-version: ${{ github.ref }}
           release-notes: |
             Pull request number for auto-merge is: [#${{ steps.get_pull_request_number.outputs.pull_request_number }}](${{ github.event.pull_request.html_url }})
