@@ -7,7 +7,7 @@ on:
 jobs:
   create_release_major:
     runs-on: ubuntu-latest
-    if: contains(github.event.comment.body, 'Major') && github.event.pull_request.merged == true && github.event.comment.user.login == 'jge162'
+    if: github.event.pull_request.merged == true && contains(github.event.pull_request.title, 'Major') && github.event.pull_request.user.login == 'jge162'
     steps:
       - name: Python Action
         uses: jge162/Action-workflows@1.1.1
