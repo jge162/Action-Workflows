@@ -1,13 +1,13 @@
-name: Testin_Major
+name: create_release
 
 on:
   pull_request:
     types: [closed]
 
 jobs:
-  create_release_major:
+  create_release:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true && contains(github.event.pull_request.title, 'Major') && github.event.pull_request.user.login == 'jge162'
+    if: github.event.pull_request.merged == true && contains(github.event.pull_request.title, 'Major') || contains(github.event.pull_request.title, 'Minor') || contains(github.event.pull_request.title, 'Patch') && github.event.pull_request.user.login == 'jge162'
     steps:
       - name: Python Action
         uses: jge162/Action-workflows@1.1.1
@@ -18,14 +18,29 @@ jobs:
           echo "::set-output name=latest_tag::$(git describe --tags $(git rev-list --tags --max-count=1))"
         id: get_latest_tag
 
-      - name: Bump major version
+      - name: Bump version
         run: |
           semver=$(echo "${{ steps.get_latest_tag.outputs.latest_tag }}")
           major=$(echo $semver | cut -d'.' -f1)
           minor=$(echo $semver | cut -d'.' -f2)
           patch=$(echo $semver | cut -d'.' -f3)
-          new_major=$((major+1))
-          new_tag="$new_major.$minor.$patch"
+          if [[ ${{ github.event.pull_request.title }} =~ Major ]]; then
+            new_major=$((major+1))
+            new_minor=0
+            new_patch=0
+          elif [[ ${{ github.event.pull_request.title }} =~ Minor ]]; then
+            new_major=$major
+            new_minor=$((minor+1))
+            new_patch=0
+          elif [[ ${{ github.event.pull_request.title }} =~ Patch ]]; then
+            new_major=$major
+            new_minor=$minor
+            new_patch=$((patch+1))
+          else
+            echo "No keyword found in the pull request title"
+            exit 1
+          fi
+          new_tag="$new_major.$new_minor.$new_patch"
           echo "::set-output name=new_tag::$new_tag"
         id: bump_version
 
