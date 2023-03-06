@@ -42,7 +42,7 @@ jobs:
         id: bump_version
 
       - name: create-release-on-close
-        uses: jge162/create-release@2.1.1
+        uses: jge162/create-release@1.1.1
   
         with:
           files: |
