@@ -11,6 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     if: contains(github.event.comment.body, 'Major') && github.event.issue.pull_request.merged == true && github.event.comment.user.login == 'jge162'
     steps:
+      - name: Debugging Step
+        run: |
+          echo "Comment Body: ${{ github.event.comment.body }}"
+          echo "PR Merged: ${{ github.event.issue.pull_request.merged }}"
+      
       - name: Python Action
         uses: jge162/Action-workflows@1.1.1
 
@@ -68,18 +73,4 @@ jobs:
         shell: bash
 
       - name: Get pull request number
-        id: get_pull_request_number
-        run: echo "::set-output name=pull_request_number::${{ github.event.number }}"
-
-      - name: Update Changelog
-        uses: stefanzweifel/changelog-updater-action@v1
-        with:
-          path-to-changelog: CHANGELOG.md
-          latest-version: ${{ steps.get_latest_version.outputs.latest_version }}
-          release-notes: |
-            Pull request number for the release is: [#${{ steps.get_pull_request_number.outputs.pull_request_number }}](${{ github.event.pull_request.html_url }})
-      - name: Commit updated CHANGELOG
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          branch: main
-         
+        id: get_pull
