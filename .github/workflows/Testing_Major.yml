@@ -1,4 +1,4 @@
-name: Testing_Release
+name: Testin_Major
 
 on:
   pull_request:
@@ -7,8 +7,12 @@ on:
 jobs:
   create_release:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true && contains(github.event.pull_request.title, 'Major') || contains(github.event.pull_request.title, 'Minor') || contains(github.event.pull_request.title, 'Patch') && github.event.pull_request.user.login == 'jge162'
+    if: github.event.pull_request.merged == true && (contains(steps.get_pr_title.outputs.title, 'Major') || contains(steps.get_pr_title.outputs.title, 'Minor') || contains(steps.get_pr_title.outputs.title, 'Patch')) && github.event.pull_request.user.login == 'jge162'
     steps:
+      - name: Get PR title
+        id: get_pr_title
+        run: echo "::set-output name=title::${{ github.event.pull_request.title }}"
+
       - name: Python Action
         uses: jge162/Action-workflows@1.1.1
 
@@ -25,21 +29,16 @@ jobs:
           minor=$(echo $semver | cut -d'.' -f2)
           patch=$(echo $semver | cut -d'.' -f3)
 
-          if [[ "$github.event.pull_request.title" == *"Major"* ]]; then
+          if [[ "${{ steps.get_pr_title.outputs.title }}" == *"Major"* ]]; then
             new_major=$((major+1))
-            new_minor=$minor
-            new_patch=$patch
-          elif [[ "$github.event.pull_request.title" == *"Minor"* ]]; then
-            new_major=$major
+            new_tag="$new_major.$minor.$patch"
+          elif [[ "${{ steps.get_pr_title.outputs.title }}" == *"Minor"* ]]; then
             new_minor=$((minor+1))
-            new_patch=$patch
+            new_tag="$major.$new_minor.$patch"
           else
-            new_major=$major
-            new_minor=$minor
             new_patch=$((patch+1))
+            new_tag="$major.$minor.$new_patch"
           fi
-
-          new_tag="$new_major.$new_minor.$new_patch"
 
           echo "::set-output name=new_tag::$new_tag"
         id: bump_version
@@ -53,6 +52,16 @@ jobs:
             
           tag_name: ${{ steps.bump_version.outputs.new_tag }}
           prerelease: Release ${{ steps.bump_version.outputs.new_tag }}
-          body: This is a new release ${{ steps.bump_version.outputs.new_tag }} which will include feature updates.
+          body: |
+            This is a new release ${{ steps.bump_version.outputs.new_tag }} which will include 
+            ${
+              if [[ "${{ steps.get_pr_title.outputs.title }}" == *"Major"* ]]; then
+                echo "feature updates."
+              elif [[ "${{ steps.get_pr_title.outputs.title }}" == *"Minor"* ]]; then
+                echo "bug fixes and minor updates."
+              else
+                echo "bug fixes."
+              fi
+            }
         env:
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_SECRET }}
