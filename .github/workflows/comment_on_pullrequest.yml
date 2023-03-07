@@ -17,6 +17,6 @@ jobs:
           message-failure: |
             Uh oh! An error ocurred.
           message-id: add-pr-comment
-          repo-token: ${{ secrets.WORKFLOW_SECRET }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
           allow-repeats: true
           status: success
