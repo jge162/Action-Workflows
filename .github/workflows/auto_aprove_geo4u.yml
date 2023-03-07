@@ -1,3 +1,4 @@
+
 name: Geo4u & Dr. Nefardio auto-approve
 # auto_aprove_geo4u
 on: pull_request
@@ -8,17 +9,16 @@ permissions:
 jobs:
   dependabot:
     runs-on: ubuntu-latest
-    if: ${{ github.actor == 'geo4u' }}
+    if: ${{ github.actor == 'geo4u' || github.actor == 'dr-nefardio3058' }}
     steps:
       - name: Dependabot metadata
         id: metadata
         # uses: dependabot/fetch-metadata@v1
         uses: jge162/Action-workflows@1.1.1
         with:
-          github-token: "${{ secrets.PERSONAL_ACCESS_TOKEN }}"
+          github-token: "${{ secrets.WORKFLOW_SECRET }}"
       - name: Approve a PR
-        run: |
-          export GH_TOKEN="${{ secrets.PERSONAL_ACCESS_TOKEN }}"
-          gh pr review --approve "$PR_URL"
+        run: gh pr review --approve "$PR_URL"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
+          GITHUB_TOKEN: ${{secrets.WORKFLOW_SECRET}}
