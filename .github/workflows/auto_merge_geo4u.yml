@@ -1,17 +1,16 @@
 name: Auto-merge on approval by geo4u
 
 on:
-  pull_request_review:
-    types: [submitted]
+  pull_request:
 
 permissions:
   contents: write
   pull-requests: write
 
 jobs:
-  auto-merge:
+  auto-merge-geo4u:
     runs-on: ubuntu-latest
-    if: github.event.review.state == 'approved' && github.event.review.user.login == 'geo4u'
+    if: github.event.review.state == 'approved' && github.event.review.user.login == 'jge162'
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
