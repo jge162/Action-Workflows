@@ -13,7 +13,7 @@ jobs:
       - name: Dependabot metadata
         id: metadata
         # uses: dependabot/fetch-metadata@v1
-        uses: jge162/Action-workflows@v1.1.1
+        uses: jge162/Action-workflows@1.1.1
         with:
           github-token: "${{ secrets.WORKFLOW_SECRET }}"
       - name: Approve a PR
