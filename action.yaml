@@ -20,10 +20,10 @@ branding:
     default: ${{ github.event.ref }}
   token:
       description: Personal access token.
-      default: ${{ github.token }} # <-- Updated
+      default: ${{ github.token }} 
   GH_TOKEN:
-      description: Personal access token. # FOR ENV: USE
-      default: ${{ github.token }} # <-- Updated
+      description: Personal access token. 
+      default: ${{ github.token }} 
   ssh-key:
     description: SSH key for authentication.
   ssh-known-hosts:
