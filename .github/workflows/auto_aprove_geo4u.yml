@@ -1,4 +1,4 @@
-name: Geo4u auto-approve
+name: Geo4u & Dr. Nefardio auto-approve
 # auto_aprove_geo4u
 on: pull_request
 
