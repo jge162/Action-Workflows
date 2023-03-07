@@ -1,0 +1,29 @@
+name: Auto-merge if appproved by jge162
+
+on:
+  pull_request_review:
+    types: [submitted]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    if: ${{ github.actor == 'jge162' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: main
+
+      - name: Merge pull request
+        if: github.event.review.state == 'approved' && github.event.review.user.login == 'jge162'
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: "Automerge pull request"
+          title: "Automerge pull request"
+          branch: "${{ github.event.pull_request.head.ref }}"
+          base: "${{ github.event.pull_request.base.ref }}"
+          token: ${{ secrets.WORKFLOW_SECRET }}
