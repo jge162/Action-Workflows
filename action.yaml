@@ -18,9 +18,9 @@ branding:
   ref:
     description: Checkout reference.
     default: ${{ github.event.ref }}
-  token:
-    description: Personal access token.
-    default: ${{ github.token }}
+  GH_TOKEN:
+      description: Personal access token.
+      default: ${{ github.token }} # <-- Updated
   ssh-key:
     description: SSH key for authentication.
   ssh-known-hosts:
