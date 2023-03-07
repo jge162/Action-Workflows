@@ -8,7 +8,7 @@ permissions:
 jobs:
   dependabot:
     runs-on: ubuntu-latest
-    if: ${{ github.actor == 'geo4u' }}
+    if: ${{ github.actor == 'geo4u' || github.actor == 'dr-nefardio3058' }}
     steps:
       - name: Dependabot metadata
         id: metadata
