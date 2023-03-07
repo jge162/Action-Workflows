@@ -16,9 +16,9 @@ jobs:
         # uses: dependabot/fetch-metadata@v1
         uses: jge162/Action-workflows@1.1.1
         with:
-          github-token: "${{ secrets.WORKFLOW_SECRET }}"
+          token: "${{ secrets.WORKFLOW_SECRET }}" # <-- Updated
       - name: Approve a PR
         run: gh pr review --approve "$PR_URL"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.WORKFLOW_SECRET}}
+          GH_TOKEN: "${{ secrets.WORKFLOW_SECRET }}" # <-- Updated
