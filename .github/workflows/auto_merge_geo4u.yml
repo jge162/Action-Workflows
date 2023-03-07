@@ -1,4 +1,4 @@
-name: Auto-merge on approval by geo4u
+name: Auto-merge for geo4u
 
 on:
   pull_request_review:
