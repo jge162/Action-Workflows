@@ -53,7 +53,7 @@ jobs:
         sudo apt-get install python3
 ```         
     
-## Lastly use a for loop to run multipe instances.
+## Lastly use a for loop to run multiple instances.
 
 This way you can run one or multiple python scripts.
 
