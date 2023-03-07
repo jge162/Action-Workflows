@@ -1,9 +1,8 @@
 name: Auto-merge if appproved by jge162
 
 on:
-  pull_request_review:
-    types: [submitted]
-
+  pull_request:
+   
 permissions:
   contents: write
   pull-requests: write
