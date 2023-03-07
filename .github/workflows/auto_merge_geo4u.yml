@@ -1,0 +1,25 @@
+name: Auto-merge on approval by geo4u
+
+on:
+  pull_request_review:
+    types: [submitted]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    if: github.event.review.state == 'approved' && github.event.review.user.login == 'geo4u'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: main
+    
+      - name: Enable auto-merge
+        run: gh pr merge --auto --merge "$PR_URL" 
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GITHUB_TOKEN: ${{secrets.WORKFLOW_SECRET}}
