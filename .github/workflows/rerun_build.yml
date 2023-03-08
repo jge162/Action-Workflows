@@ -15,8 +15,21 @@ jobs:
       - name: Check if pull request
         if: github.event_name == 'pull_request'
         run: echo "RUN_NAME=${{ github.ref }}" >> $GITHUB_ENV
+      - name: Check if workflow is running
+        id: check_workflow
+        uses: styfle/check-workflow-runs@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          workflow-file: .github/workflows/rerun_build.yml
+          concurrent: false
       - name: Rerun workflow
-        if: env.RERUN == 'true'
+        if: env.RERUN == 'true' && steps.check_workflow.outputs.is_running == 'false'
         run: echo "Rerunning workflow"
         env:
           RUN_ID: ${{ github.run_id }}
+      - name: Print environment variables
+        if: always()
+        run: |
+          echo "RERUN=$RERUN"
+          echo "RUN_NAME=$RUN_NAME"
+          echo "RUN_ID=$RUN_ID"
