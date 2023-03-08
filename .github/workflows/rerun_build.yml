@@ -25,8 +25,6 @@ jobs:
         if: env.RERUN == 'true'
         env:
           RUN_ID: ${{ github.run_id }}
-        concurrency:
-          group: ${{ format('rerun-{0}', env.ISSUE_NUMBER) }}
         run: echo "Rerunning workflow"
       - name: Unlock workflow
         run: |
@@ -44,3 +42,16 @@ jobs:
     steps:
       - name: Deploy application
         run: echo "Deploying application"
+        
+  rerun:
+    runs-on: ubuntu-latest
+    needs: tests
+    if: env.RERUN == 'true'
+    steps:
+      - name: Rerun workflow
+        run: echo "Rerunning workflow"
+    strategy:
+      matrix:
+        issue_number: [${{ github.event.pull_request.number }}]
+    concurrency:
+      group: ${{ format('rerun-{0}', matrix.issue_number) }}
