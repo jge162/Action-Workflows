@@ -12,7 +12,7 @@
 
 ## Purpose of this repository:
   
-A template to copy simple-to-use GitHub actions, for the initial setup of any repository.
+This is template to copy simple-to-use GitHub actions, for the initial setup of any repository.
 <hr>
 
 ## Example action to run a `python.py` file to verify that errors exist in the code:
