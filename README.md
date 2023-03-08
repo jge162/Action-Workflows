@@ -58,7 +58,7 @@ jobs:
     
 ## Lastly use a `for` loop to run multiple instances.
 
-This way you can run one or multiple python scripts.
+This way you can run one, or multiple python scripts.
 
 ```yaml
      - run: |
