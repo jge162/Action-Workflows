@@ -1,0 +1,21 @@
+name: rerun Pull Requests
+on:
+  pull_request:
+    types: [opened, synchronize]
+  issue_comment:
+    types: [created]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run tests
+        run: echo "Running tests"
+        env:
+          RERUN: ${{ github.event_name == 'issue_comment' && contains(github.event.comment.body, 'rerun build') }}
+          RUN_NAME: ${{ github.event_name == 'pull_request' && github.head_ref }}
+        if: env.RERUN == 'true'
+        with:
+          concurrency: ${{ env.RUN_NAME }}
+          run-id: ${{ github.run_id }}
