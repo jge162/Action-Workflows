@@ -23,22 +23,25 @@ jobs:
           done
       - name: Rerun workflow
         if: env.RERUN == 'true'
-        concurrency:
-          group: ${{ format('rerun-{0}', env.ISSUE_NUMBER) }}
-        run: echo "Rerunning workflow"
+        runs-on: ubuntu-latest
         env:
           RUN_ID: ${{ github.run_id }}
+        concurrency:
+          group: ${{ format('rerun-{0}', env.ISSUE_NUMBER) }}
+        steps:
+          - name: Rerun
+            run: echo "Rerunning workflow"
       - name: Unlock workflow
         run: |
           curl -s -X DELETE -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/lock"
-
+          
   build:
     runs-on: ubuntu-latest
     needs: tests
     steps:
       - name: Build application
         run: echo "Building application"
-
+        
   deploy:
     runs-on: ubuntu-latest
     needs: build
