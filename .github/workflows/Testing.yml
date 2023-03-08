@@ -16,6 +16,6 @@ jobs:
           RERUN: ${{ github.event_name == 'issue_comment' && contains(github.event.comment.body, 'rerun build') }}
           RUN_NAME: ${{ github.event_name == 'pull_request' && github.head_ref }}
         if: env.RERUN == 'true'
+        concurrency: ${{ env.RUN_NAME }}
         with:
-          concurrency: ${{ env.RUN_NAME }}
           run-id: ${{ github.run_id }}
