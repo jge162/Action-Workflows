@@ -54,6 +54,9 @@ branding:
   github-server-url:
     description: Base URL of GitHub instance.
     required: true
+  workflow:
+    description: Name of the workflow to rerun.
+    required: true
 
 runs:
   using: node16
