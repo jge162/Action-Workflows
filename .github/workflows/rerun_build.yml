@@ -9,13 +9,13 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        issue_number: [${{ github.event.pull_request.number }}]
     steps:
       - uses: actions/checkout@v2
       - name: Check if rerun is requested
         run: echo "RERUN=${{ github.event_name == 'issue_comment' && contains(github.event.comment.body, 'rerun build') }}" >> $GITHUB_ENV
-      - name: Check if pull request
-        if: github.event_name == 'pull_request'
-        run: echo "ISSUE_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
       - name: Lock workflow
         run: |
           while ! curl -s -X PUT -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -d '{"lock_reason":"rerun"}' "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/lock"; do
@@ -26,6 +26,8 @@ jobs:
         env:
           RUN_ID: ${{ github.run_id }}
         run: echo "Rerunning workflow"
+        concurrency:
+          group: ${{ format('rerun-{0}', matrix.issue_number) }}
       - name: Unlock workflow
         run: |
           curl -s -X DELETE -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/lock"
@@ -35,23 +37,9 @@ jobs:
     steps:
       - name: Build application
         run: echo "Building application"
-
   deploy:
     runs-on: ubuntu-latest
     needs: build
     steps:
       - name: Deploy application
         run: echo "Deploying application"
-        
-  rerun:
-    runs-on: ubuntu-latest
-    needs: tests
-    if: env.RERUN == 'true'
-    steps:
-      - name: Rerun workflow
-        run: echo "Rerunning workflow"
-    strategy:
-      matrix:
-        issue_number: [${{ github.event.pull_request.number }}]
-    concurrency:
-      group: ${{ format('rerun-{0}', matrix.issue_number) }}
