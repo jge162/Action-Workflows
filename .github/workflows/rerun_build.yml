@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Check if rerun is requested
-        run: echo "RERUN=${{ github.event_name == 'issue_comment' && contains(github.event.comment.body, 'rerun build') && contains(github.event.issue.number, ${{ github.event.comment.issue_number }}) }}" >> $GITHUB_ENV
+        run: echo "RERUN=${{ github.event_name == 'issue_comment' && contains(github.event.comment.body, 'rerun build') && contains(github.event.issue.number, github.event.comment.issue_number) }}" >> $GITHUB_ENV
       - name: Check if pull request
         if: github.event_name == 'pull_request'
         run: echo "RUN_NAME=${{ github.ref }}" >> $GITHUB_ENV
