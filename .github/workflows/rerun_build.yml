@@ -23,11 +23,11 @@ jobs:
           done
       - name: Rerun workflow
         if: env.RERUN == 'true'
-        concurrency:
-          group: ${{ format('rerun-{0}', env.ISSUE_NUMBER) }}
-        run: echo "Rerunning workflow"
         env:
           RUN_ID: ${{ github.run_id }}
+        run: echo "Rerunning workflow"
+        concurrency:
+          group: ${{ format('rerun-{0}', env.ISSUE_NUMBER) }}
       - name: Unlock workflow
         run: |
           curl -s -X DELETE -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/lock"
