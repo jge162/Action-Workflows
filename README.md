@@ -24,7 +24,7 @@ you can run more than one file, by separating them using commas.
    
 ## Up to you to decide on your triggers, I used `push` and `pull_request.`
 
-A good one to use is also `workflow_dispacth`, to manually run the action.
+Also, a good one to use is also `workflow_dispacth`, to manually run the action.
  
 ```yaml
 name: Run Python file
