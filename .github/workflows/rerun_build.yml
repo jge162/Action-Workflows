@@ -12,12 +12,12 @@ jobs:
       - uses: actions/checkout@v2
       - name: Check if rerun is requested
         run: echo "RERUN=${{ github.event_name == 'issue_comment' && contains(github.event.comment.body, 'rerun build') }}" >> $GITHUB_ENV
-      - name: Check if pull request
-        if: github.event_name == 'pull_request'
-        run: echo "RUN_NAME=${{ github.head_ref }}" >> $GITHUB_ENV
       - name: Rerun workflow
         if: env.RERUN == 'true'
-        run: echo "Rerunning workflow"
-        env:
-          RUN_ID: ${{ github.run_id }}
-  
+        uses: octo-org/concurrency@v2
+        with:
+          concurrency-key: "pull-request-${{ github.event.pull_request.number }}"
+          cancel-in-progress: true
+          steps: |
+            echo "Rerunning workflow"
+            echo "RUN_ID: ${{ github.run_id }}"
