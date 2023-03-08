@@ -1,4 +1,5 @@
-name: rerun Pull Requests
+name: Rerun Pull Requests
+
 on:
   pull_request:
     types: [opened, synchronize]
@@ -12,12 +13,35 @@ jobs:
       - uses: actions/checkout@v2
       - name: Check if rerun is requested
         run: echo "RERUN=${{ github.event_name == 'issue_comment' && contains(github.event.comment.body, 'rerun build') }}" >> $GITHUB_ENV
+      - name: Check if pull request
+        if: github.event_name == 'pull_request'
+        run: echo "ISSUE_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+      - name: Lock workflow
+        run: |
+          while ! curl -s -X PUT -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -d '{"lock_reason":"rerun"}' "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/lock"; do
+            sleep 5
+          done
       - name: Rerun workflow
         if: env.RERUN == 'true'
-        uses: octo-org/concurrency@v2
-        with:
-          concurrency-key: "pull-request-${{ github.event.pull_request.number }}"
-          cancel-in-progress: true
-          steps: |
-            echo "Rerunning workflow"
-            echo "RUN_ID: ${{ github.run_id }}"
+        concurrency:
+          group: ${{ format('rerun-{0}', env.ISSUE_NUMBER) }}
+        run: echo "Rerunning workflow"
+        env:
+          RUN_ID: ${{ github.run_id }}
+      - name: Unlock workflow
+        run: |
+          curl -s -X DELETE -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/lock"
+
+  build:
+    runs-on: ubuntu-latest
+    needs: tests
+    steps:
+      - name: Build application
+        run: echo "Building application"
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy application
+        run: echo "Deploying application"
