@@ -1,5 +1,5 @@
 
-name: Geo4u & Dr. Nefardio auto-approve
+name: Geo4u auto-approve
 # auto_aprove_geo4u
 on: pull_request
 
@@ -9,7 +9,7 @@ permissions:
 jobs:
   dependabot:
     runs-on: ubuntu-latest
-    if: ${{ github.actor == 'geo4u' || github.actor == 'dr-nefardio3058' }}
+    if: ${{ github.actor == 'geo4u' }}
     steps:
       - name: Dependabot metadata
         id: metadata
