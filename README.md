@@ -1,4 +1,4 @@
-## GitHub Action-workflows:    
+## Action-workflows:    
  
 ![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/jge162/Action-workflows/python_check.yml)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/jge162/Action-workflows)
@@ -12,16 +12,19 @@
 
 ## Purpose of this repository:
   
-A template to create simple to use GitHub actions on any repo for initial setup.
+This is template to copy simple-to-use GitHub actions, for the initial setup of any repository.
+<hr>
 
-## Example action to run a `python.py` file to verify no errors in code:
+## Example action to run a `python.py` file to verify that no errors exist in your code:
 
-If errors in code exist they will be listed in the actions console. Also
-you can run more than one file, seperated with commas.
+If errors exist within the code they'll be listed in the actions console. 
+
+Also
+you can run more than one file, by separating them using commas.
    
-## Up to you to decide on your triggers, I used `push` and `pull_request`
+## Up to you to decide on your triggers, I used `push` and `pull_request.`
 
-A good one to use is also `workflow_dispacth` to manually run the action.
+Also, a good trigger to use is also `workflow_dispacth`, to manually run the action.
  
 ```yaml
 name: Run Python file
@@ -36,7 +39,7 @@ on:
   
 ## Install required `dependencies.`
 
-This way your can run, Python file.
+This way your can run your Python files.
 
 ```yaml  
 jobs:
@@ -53,9 +56,9 @@ jobs:
         sudo apt-get install python3
 ```         
     
-## Lastly use a for loop to run multiple instances.
+## Lastly use a `for` loop to run multiple instances.
 
-This way you can run one or multiple python scripts.
+This way you can run one, or multiple python scripts.
 
 ```yaml
      - run: |
@@ -65,14 +68,18 @@ This way you can run one or multiple python scripts.
         for script in scripts:
             with open(script, 'r') as file:
                 exec(file.read())
-        "
 ```  
          
-## Issues and/or bugs, please create an issue to help me squash them!:
+<hr>
 
-Please report [issues](https://github.com/jge162/Action-workflows/issues/new) here for discussion and resolution please.
+## Issues and/or bugs, please create an issue to help me squash them!
 
-## License & Code of Conduct info:
+Please report issues [here](https://github.com/jge162/Action-workflows/issues/new), for discussion and resolution.
+
+## <u>License & Code of Conduct info:</u>
   
-jge162/Action-workflows is licensed under the [GNU General Public License v3.0](https://github.com/jge162/Action-workflows/blob/main/LICENSE). <br> <br>
+[jge162/Action-workflows](https://github.com/jge162/Action-workflows) is licensed under the [GNU General Public License v3.0](https://github.com/jge162/Action-workflows/blob/main/LICENSE). <br> <br>
 See also: [Code of Conduct](https://github.com/jge162/Action-workflows/blob/main/CODE_OF_CONDUCT.md).
+<br> <br>
+
+<strong>Thank you for your interest in actions-worflows!</strong> :)
