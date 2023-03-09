@@ -15,7 +15,7 @@
 This is template to copy simple-to-use GitHub actions, for the initial setup of any repository.
 <hr>
 
-## Example action to run a `python.py` file to verify that errors exist in the code:
+## Example action to run a `python.py` file to verify that no errors exist in your code:
 
 If errors exist within the code they'll be listed in the actions console. 
 
