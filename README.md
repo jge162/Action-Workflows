@@ -82,4 +82,4 @@ Please report issues [here](https://github.com/jge162/Action-workflows/issues/ne
 See also: [Code of Conduct](https://github.com/jge162/Action-workflows/blob/main/CODE_OF_CONDUCT.md).
 <br> <br>
 
-<strong>Thank you for your interest in Action-worflows!</strong> :)
+<strong>Thank you for your interest in Action-worflows!</strong>
