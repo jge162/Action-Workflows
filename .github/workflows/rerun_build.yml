@@ -1,5 +1,13 @@
 name: rerun Pull Requests
+run-name: ${{ github.head_ref }} (${{ github.actor }}) 🚀
+
+concurrency:
+  # group: rerun_concurrency_${{ github.event.pull_request.number }}
+  group: spelling-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 on:
+  workflow_dispatch:
   pull_request:
     types: [opened, synchronize]
   issue_comment:
@@ -8,28 +16,33 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
+    if: ${{ github.actor == 'jge162' }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: jge162/Action-workflows@1.1.1
       - name: Check if rerun is requested
-        run: echo "RERUN=${{ github.event_name == 'issue_comment' && contains(github.event.comment.body, 'rerun build') && contains(github.event.issue.number, github.event.comment.issue_number) }}" >> $GITHUB_ENV
-      - name: Check if pull request
-        if: github.event_name == 'pull_request'
-        run: echo "RUN_NAME=${{ github.ref }}" >> $GITHUB_ENV
-      - name: Check if workflow is running
-        id: check_workflow
-        uses: styfle/check-workflow-runs@v1
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          workflow-file: .github/workflows/rerun_build.yml
-          concurrent: false
+        if: github.event_name == 'issue_comment'
+        env:
+          COMMENT_ISSUE_NUMBER: ${{ github.event.issue.number }}
+          PR_NUMBER: ${{ github.event.issue.pull_request.number }}
+        run: echo "RERUN=${{ github.event_name == 'issue_comment' && contains(github.event.comment.body, 'rerun build') && contains(github.event.issue.number, env.COMMENT_ISSUE_NUMBER) }}" >> $GITHUB_ENV
       - name: Rerun workflow
-        if: env.RERUN == 'true' && steps.check_workflow.outputs.is_running == 'false'
+        if: env.RERUN == 'true' && env.NEXT_ISSUE_NUMBER == env.PR_NUMBER 
         run: echo "Rerunning workflow"
         env:
           RUN_ID: ${{ github.run_id }}
+          NEXT_ISSUE_NUMBER: ${{ env.COMMENT_ISSUE_NUMBER }}
+          PR_NUMBER: ${{ env.PR_NUMBER }}
+      - name: Check if pull request
+        if: github.event_name == 'pull_request'
+        run: echo "RUN_NAME=${{ github.ref }}" >> $GITHUB_ENV
+      - name: Print head ref
+        if: github.event_name == 'pull_request'
+        run: echo "HEAD_REF=${{ github.head_ref }}" >> $GITHUB_ENV
+      - name: Print run ID
+        if: always()
+        run: echo "RUN_ID=${{ github.run_id }}"
       - name: Print environment variables
         if: always()
         run: |
           echo "RERUN=$RERUN"
           echo "RUN_NAME=$RUN_NAME"
-          echo "RUN_ID=$RUN_ID"
