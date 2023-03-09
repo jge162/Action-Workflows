@@ -1,8 +1,8 @@
 name: Auto-merge Owner only
 
 on:
-  # pull_request:
-  workflow_disptach:
+  pull_request:
+  # workflow_disptach:
 
 permissions:
   contents: write
