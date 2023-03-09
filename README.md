@@ -39,7 +39,7 @@ on:
   
 ## Install required `dependencies.`
 
-This way your can run python files.
+This way your can run your Python files.
 
 ```yaml  
 jobs:
