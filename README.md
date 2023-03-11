@@ -8,7 +8,12 @@
 [![Contributors](https://img.shields.io/github/contributors/jge162/Action-workflows.svg)](https://github.com/jge162/Action-workflows/graphs/contributors) 
 [![Forks](https://img.shields.io/github/forks/jge162/Action-workflows.svg)](https://github.com/jge162/Action-workflows/network/members)
 [![Issues](https://img.shields.io/github/issues/jge162/Action-workflows.svg)](https://github.com/jge162/Action-workflows/issues) 
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/jge162/Action-workflows/graphs/commit-activity)
+![Open Source? Yes!](https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github)
+
+
 <img src="https://user-images.githubusercontent.com/31228460/218295872-1865b4ba-9c3c-4a28-bac8-0fd11c7c37f6.png" width="79%">
+
 
 ## Purpose of this repository:
   
@@ -82,4 +87,4 @@ Please report issues [here](https://github.com/jge162/Action-workflows/issues/ne
 See also: [Code of Conduct](https://github.com/jge162/Action-workflows/blob/main/CODE_OF_CONDUCT.md).
 <br> <br>
 
-<strong>Thank you for your interest in Action-worflows!</strong>
+<strong>Thank you for your interest in Action-workflows!</strong>
