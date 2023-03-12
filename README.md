@@ -79,5 +79,3 @@ Please report issues [here](https://github.com/jge162/Action-workflows/issues/ne
 [jge162/Action-workflows](https://github.com/jge162/Action-workflows) is licensed under the [GNU General Public License v3.0](https://github.com/jge162/Action-workflows/blob/main/LICENSE). <br> <br>
 See also: [Code of Conduct](https://github.com/jge162/Action-workflows/blob/main/CODE_OF_CONDUCT.md).
 <br> <br>
-
-<strong>Thank you for your interest in Action-worflows!</strong>
