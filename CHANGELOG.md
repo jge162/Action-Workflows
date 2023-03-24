@@ -1,3 +1,6 @@
+## 2.1.1 - 2023-03-24
+
+Pull request number for the release is: [#574](https://github.com/jge162/Action-workflows/pull/574)
 
 ## 1.1.1 - 2023-02-16
 
