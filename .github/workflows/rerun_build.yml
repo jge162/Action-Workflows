@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'jge162' }}
     steps:
-      - uses: jge162/Action-workflows@1.1.1
+      - uses: jge162/Action-workflows@2.1.1
       - name: Check if rerun is requested
         if: github.event_name == 'issue_comment'
         env:
