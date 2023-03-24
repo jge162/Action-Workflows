@@ -67,7 +67,7 @@ This way you can run one, or multiple python scripts.
             with open(script, 'r') as file:
                 exec(file.read())
 ```  
-         
+          
 <hr>
 
 ## Issues and/or bugs, please create an issue to help me squash them!
