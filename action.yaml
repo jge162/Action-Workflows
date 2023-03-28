@@ -15,7 +15,6 @@ branding:
       default: true
     repository:
       description: 'Owner/repo name.'
-      default: '${{ github.repository }}'
     ref:
       description: Checkout reference.
     token:
