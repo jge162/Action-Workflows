@@ -16,12 +16,16 @@ branding:
     repository:
       description: 'Owner/repo name.'
     ref:
+      default: false
       description: Checkout reference.
+      default: false
     token:
       description: Personal access token.
+      default: false
     GH_TOKEN:
       description: Personal access token.
-    ssh-key:
+      default: false
+   ssh-key:
       description: SSH key for authentication.
     ssh-known-hosts:
       description: Additional known hosts.
