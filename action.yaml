@@ -13,14 +13,14 @@ branding:
     sync-labels:
       description: Synchronize labels.
       default: true
-    # repository:
-    #  description: 'Owner/repo name.'
-    # ref:
-    #  description: Checkout reference.
-    # token:
-    #  description: Personal access token.
-    # GH_TOKEN:
-    #  description: Personal access token.
+    repository:
+      description: 'Owner/repo name.'
+    ref:
+      description: Checkout reference.
+    token:
+      description: Personal access token.
+    GH_TOKEN:
+      description: Personal access token.
     ssh-key:
       description: SSH key for authentication.
     ssh-known-hosts:
