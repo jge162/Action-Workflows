@@ -16,7 +16,7 @@ jobs:
         run: echo "::set-output name=title::${{ github.event.pull_request.title }}"
 
       - name: Python Action
-        uses: jge162/Action-workflows@2.1.2
+        uses: jge162/Action-workflows@2.1.0
 
       - name: Get latest tag
         run: |
@@ -66,7 +66,7 @@ jobs:
 
     steps:
       - name: Python Action
-        uses: jge162/Action-workflows@2.1.2
+        uses: jge162/Action-workflows@2.1.0
  
         with:
           ref: main
