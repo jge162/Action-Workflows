@@ -35,5 +35,7 @@ jobs:
             with open(script, 'r') as file:
                 exec(file.read())
         "
+      env:
+        token: ${{ secrets.WORKFLOW_SECRET }}
     # only run script if I want to check Action './resources/GitHub_action_tester.py'
     
