@@ -18,6 +18,8 @@ jobs:
     steps:
     - name: Python Action
       uses: jge162/Action-workflows@2.1.0
+      with:
+        token: ${{ secrets.WORKFLOW_SECRET }}
       
     - run: |
        echo "Install required dependencies"
@@ -26,8 +28,6 @@ jobs:
        echo "Install PyGithub module"
        pip3 install PyGithub
       shell: bash
-      env:
-        token: ${{ secrets.WORKFLOW_SECRET }}
 
     - run: |
         echo "Run, Build Application using scripts"
