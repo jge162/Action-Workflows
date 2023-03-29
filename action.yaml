@@ -6,58 +6,58 @@ branding:
   inputs:
     repo-token:
       description: Access token.
-      required: true
+      required: false
     configuration-path:
       description: Path to configuration file.
-      required: true
+      required: false
     sync-labels:
       description: Synchronize labels.
-      default: true
+      default: false
     repository:
       description: 'Owner/repo name.'
+      required: false
     ref:
-      default: false
       description: Checkout reference.
-      default: false
+      required: false
     token:
       description: Personal access token.
-      default: false
+      required: false
     GH_TOKEN:
       description: Personal access token.
-      default: false
+      required: false
    ssh-key:
       description: SSH key for authentication.
     ssh-known-hosts:
       description: Additional known hosts.
     ssh-strict:
       description: Strict host key checking.
-      default: true
+      default: false
     persist-credentials:
       description: Configure local git config.
-      default: true
+      default: false
     path:
       description: 'Relative path in workspace.'
     clean:
       description: 'Clean repo before fetching.'
-      default: true
+      default: false
     fetch-depth:
       description: 'Number of commits to fetch.'
       default: 1
     lfs:
       description: 'Download Git-LFS files.'
-      default: true
+      default: false
     submodules:
       description: 'Checkout submodules.'
-      default: true
+      default: false
     set-safe-directory:
       description: Add path to Git safe directory.
-      default: true
+      default: false
     github-server-url:
       description: Base URL of GitHub instance.
-      required: true
+      required: false
     workflow:
       description: Name of the workflow to rerun.
-      required: true
+      required: false
 
 runs:
   using: node16
