@@ -22,13 +22,12 @@ branding:
     token:
       description: Personal access token.
       required: false
-    # GH_TOKEN:
-    #   description: Personal access token.
-    #   required: false
    ssh-key:
       description: SSH key for authentication.
+      required: false
     ssh-known-hosts:
       description: Additional known hosts.
+      required: false
     ssh-strict:
       description: Strict host key checking.
       default: false
