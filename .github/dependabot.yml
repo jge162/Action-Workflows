@@ -28,15 +28,15 @@ updates:
       - "non-owner pull request"
     open-pull-requests-limit: 10
 
- # - package-ecosystem: "pip"
- #   directory: "/"
- #   schedule:
- #     interval: "daily"
- #     time: "00:00"
- #   ignore:
- #     - dependency-name: "*"
- #       update-types: ["version-update:semver-major"]
- #   labels:
- #     - "dependencies"
- #     - "automated pr"
- #     - "non-owner pull request"
+# - package-ecosystem: "pip"
+#   directory: "/"
+#   schedule:
+#     interval: "daily"
+#     time: "00:00"
+#   ignore:
+#     - dependency-name: "*"
+#       update-types: ["version-update:semver-major"]
+#   labels:
+#     - "dependencies"
+#     - "automated pr"
+#     - "non-owner pull request"
