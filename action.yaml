@@ -2,24 +2,59 @@ name: Python Action
 description: Quickly run your Python code and verify it is error-free
 author: Jeremy Escobar
 branding:
-  icon: activity
-  color: gray-dark
-inputs:
+  inputs:
   repo-token:
     description: Access token.
-    required: false
+    required: true
   configuration-path:
     description: Path to configuration file.
-    required: false
+    required: true
   sync-labels:
     description: Synchronize labels.
-    default: false
+    default: true
   repository:
     description: 'Owner/repo name.'
     default: ${{ github.repository }}
   ref:
     description: Checkout reference.
     default: ${{ github.event.ref }}
+  token:
+      description: Personal access token.
+      default: ${{ github.token }} 
+  GH_TOKEN:
+      description: Personal access token. 
+      default: ${{ github.token }} 
+  ssh-key:
+    description: SSH key for authentication.
+  ssh-known-hosts:
+    description: Additional known hosts.
+  ssh-strict:
+    description: Strict host key checking.
+    default: true
+  persist-credentials:
+    description: Configure local git config.
+    default: true
+  path:
+    description: 'Relative path in workspace.'
+  clean:
+    description: 'Clean repo before fetching.'
+    default: true
+  fetch-depth:
+    description: 'Number of commits to fetch.'
+    default: 1
+  lfs:
+    description: 'Download Git-LFS files.'
+    default: true
+  submodules:
+    description: 'Checkout submodules.'
+    default: true
+  set-safe-directory:
+    description: Add path to Git safe directory.
+    default: true
+  github-server-url:
+    description: Base URL of GitHub instance.
+    required: true
+
 runs:
   using: node16
   main: dist/index.js
