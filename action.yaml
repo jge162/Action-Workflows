@@ -7,13 +7,13 @@ branding:
 inputs:
   repo-token:
     description: Access token.
-    required: true
+    required: false
   configuration-path:
     description: Path to configuration file.
-    required: true
+    required: false
   sync-labels:
     description: Synchronize labels.
-    default: true
+    default: false
   repository:
     description: 'Owner/repo name.'
     default: ${{ github.repository }}
