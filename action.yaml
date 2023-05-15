@@ -18,21 +18,6 @@ inputs:
   ref:
     description: Checkout reference.
     required: false
-  token:
-    description: Personal access token.
-    required: false
-  ssh-key:
-    description: SSH key for authentication.
-    required: false
-  ssh-known-hosts:
-    description: Additional known hosts.
-    required: false
-  ssh-strict:
-    description: Strict host key checking.
-    default: false
-  persist-credentials:
-    description: Configure local git config.
-    default: false
   path:
     description: 'Relative path in workspace.'
   clean:
