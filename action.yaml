@@ -1,63 +1,61 @@
 name: Python Action
 description: Quickly run your Python code and verify it is error-free
 author: Jeremy Escobar
-
 branding:
-  inputs:
-    repo-token:
-      description: Access token.
-      required: false
-    configuration-path:
-      description: Path to configuration file.
-      required: false
-    sync-labels:
-      description: Synchronize labels.
-      default: false
-    repository:
-      description: 'Owner/repo name.'
-      required: false
-    ref:
-      description: Checkout reference.
-      required: false
-    token:
-      description: Personal access token.
-      required: false
-   ssh-key:
-      description: SSH key for authentication.
-      required: false
-    ssh-known-hosts:
-      description: Additional known hosts.
-      required: false
-    ssh-strict:
-      description: Strict host key checking.
-      default: false
-    persist-credentials:
-      description: Configure local git config.
-      default: false
-    path:
-      description: 'Relative path in workspace.'
-    clean:
-      description: 'Clean repo before fetching.'
-      default: false
-    fetch-depth:
-      description: 'Number of commits to fetch.'
-      default: 1
-    lfs:
-      description: 'Download Git-LFS files.'
-      default: false
-    submodules:
-      description: 'Checkout submodules.'
-      default: false
-    set-safe-directory:
-      description: Add path to Git safe directory.
-      default: false
-    github-server-url:
-      description: Base URL of GitHub instance.
-      required: false
-    workflow:
-      description: Name of the workflow to rerun.
-      required: false
-
+inputs:
+  repo-token:
+    description: Access token.
+    required: false
+  configuration-path:
+    description: Path to configuration file.
+    required: false
+  sync-labels:
+    description: Synchronize labels.
+    default: false
+  repository:
+    description: 'Owner/repo name.'
+    required: false
+  ref:
+    description: Checkout reference.
+    required: false
+  token:
+    description: Personal access token.
+    required: false
+  ssh-key:
+    description: SSH key for authentication.
+    required: false
+  ssh-known-hosts:
+    description: Additional known hosts.
+    required: false
+  ssh-strict:
+    description: Strict host key checking.
+    default: false
+  persist-credentials:
+    description: Configure local git config.
+    default: false
+  path:
+    description: 'Relative path in workspace.'
+  clean:
+    description: 'Clean repo before fetching.'
+    default: false
+  fetch-depth:
+    description: 'Number of commits to fetch.'
+    default: 1
+  lfs:
+    description: 'Download Git-LFS files.'
+    default: false
+  submodules:
+    description: 'Checkout submodules.'
+    default: false
+  set-safe-directory:
+    description: Add path to Git safe directory.
+    default: false
+  github-server-url:
+    description: Base URL of GitHub instance.
+    required: false
+  workflow:
+    description: Name of the workflow to rerun.
+    required: false
 runs:
   using: node16
   main: dist/index.js
