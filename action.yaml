@@ -2,43 +2,24 @@ name: Python Action
 description: Quickly run your Python code and verify it is error-free
 author: Jeremy Escobar
 branding:
+  icon: activity
+  color: gray-dark
 inputs:
+  repo-token:
+    description: Access token.
+    required: true
   configuration-path:
     description: Path to configuration file.
-    required: false
+    required: true
   sync-labels:
     description: Synchronize labels.
-    default: false
+    default: true
   repository:
     description: 'Owner/repo name.'
-    required: false
+    default: ${{ github.repository }}
   ref:
     description: Checkout reference.
-    required: false
-  path:
-    description: 'Relative path in workspace.'
-  clean:
-    description: 'Clean repo before fetching.'
-    default: false
-  fetch-depth:
-    description: 'Number of commits to fetch.'
-    default: 1
-  lfs:
-    description: 'Download Git-LFS files.'
-    default: false
-  submodules:
-    description: 'Checkout submodules.'
-    default: false
-  set-safe-directory:
-    description: Add path to Git safe directory.
-    default: false
-  github-server-url:
-    description: Base URL of GitHub instance.
-    required: false
-  workflow:
-    description: Name of the workflow to rerun.
-    required: false
-    
+    default: ${{ github.event.ref }}
 runs:
   using: node16
   main: dist/index.js
