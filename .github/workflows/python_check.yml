@@ -1,41 +1,35 @@
-# Run file to verify GitHub action so
-# you can see latest run, and if it
-# ran successfully.
 name: Python Action
 
 on:
   schedule:
-  #- cron: '0 0 * * 6'
-  # action will run once a week on Saturday at 12:00 am 
-  - cron: '0 0 1 * *'
-  # action will run once a month on 1st day at 12:00 am 
+    # action will run once a week on Saturday at 12:00 am
+    - cron: '0 0 * * 6'
   workflow_dispatch:
     # manual runs here
+
 jobs:
   Python-analyze:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Python Action
-      uses: jge162/Action-workflows@2.1.0
-      with:
-        token: ${{ secrets.WORKFLOW_SECRET }}
-      
-    - run: |
-       echo "Install required dependencies"
-       sudo apt-get update
-       sudo apt-get install python3
-       echo "Install PyGithub module"
-       pip3 install PyGithub
-      shell: bash
+      - name: Python Action
+        uses: jge162/Action-workflows@2.1.0
+        with:
+          token: ''
 
-    - run: |
-        echo "Run, Build Application using scripts"
-        python3 -c "
-        scripts = [ './resources/test.py' ]
-        for script in scripts:
-            with open(script, 'r') as file:
-                exec(file.read())
-        "
-    # only run script if I want to check Action './resources/GitHub_action_tester.py'
-    
+      - run: |
+          echo "Install required dependencies"
+          sudo apt-get update
+          sudo apt-get install python3
+          echo "Install PyGithub module"
+          pip3 install PyGithub
+        shell: bash
+
+      - run: |
+          echo "Run, Build Application using scripts"
+          python3 -c "
+          scripts = ['./resources/test.py']
+          for script in scripts:
+              with open(script, 'r') as file:
+                  exec(file.read())
+          "
