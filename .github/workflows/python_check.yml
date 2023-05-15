@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Python Action
-        uses: jge162/Action-workflows@2.1.0
+        uses: jge162/Action-RunScript@1.0
         with:
           token: ${{ secrets.WORKFLOW_SECRET }}
           
