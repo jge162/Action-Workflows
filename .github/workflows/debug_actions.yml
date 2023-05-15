@@ -1,0 +1,34 @@
+
+name: GitHub Action Debug Checker
+on:
+  push:
+    branches:
+      - '**'
+      - main
+
+jobs:
+  check_actions:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Debug code with print statements
+        run: |
+          # Collect all the .yml files in the repository
+          files=$(find . -type f -name '*.yml')
+          for file in $files; do
+            echo "Checking $file"
+            echo "-----------------------------"
+            if yamllint "$file"; then
+              echo "All good, no issues found in '$file'"
+            fi
+            echo "-----------------------------"
+          done
+      
