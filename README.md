@@ -43,7 +43,7 @@ jobs:
 
     steps:
     - name: Python Action
-      uses: jge162/Action-workflows@v2.1.1
+      uses: jge162/Action-workflows@v2.1.0
       with:
           token: ${{ secrets.GITHUB_SECRET }}
 
