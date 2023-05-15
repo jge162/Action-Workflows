@@ -1,35 +1,14 @@
-name: Python Action
+name: Hello Action
 
-on:
-  schedule:
-    # action will run once a week on Saturday at 12:00 am
-    - cron: '0 0 * * 6'
-  workflow_dispatch:
-    # manual runs here
+on: [push]
 
 jobs:
-  Python-analyze:
+  build:
     runs-on: ubuntu-latest
-
+    
     steps:
-      - name: Python Action
-        uses: jge162/Action-workflows@2.1.0
-        with:
-          token: ${{ secrets.WORKFLOW_SECRET }}
-          
-      - run: |
-          echo "Install required dependencies"
-          sudo apt-get update
-          sudo apt-get install python3
-          echo "Install PyGithub module"
-          pip3 install PyGithub
-        shell: bash
-
-      - run: |
-          echo "Run, Build Application using scripts"
-          python3 -c "
-          scripts = ['./resources/test.py']
-          for script in scripts:
-              with open(script, 'r') as file:
-                  exec(file.read())
-          "
+    - name: Say Hello
+      run: echo "Hello"
+      
+    - name: Python Action
+      uses: jge162/Action-workflows@2.1.0
