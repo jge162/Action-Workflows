@@ -1,10 +1,11 @@
 
 name: GitHub Action Debug Checker
 on:
-  push:
+  pull_request:
     branches:
       - '**'
       - main
+  workflow_dispatch:
 
 jobs:
   check_actions:
