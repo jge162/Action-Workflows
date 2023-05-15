@@ -15,8 +15,8 @@ jobs:
       - name: Python Action
         uses: jge162/Action-workflows@2.1.0
         with:
-          token: ''
-
+          token: ${{ secrets.WORKFLOW_SECRET }}
+          
       - run: |
           echo "Install required dependencies"
           sudo apt-get update
