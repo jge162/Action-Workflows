@@ -3,9 +3,6 @@ description: Quickly run your Python code and verify it is error-free
 author: Jeremy Escobar
 branding:
 inputs:
-  repo-token:
-    description: Access token.
-    required: false
   configuration-path:
     description: Path to configuration file.
     required: false
@@ -41,6 +38,7 @@ inputs:
   workflow:
     description: Name of the workflow to rerun.
     required: false
+    
 runs:
   using: node16
   main: dist/index.js
