@@ -23,4 +23,5 @@ jobs:
         run: npm install axios
 
       - name: Remove GitHub Actions Comments
-        run: node remove-timeline-events.js
+        run: |
+          node remove-timeline-events.js ${{ github.event.number }}
