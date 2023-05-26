@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 async function removeEvents() {
-  const authToken = 'YOUR_PERSONAL_ACCESS_TOKEN';
+  const authToken = ${{ secrets.WORKFLOW_SECRET }};
   const prNumber = process.argv[2];
   const owner = process.env.GITHUB_REPOSITORY_OWNER;
   const repo = process.env.GITHUB_REPOSITORY;
