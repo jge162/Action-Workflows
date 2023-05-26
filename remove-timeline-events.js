@@ -2,12 +2,13 @@ const axios = require('axios');
 
 async function removeEvents() {
   const authToken = 'YOUR_PERSONAL_ACCESS_TOKEN';
-  const prNumber = process.env.GITHUB_EVENT_NAME === 'pull_request' ? process.env.GITHUB_EVENT_NUMBER : null;
+  const action = process.env.GITHUB_EVENT_NAME;
+  const prNumber = process.env.GITHUB_EVENT_NUMBER;
   const owner = process.env.GITHUB_REPOSITORY_OWNER;
   const repo = process.env.GITHUB_REPOSITORY;
 
   try {
-    if (prNumber) {
+    if (action === 'pull_request' && prNumber) {
       // Fetch comments for the pull request
       const response = await axios.get(`https://api.github.com/repos/${owner}/${repo}/issues/${prNumber}/comments`, {
         headers: {
@@ -26,7 +27,7 @@ async function removeEvents() {
         }
       }
     } else {
-      console.log('Not a pull request event. Skipping comment removal.');
+      console.log('Not a pull request event or missing pull request number. Skipping comment removal.');
     }
   } catch (error) {
     console.error('Error removing comments:', error);
