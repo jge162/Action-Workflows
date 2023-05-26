@@ -2,13 +2,12 @@ const axios = require('axios');
 
 async function removeEvents() {
   const authToken = 'YOUR_PERSONAL_ACCESS_TOKEN';
-  const action = process.env.GITHUB_EVENT_NAME;
-  const prNumber = process.env.GITHUB_EVENT_NUMBER;
+  const prNumber = process.argv[2];
   const owner = process.env.GITHUB_REPOSITORY_OWNER;
   const repo = process.env.GITHUB_REPOSITORY;
 
   try {
-    if (action === 'pull_request' && prNumber) {
+    if (prNumber) {
       // Fetch comments for the pull request
       const response = await axios.get(`https://api.github.com/repos/${owner}/${repo}/issues/${prNumber}/comments`, {
         headers: {
