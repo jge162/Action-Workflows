@@ -1,15 +1,13 @@
-name: Remove Noisy Timeline Events
+name: Clean Up GitHub Actions Comments
+
 on:
-  push:
-    branches:
-      - main
   pull_request:
     types:
       - opened
-      - synchronize
+      - closed
 
 jobs:
-  remove-events:
+  cleanup:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,5 +22,5 @@ jobs:
       - name: Install dependencies
         run: npm install axios
 
-      - name: Remove Noisy Timeline Events
+      - name: Remove GitHub Actions Comments
         run: node remove-timeline-events.js
