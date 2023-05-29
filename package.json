@@ -33,8 +33,7 @@
     "@actions/github": "^5.1.1",
     "@actions/io": "^1.1.2",
     "@actions/tool-cache": "^2.0.1",
-    "uuid": "^9.0.0",
-    "npm-changelog": "^9.4.2"
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/uuid": "^9.0.0",
