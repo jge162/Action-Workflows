@@ -29,7 +29,7 @@ jobs:
       contents: write
     steps:
       - name: Python Action
-        uses: jge162/Action-workflows@2.1.0
+      - uses: jge162/Action-RunScript@2.0.0
 
       - name: Get pull request number
         id: get_pull_request_number
