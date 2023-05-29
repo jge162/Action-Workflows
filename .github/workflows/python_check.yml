@@ -2,6 +2,9 @@
 name: Python Action
 
 on:
+  push:
+    branches: [ "main" ]
+
   schedule:
     # action will run once a week on Saturday at 12:00 am
     - cron: '0 0 * * 6'
