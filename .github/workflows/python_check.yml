@@ -3,7 +3,7 @@ name: Python Action
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "default" ]
 
   schedule:
     # action will run once a week on Saturday at 12:00 am
