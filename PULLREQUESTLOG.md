@@ -1,3 +1,7 @@
+## refs/pull/620/merge - 2023-06-03
+
+Pull request number for auto-merge is: [#620](https://github.com/jge162/Action-Workflows/pull/620)
+
 ## refs/pull/618/merge - 2023-05-29
 
 Pull request number for auto-merge is: [#618](https://github.com/jge162/Action-Workflows/pull/618)
