@@ -1,10 +1,11 @@
 name: Clean Up GitHub Actions Comments
 
 on:
-  pull_request:
-    types:
-      - opened
-      - closed
+  # pull_request:
+    #types:
+      #- opened
+      #- closed
+  workflow_dispatch:
 
 jobs:
   cleanup:
