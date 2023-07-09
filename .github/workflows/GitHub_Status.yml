@@ -9,7 +9,7 @@ on:
     - cron: '0 1,13 * * 1' # Runs at 1 AM and 1 PM UTC on Monday (1)
     - cron: '0 1,13 * * 3' # Runs at 1 AM and 1 PM UTC on Wednesday (3)
     - cron: '0 1,13 * * 5' # Runs at 1 AM and 1 PM UTC on Friday (5)
-    - cron: '0 1,13 * * 7' # Runs at 1 AM and 1 PM UTC on Sunday (7)
+    - cron: '0 1,13 * * 6' # Runs at 1 AM and 1 PM UTC on Sunday (7)
   workflow_dispatch:
   
 jobs:
