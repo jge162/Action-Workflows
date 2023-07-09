@@ -2,16 +2,21 @@ name: GitHub Status
 
 on:
   schedule:
-    - cron: '${{ random(30) }} ${{ random(24) }} * * *' # Runs at a random minute (0-59) and a random hour (0-23) every day
-    - cron: '${{ random(30) }} ${{ random(24) }} * * *' # Runs at a random minute (0-59) and a random hour (0-23) every day
-    - cron: '${{ random(30) }} ${{ random(24) }} * * *' # Runs at a random minute (0-59) and a random hour (0-23) every day
-    - cron: '${{ random(30) }} ${{ random(24) }} * * *' # Runs at a random minute (0-59) and a random hour (0-23) every day
+    - cron: '0 1,13 * * 2' # Runs at 1 AM and 1 PM UTC on Tuesday (2)
+    - cron: '0 1,13 * * 3' # Runs at 1 AM and 1 PM UTC on Wednesday (3)
+    - cron: '0 1,13 * * 5' # Runs at 1 AM and 1 PM UTC on Friday (5)
+    - cron: '0 1,13 * * 6' # Runs at 1 AM and 1 PM UTC on Saturday (6)
+    - cron: '0 1,13 * * 1' # Runs at 1 AM and 1 PM UTC on Monday (1)
+    - cron: '0 1,13 * * 3' # Runs at 1 AM and 1 PM UTC on Wednesday (3)
+    - cron: '0 1,13 * * 5' # Runs at 1 AM and 1 PM UTC on Friday (5)
+    - cron: '0 1,13 * * 7' # Runs at 1 AM and 1 PM UTC on Sunday (7)
   workflow_dispatch:
   
 jobs:
   check-api-status:
     runs-on: ubuntu-latest
     steps:
+      # Steps for checking API status and committing changes...    steps:
       # Steps for checking API status and committing changes...
       - name: Checkout repository
         uses: actions/checkout@v2
