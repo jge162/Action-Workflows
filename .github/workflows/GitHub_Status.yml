@@ -32,7 +32,7 @@ jobs:
 
       - name: Count Commits
         run: |
-          commit_count=$(git log --oneline --author="<jge162>" --since="1 week ago" | wc -l)
+          commit_count=$(git rev-list --count HEAD --author="<jge162>" --since="1 week ago")
           echo "Commit count: $commit_count"
 
       - name: Commit changes
