@@ -30,6 +30,11 @@ jobs:
         env:
           TOKEN: ${{ secrets.WORKFLOW_SECRET }}
 
+      - name: Count Commits
+        run: |
+          commit_count=$(git log --oneline --author="<jge162>" --since="1 week ago" | wc -l)
+          echo "Commit count: $commit_count"
+
       - name: Commit changes
         run: |
           commit_count=$(git log --oneline --author="<jge162>" --since="1 week ago" | wc -l)
