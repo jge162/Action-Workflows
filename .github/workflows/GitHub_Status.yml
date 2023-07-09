@@ -2,7 +2,7 @@ name: GitHub Status
 
 on:
   schedule:
-    - cron: '0 1 1,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30 * *' 
+    - cron: '0 1 1,2,4,5,6,7,9,10,11,13,14,16,18,19,21,22,24,25,27,28,29,30 * *' 
     # Runs at 1 AM UTC on the 1st, 2nd, 4th, 6th, 8th, 10th, 12th, 14th, 16th, 18th, 20th, 22nd, 24th, 26th, 28th, and 30th day of each month
   workflow_dispatch:
   
