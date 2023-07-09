@@ -1,7 +1,7 @@
 name: GitHub Status
 on:
   schedule:
-    - cron: ${{ secrets.CRON_SECRET }}
+    - cron: ${{ env.CRON_EXPRESSION }}
   workflow_dispatch:
   
 jobs:
