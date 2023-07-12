@@ -79,4 +79,4 @@ Please report issues [here](https://github.com/jge162/Action-workflows/issues/ne
 See also: [Code of Conduct](https://github.com/jge162/Action-workflows/blob/main/CODE_OF_CONDUCT.md).
 <br> <br>
 
-Designed with 💙 by [@jermyiah™](https://gothub.com/jge162)
+Designed with 💙 by [@jermyiah™](https://github.com/jge162)
