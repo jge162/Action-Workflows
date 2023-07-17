@@ -41,15 +41,18 @@ jobs:
         run: |
           git config --local user.email "escobarjeremy@csu.fullerton.edu"
           git config --local user.name "jge162"
+        unless: steps.package_updates.outputs.updates == 'false'
 
       - name: Commit changes
         if: steps.package_updates.outputs.updates == 'true'
         run: |
           git add package.json
           git commit -m "Update package.json" --no-verify
+        unless: steps.package_updates.outputs.updates == 'false'
 
       - name: Push changes
         if: steps.package_updates.outputs.updates == 'true'
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.WORKFLOW_SECRET }}
+        unless: steps.package_updates.outputs.updates == 'false'
