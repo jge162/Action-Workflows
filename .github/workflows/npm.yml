@@ -22,12 +22,19 @@ jobs:
         run: npm install
 
       - name: Check for package updates
+        id: package_updates
         run: |
           if [[ -f package.json ]]; then
             npx npm-check-updates --upgrade --packageFile package.json
+            echo "::set-output name=updates::true"
           else
+            echo "::set-output name=updates::false"
             echo "No package.json file found in the root folder."
           fi
+
+      - name: Skip if no updates
+        if: steps.package_updates.outputs.updates == 'false'
+        run: echo "No package updates found. Skipping remaining steps."
 
       - name: Configure Git
         run: |
