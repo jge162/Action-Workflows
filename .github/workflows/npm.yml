@@ -22,37 +22,24 @@ jobs:
         run: npm install
 
       - name: Check for package updates
-        id: package_updates
         run: |
           if [[ -f package.json ]]; then
             npx npm-check-updates --upgrade --packageFile package.json
-            echo "::set-output name=updates::true"
           else
-            echo "::set-output name=updates::false"
             echo "No package.json file found in the root folder."
           fi
 
-      - name: Skip if no updates
-        if: steps.package_updates.outputs.updates == 'false'
-        run: echo "No package updates found. Skipping remaining steps."
-
       - name: Configure Git
-        if: steps.package_updates.outputs.updates == 'true'
         run: |
           git config --local user.email "escobarjeremy@csu.fullerton.edu"
           git config --local user.name "jge162"
-        unless: steps.package_updates.outputs.updates == 'false'
 
       - name: Commit changes
-        if: steps.package_updates.outputs.updates == 'true'
         run: |
           git add package.json
           git commit -m "Update package.json" --no-verify
-        unless: steps.package_updates.outputs.updates == 'false'
 
       - name: Push changes
-        if: steps.package_updates.outputs.updates == 'true'
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.WORKFLOW_SECRET }}
-        unless: steps.package_updates.outputs.updates == 'false'
