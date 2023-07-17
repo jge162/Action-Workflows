@@ -2,12 +2,14 @@ name: Update Package.json
 
 on:
   schedule:
-    - cron: '0 0 * * 6'
+    - cron: '0 9 * * *'
   workflow_dispatch:
 
 jobs:
   update_package_json:
     runs-on: ubuntu-latest
+    outputs:
+      has_updates: ${{ steps.check_updates.outputs.has_updates }}
 
     steps:
       - name: Checkout Package.json
@@ -22,9 +24,14 @@ jobs:
         run: npm install
 
       - name: Check for package updates
+        id: check_updates
         run: |
           if [[ -f package.json ]]; then
-            npx npm-check-updates --upgrade --packageFile package.json
+            OUTPUT=$(npx npm-check-updates --upgrade --packageFile package.json)
+            echo "$OUTPUT"
+            if [[ $OUTPUT == *"Upgraded"* ]]; then
+              echo "::set-output name=has_updates::true"
+            fi
           else
             echo "No package.json file found in the root folder."
           fi
@@ -35,11 +42,13 @@ jobs:
           git config --local user.name "jge162"
 
       - name: Commit changes
+        if: steps.check_updates.outputs.has_updates == 'true'
         run: |
           git add package.json
           git commit -m "Update package.json" --no-verify
 
       - name: Push changes
+        if: steps.check_updates.outputs.has_updates == 'true'
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.WORKFLOW_SECRET }}
