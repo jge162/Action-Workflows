@@ -51,4 +51,4 @@ jobs:
         if: steps.check_updates.outputs.has_updates == 'true'
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.WORKFLOW_SECRET }}
+          github_token: ${{ secrets.WORKFLOW_TOKEN }}
