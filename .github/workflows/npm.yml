@@ -38,7 +38,7 @@ jobs:
 
       - name: Configure Git
         run: |
-          git config --local user.email "${{ secrets.EMAIL_SECRET }}"
+          git config --local user.email "escobarjeremy@csu.fullerton.edu"
           git config --local user.name "jge162"
 
       - name: Commit changes
