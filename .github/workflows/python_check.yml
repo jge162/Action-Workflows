@@ -2,12 +2,6 @@
 name: Python Action
 
 on:
-  push:
-    branches: [ "default" ]
-
-  schedule:
-    # action will run once a week on Saturday at 12:00 am
-    - cron: '0 0 * * 6'
   workflow_dispatch:
     # manual runs here
 
