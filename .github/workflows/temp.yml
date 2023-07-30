@@ -15,6 +15,8 @@ jobs:
     steps:
     - name: Python Action
       uses: jge162/Action-workflows@2.1.0
+      with:
+        token: ${{ secrets.WORKFLOW_SECRET }}
 
     - run: |
         echo "Install required dependencies" 
@@ -31,5 +33,4 @@ jobs:
         for script in scripts:
             with open(script, 'r') as file:
                 exec(file.read())"
-    env:
-      token: ${{ secrets.WORKFLOW_SECRET }}
+
