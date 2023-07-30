@@ -38,8 +38,8 @@ jobs:
         sudo apt-get update
         sudo apt-get install python3    
     
-        # Lastly use a `for` loop to run multiple instances of Python scripts.
-        # This way you can run one, or multiple python scripts.
+        #Lastly use a `for` loop to run multiple instances of Python scripts.
+        #This way you can run one, or multiple python scripts.
 
      - run: |
         echo "Run, Build Application using scripts"
