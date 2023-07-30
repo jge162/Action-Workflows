@@ -16,8 +16,9 @@
 >If errors exist within the code they'll be listed in the actions console.
 >Also you can run more than one file, by separating them using commas.
    
-## Up to you to decide on your triggers, I used `push` and `pull_request.`
+## You decide on which triggers to use for `push` and `pull_request.`
 
+>[!NOTE]\
 >Also, a good trigger to use is also `workflow_dispacth`, to manually run the action.
  
 ```yaml
@@ -29,13 +30,7 @@ on:
   pull_request:
     branches:
       - main
-```         
-  
-## Install required `dependencies.`
 
-This way your can run your Python files.
-
-```yaml  
 jobs:
   build-and-analyze:
     runs-on: ubuntu-latest
@@ -52,9 +47,9 @@ jobs:
         sudo apt-get install python3
 ```         
     
-## Lastly use a `for` loop to run multiple instances.
+## Lastly use a `for` loop to run multiple instances of Python scripts.
 
-This way you can run one, or multiple python scripts.
+>This way you can run one, or multiple python scripts.
 
 ```yaml
      - run: |
@@ -64,13 +59,14 @@ This way you can run one, or multiple python scripts.
         for script in scripts:
             with open(script, 'r') as file:
                 exec(file.read())
-```  
-          
-<hr>
+```
 
-## Issues and/or bugs, please create an issue to help me squash them!
+---
 
-Please report issues [here](https://github.com/jge162/Action-workflows/issues/new), for discussion and resolution.
+## Issues and/or bugs, Create one to Help me squash them!
+
+>[!IMPORTANT]\
+>Please report issues [here](https://github.com/jge162/Action-workflows/issues/new), for discussion and resolution.
 
 ## <u>License & Code of Conduct info:</u>
   
@@ -78,4 +74,5 @@ Please report issues [here](https://github.com/jge162/Action-workflows/issues/ne
 See also: [Code of Conduct](https://github.com/jge162/Action-workflows/blob/main/CODE_OF_CONDUCT.md).
 <br> <br>
 
-Designed with 💙 by [@jermyiah™](https://github.com/jge162)
+>[!WARNING]\
+>Designed with 💙 by [@jermyiah™](https://github.com/jge162)
