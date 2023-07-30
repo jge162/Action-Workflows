@@ -2,7 +2,6 @@
     
 [![Python Action](https://github.com/jge162/Action-Workflows/actions/workflows/python_check.yml/badge.svg)](https://github.com/jge162/Action-Workflows/actions/workflows/python_check.yml)
 ![GitHub](https://img.shields.io/github/license/jge162/Action-workflows)
-
 ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/jge162/Action-workflows)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/jge162/Action-workflows)
 ![GitHub](https://img.shields.io/github/license/jge162/Action-workflows?color=purple)
