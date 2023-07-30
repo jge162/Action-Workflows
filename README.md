@@ -30,7 +30,9 @@ jobs:
 
     steps:
     - name: Python Action
-      uses: jge162/Action-workflows@v2.1.0
+      uses: jge162/Action-workflows@2.1.0
+      with:
+        token: ${{ secrets.GITHUB_SECRET }}
 
     - run: |
         echo "Install required dependencies" 
@@ -48,8 +50,6 @@ jobs:
             with open(script, 'r') as file:
                 exec(file.read())"
 
-      env:
-        GITHUB_SECRET: ${{ secrets.GITHUB_SECRET }}
 ```
 
 ---
