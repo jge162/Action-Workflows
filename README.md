@@ -9,7 +9,6 @@
 
 >[!IMPORTANT]\  
 >This is template to copy simple-to-use GitHub actions, for the initial setup of any repository.
-<hr>
 
 ## Example action to run a `python.py` file to verify that no errors exist in your code:
 
