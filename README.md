@@ -8,7 +8,7 @@
 ## Purpose of this repository:
 
 >[!IMPORTANT]\
->This is template to copy simple-to-use GitHub actions, for the initial setup of any repository.
+>This is a template for copying simple-to-use GitHub actions, designed for the initial setup of any repository.
 
 ## Example action to run a `python.py` file to verify that no errors exist in your code:
 
