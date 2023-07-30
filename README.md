@@ -11,7 +11,7 @@
 >[!NOTE]\
 >GitHub Action test case below: If errors exist within the code they'll be listed in the actions console.
 >Also you can run more than one file, by separating them using commas.
->A good trigger to use is also `workflow_dispacth`, to manually run the action.
+>A good trigger to use is also `workflow_dispatch:`, to manually run the action.
  
 ```yaml
 name: Run Python file
