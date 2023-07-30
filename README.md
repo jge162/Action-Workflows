@@ -36,14 +36,11 @@ jobs:
     - run: |
         echo "Install required dependencies" 
         sudo apt-get update
-        sudo apt-get install python3
-```         
+        sudo apt-get install python3    
     
-## Lastly use a `for` loop to run multiple instances of Python scripts.
+        # Lastly use a `for` loop to run multiple instances of Python scripts.
+        # This way you can run one, or multiple python scripts.
 
->This way you can run one, or multiple python scripts.
-
-```yaml
      - run: |
         echo "Run, Build Application using scripts"
         python3 -c "
