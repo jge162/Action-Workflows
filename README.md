@@ -6,20 +6,20 @@
 <img src="https://user-images.githubusercontent.com/31228460/218295872-1865b4ba-9c3c-4a28-bac8-0fd11c7c37f6.png" width="79%">
 
 ## Purpose of this repository:
-  
-This is template to copy simple-to-use GitHub actions, for the initial setup of any repository.
+
+>[!IMPORTANT]\  
+>This is template to copy simple-to-use GitHub actions, for the initial setup of any repository.
 <hr>
 
 ## Example action to run a `python.py` file to verify that no errors exist in your code:
 
-If errors exist within the code they'll be listed in the actions console. 
-
-Also
-you can run more than one file, by separating them using commas.
+>[!NOTE]\
+>If errors exist within the code they'll be listed in the actions console.
+>Also you can run more than one file, by separating them using commas.
    
 ## Up to you to decide on your triggers, I used `push` and `pull_request.`
 
-Also, a good trigger to use is also `workflow_dispacth`, to manually run the action.
+>Also, a good trigger to use is also `workflow_dispacth`, to manually run the action.
  
 ```yaml
 name: Run Python file
