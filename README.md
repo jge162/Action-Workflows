@@ -9,7 +9,7 @@
 >This is **Repository** is a template for copying simple-to-use GitHub actions, designed for the initial setup of any repository.
 
 >[!NOTE]\
->If errors exist within the code they'll be listed in the actions console.
+>GitHub Action test case below: If errors exist within the code they'll be listed in the actions console.
 >Also you can run more than one file, by separating them using commas.
 >A good trigger to use is also `workflow_dispacth`, to manually run the action.
  
