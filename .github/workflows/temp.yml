@@ -32,4 +32,4 @@ jobs:
             with open(script, 'r') as file:
                 exec(file.read())"
     env:
-        GITHUB_SECRET: ${{ secrets.WORKFLOW_SECRET }}
+      token: ${{ secrets.WORKFLOW_SECRET }}
