@@ -12,13 +12,11 @@
 
 ## Example action to run a `python.py` file to verify that no errors exist in your code:
 
->[!NOTE]\
 >If errors exist within the code they'll be listed in the actions console.
 >Also you can run more than one file, by separating them using commas.
    
 ## You decide on which triggers to use for `push` and `pull_request.`
 
->[!NOTE]\
 >Also, a good trigger to use is also `workflow_dispacth`, to manually run the action.
  
 ```yaml
