@@ -15,6 +15,7 @@
  
 ```yaml
 name: Run Python file
+
 on:
   push:
     branches:
@@ -30,24 +31,25 @@ jobs:
     steps:
     - name: Python Action
       uses: jge162/Action-workflows@v2.1.0
-      with:
-          token: ${{ secrets.GITHUB_SECRET }}
 
     - run: |
         echo "Install required dependencies" 
         sudo apt-get update
         sudo apt-get install python3    
     
-        #Lastly use a `for` loop to run multiple instances of Python scripts.
-        #This way you can run one, or multiple python scripts.
+        # Lastly use a `for` loop to run multiple instances of Python scripts.
+        # This way you can run one, or multiple python scripts.
 
-     - run: |
+    - run: |
         echo "Run, Build Application using scripts"
         python3 -c "
         scripts = ['./script.py', './script2.py'] 
         for script in scripts:
             with open(script, 'r') as file:
-                exec(file.read())
+                exec(file.read())"
+
+      env:
+        GITHUB_SECRET: ${{ secrets.GITHUB_SECRET }}
 ```
 
 ---
