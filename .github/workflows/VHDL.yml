@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Setup GHDL
         uses: ghdl/setup-ghdl-ci@master
       - name: Run VHDL code
