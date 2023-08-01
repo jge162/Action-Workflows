@@ -9,7 +9,7 @@ jobs:
   Update_Main_Branch:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Make changes to pull request
         run: date "+%Y-%m-%d %H:%M:%S" > ./resources/report.txt
       - name: Create Pull Request
