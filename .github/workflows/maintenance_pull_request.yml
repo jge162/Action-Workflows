@@ -1,8 +1,8 @@
 name: Keep main branch up_to_date
 
 on:
-  schedule:
-    - cron: '0 0 1 * *' # Run once a month at 12 PM UTC
+  #schedule:
+   # - cron: '0 0 1 * *' # Run once a month at 12 PM UTC
   workflow_dispatch:
 
 jobs:
