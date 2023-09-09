@@ -14,7 +14,7 @@ jobs:
     if: github.event.review.state == 'approved' && github.event.pull_request.user.login == 'geo4u'
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: main
     
