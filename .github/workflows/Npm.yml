@@ -1,0 +1,33 @@
+name: Update Dependencies
+
+on:
+  push:
+    branches:
+      - main # Adjust to your main branch name
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14 # Adjust to your Node.js version
+
+    - name: Install project dependencies
+      run: npm install
+
+    - name: Update dependencies
+      run: npm update
+
+    - name: Commit changes
+      run: |
+        git config --local user.email "escobarjeremy@csu.fullerton.edu"
+        git config --local user.name "jge162"
+        git add package.json package-lock.json # or your dependency files
+        git commit -m "Update dependencies"
+        git push
