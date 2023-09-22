@@ -8,10 +8,10 @@
 <img src="https://user-images.githubusercontent.com/31228460/218295872-1865b4ba-9c3c-4a28-bac8-0fd11c7c37f6.png" width="79%">
 
 >[!IMPORTANT]\
->This is **Repository** is a template for copying simple-to-use GitHub actions, designed for the initial setup of any repository.
+>This is **Repository** is a template for copying simple-to-use GitHub actions, designed for the initial setup of any repository!
 
 >[!NOTE]\
->GitHub Action test case below: If errors exist within the code they'll be listed in the actions console.
+>GitHub Action test case below: If errors exist within the code they'll be listed in the actions console!
 >Also you can run more than one file, by separating them using commas.
 >A good trigger to use is also `workflow_dispatch:`, to manually run the action.
  
