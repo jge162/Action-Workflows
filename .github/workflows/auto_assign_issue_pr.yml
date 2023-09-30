@@ -15,5 +15,5 @@ jobs:
     if: ${{ (github.event.pull_request.user.login != 'jge162') && (github.actor != 'dependabot[bot]') }} 
     # if user is dependabot skip this action
     steps:
-      - uses: toshimaru/auto-author-assign@v1.6.2
+      - uses: toshimaru/auto-author-assign@v2.0.1
         
