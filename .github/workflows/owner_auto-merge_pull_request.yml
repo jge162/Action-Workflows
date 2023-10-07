@@ -46,7 +46,7 @@ jobs:
             Pull request number for auto-merge is: [#${{ steps.get_pull_request_number.outputs.pull_request_number }}](${{ github.event.pull_request.html_url }})
 
       - name: Commit updated PULLREQUESTLOG
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
           branch: main
           commit_message: Update PULLREQUESTLOG
