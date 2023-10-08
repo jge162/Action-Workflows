@@ -1,9 +1,10 @@
 name: Update Dependencies
 
 on:
-  push:
-    branches:
-      - main # Adjust to your main branch name
+  #push:
+    #branches:
+     # - main # Adjust to your main branch name
+  workflow_dispatch:
 
 jobs:
   update:
