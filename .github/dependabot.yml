@@ -3,8 +3,8 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
-      day: "saturday"
+      interval: "daily"
+      time: "00:00"
     labels:
       - "dependencies"
       - "github-actions"
@@ -15,8 +15,8 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "weekly"
-      day: "saturday"
+      interval: "daily"
+      time: "00:00"
     ignore:
       - dependency-name: "*"
         update-types: ["version-update:semver-major"]
