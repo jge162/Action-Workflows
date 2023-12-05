@@ -13,7 +13,7 @@ jobs:
     - name: Label owner
       if: ${{ (github.event.pull_request.user.login == 'jge162') }}
       # if owner label, owner puled
-      uses: actions/labeler@v4
+      uses: actions/labeler@v5
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
         configuration-path: .github/labeled.yml
@@ -21,7 +21,7 @@ jobs:
     - name: Label not owner
       if: ${{ (github.event.pull_request.user.login != 'jge162') }}
       # if anyone else besides owner, non-owner label
-      uses: actions/labeler@v4
+      uses: actions/labeler@v5
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
         configuration-path: .github/labelers.yml
